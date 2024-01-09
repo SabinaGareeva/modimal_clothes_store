@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "../styles/header.css";
+@import "../styles/footer.css";
+@import "../styles/main-page.css";
+@import "../styles/dropdown.css";
+@import "../styles/slider.module.css";
+@import "../styles/cards.css";
+@import "../styles/filter.css";
+@import '../styles/pagination.css';
+@import '../styles/registration.css';
+html {
+  font-size: 62.5%;
+}
+body {
+  color: rgb(var(--foreground-rgb));
+}
+
+.container {
+  width: 1224px;
+  margin: 0 auto;
+}
+.main-title {
+  font-size: 3.2rem;
+  font-weight: 600;
+  margin-bottom: 2.4rem;
+}
+/* .my-header{
+  background-color: #fff;
+    box-sizing: border-box;
+    z-index: 2;
+    width: 100%;
+    min-height: 68px;
+    padding: 16px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 1px 2px #00000040;
+} */

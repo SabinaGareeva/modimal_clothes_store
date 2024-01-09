@@ -1,0 +1,126 @@
+footer {
+  background: var(--neutral-gray-404040, #404040);
+  padding: 4.8rem 0 3.3rem;
+  position: relative;
+
+
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.footer-title {
+  color: var(--White, #fff);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;   
+}
+.social-link {
+  color: var(--White, #fff);
+  font-size: 18px;
+  font-weight: 400;
+}
+.social-link:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+}
+.container-link {
+  width: 623px;
+  display: flex;
+  justify-content: space-between;
+}
+.social-icons {
+  width: 14.4rem;
+  margin-bottom: 3.6rem;
+}
+.footer-text-field {
+  display: flex;
+  margin-bottom: 1.6rem;
+}
+.text-field__btn {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: #404040;
+  border: 1px solid #d1d9cf;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  transition: background-color 0.15s ease-in-out;
+  position: relative;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-width: 0;
+}
+.text-field__btn:hover {
+  background-color: #bdbdbd;
+}
+
+.input-footer {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  position: relative;
+  z-index: 2;
+  width: 452px;
+  background-color: #404040;
+  border: 1px solid #d1d9cf;
+  border-right: none;
+  padding: 0 16px;
+  min-height: 40px;
+}
+.input-footer::placeholder {
+  color: #d1d9cf;
+  font-size: 14px;
+  font-weight: 400;
+}
+#checkbox-footer {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.8rem;
+}
+.footer-label-checkbox {
+  display: flex;
+  align-items: center;
+}
+.footer-label-checkbox span {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.footer-container-checkbox {
+  width: 49.6rem;
+  margin-bottom: 10.4rem;
+}
+.footer-container-rights {
+  display: flex;
+  align-items: center;
+}
+.footer-container-rights span {
+  color: #cbcbcb;
+  font-size: 1.2rem;
+}
+
+.footer-container-rights svg {
+  margin-right: 0.8rem;
+}
+.chat-button {
+  display: flex;
+  border: 1px solid #fff;
+  background: #5a6d57;
+  padding: 1.07rem 1.42rem;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 5.6rem;
+  right: 10.9rem;
+}

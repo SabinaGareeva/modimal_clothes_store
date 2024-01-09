@@ -1,0 +1,25 @@
+.card-image {
+  width: 39.2rem;
+  height: 43.8rem;
+  object-fit: cover;
+  margin-bottom: 0.55rem;
+}
+.card-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+.card-subtitle {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.card-price {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.wishlist-heart{
+  position: absolute;
+  top:2.4rem;
+  right:2.4rem;
+  cursor: pointer;
+}

@@ -1,0 +1,49 @@
+.slider-img {
+  width: 100%;
+}
+.swiper-pagination-bullet-active {
+  --swiper-theme-color: black;
+  --swiper-pagination-bullet-opacity: 0.7;
+}
+.main-collection-img {
+  width: 600px;
+  object-fit: cover;
+}
+
+.img-blouses {
+  height: 45.2rem;
+}
+.img-pants {
+  height: 90.4rem;
+}
+.img-dresses {
+  height: 90.4rem;
+}
+.img-outwear {
+  height: 45.2rem;
+}
+.collection-main-subtitle {
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 1.2rem 5rem;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  background-color: #fff;
+}
+.stylish-sustainability {
+  font-size: 2rem;
+  font-weight: 400;
+  position: absolute;
+  bottom: 9.5rem;
+  right: 10.8rem;
+}
+.sustainability-main-subtitle{
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 1.2rem 5rem;
+  position: absolute;
+  right: 10.8rem;
+  bottom: 4.3rem;
+  background-color: #fff;
+}
