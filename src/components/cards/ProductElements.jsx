@@ -8,7 +8,7 @@ const ProductElements = ({ products }) => {
       id="container-cards"
     >
       {products.map((element, index) => (
-        <Cards dataelement={{ element, index }} key={index}></Cards>
+        <Cards prodactElement={{ element, index }} key={index}></Cards>
       ))}
     </div>
   );

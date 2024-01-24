@@ -1,11 +1,11 @@
 import React from "react";
 
 
-const InputForRegister = () => {
+const InputForRegister = (props) => {
   return (
     <div>
-       <label htmlFor="firstName">Your name</label>
-				<input className="input" type="text" id="firstName" required name="firstName" placeholder="First Name"/>         
+       <label htmlFor={props.name}></label>
+				<input className="input-for-register" type="text" id="firstName" required name={props.name} placeholder={props.name}/>         
     </div>
     );
 };

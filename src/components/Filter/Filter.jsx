@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from "react";
+import css from './Filter.module.css'
 
 const Filter = (props) => {
   const { nameFilter, options, onChange } = props;
@@ -50,7 +51,7 @@ const Filter = (props) => {
   , [checkedOptions, nameFilter, onChange]);
 
   return (
-    <div className="filter-container">
+    <div className={css.filter__container}>
       <div
         className={`flex items-center justify-between w-full p-[1.6rem] ${
           filterIsOpen ? "bg-inherit" : "bg-[#748C70]"
@@ -58,7 +59,7 @@ const Filter = (props) => {
         onClick={toggleShowFilter}
       >
         <p
-          className={`filter-title  ${
+          className={`${css.filter__title}  ${
             filterIsOpen ? "text-[#748C70]" : "text-white"
           }`}
         >
@@ -95,16 +96,16 @@ const Filter = (props) => {
           <div key={option?.id}>
             <input
               type="checkbox"
-              id={`checkbox-filter${option?.id}`}
-              className="checkbox-filter"
+              id={`${css.checkbox__filter}${option?.id}`}
+              className={css.checkbox__filter}
               onChange={() => {
                 handleNumberOfOption(option.name);
               }}
               checked={checkedOptions.includes(option.name)}
             />
             <label
-              htmlFor={`checkbox-filter${option?.id}`}
-              className="label-filter"
+              htmlFor={`${css.checkbox__filter}${option?.id}`}
+              className={css.label__filter}
             >
               {option?.name}
             </label>

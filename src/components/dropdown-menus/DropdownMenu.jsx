@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
+import css from "./DropdownMenu.module.css";
 // import SliderMain from '../slider/SliderMain'
 
-const DropdownCollection = ({
+const DropdownMenu = ({
   isOpen,
   setIsOpen,
   buttonsHeader,
@@ -71,7 +72,14 @@ const DropdownCollection = ({
     { name: "Fall collection", path: "/Modiweek" },
     { name: "Modiweek", path: "/Modiweek" },
   ];
-  const sustainability =[{name:'Mission',path: "/Mission"},{name:'Processing',path: "/Processing"},{name:'Materials',path: "/Materials"},{name:'Packaging',path: "/Packaging"},{name:'Product care',path: "/ProductCare"},{name:'Our suppliers',path: "/ur suppliers"}]
+  const sustainability = [
+    { name: "Mission", path: "/Mission" },
+    { name: "Processing", path: "/Processing" },
+    { name: "Materials", path: "/Materials" },
+    { name: "Packaging", path: "/Packaging" },
+    { name: "Product care", path: "/ProductCare" },
+    { name: "Our suppliers", path: "/ur suppliers" },
+  ];
 
   //Меняем верстку dropdown в зависимости от выбранной кнопки
   let content;
@@ -79,18 +87,20 @@ const DropdownCollection = ({
     case "Collection":
       content = (
         <div
-          className={`dropdown-collection ${isOpen ? "dropdown-show" : ""}`}
+          className={`${css.dropdown__collection} ${
+            isOpen ? css["dropdown__show"] : ""
+          }`}
           ref={dropdownRef}
         >
           {isOpen && (
             <div className="container">
-              <nav className="flex">
+              <nav className="flex justify-between">
                 <div className="flex flex-col justify-start">
-                  <h2 className="dropdown-title">Category</h2>
+                  <h2 className={css.dropdown__title}>Category</h2>
                   {collection.map((item, index) => (
                     <Link
                       href={item.path}
-                      className={`dropdown-links  ${
+                      className={`${css.dropdown__links}  ${
                         item.path === router.pathname ? "text-sky-500" : ""
                       }`}
                       key={index}
@@ -101,11 +111,11 @@ const DropdownCollection = ({
                   ))}
                 </div>
                 <div className="flex flex-col justify-start">
-                  <h2 className="dropdown-title">Featured </h2>
+                  <h2 className={css.dropdown__title}>Featured </h2>
                   {featured.map((item, index) => (
                     <Link
                       href={item.path}
-                      className={`dropdown-links  ${
+                      className={`${css.dropdown__links}  ${
                         item.path === router.pathname ? "text-sky-500" : ""
                       }`}
                       key={index}
@@ -115,11 +125,11 @@ const DropdownCollection = ({
                   ))}
                 </div>
                 <div className="flex flex-col justify-start">
-                  <h2 className="dropdown-title">More</h2>
+                  <h2 className={css.dropdown__title}>More</h2>
                   {more.map((item, index) => (
                     <Link
                       href={item.path}
-                      className={`dropdown-links ${
+                      className={`${css.dropdown__links} ${
                         item.path === router.pathname ? "text-sky-500" : ""
                       }`}
                       key={index}
@@ -128,23 +138,23 @@ const DropdownCollection = ({
                     </Link>
                   ))}
                 </div>
-                <Link href={collection[1].path} className="dropdown-image-link">
+                <Link href={collection[1].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Blouses"
                     src="/dropdown-1.png"
                     width={1400}
                     height={1799}
-                    className="dropdown-image"
+                    className={css.dropdown__image}
                   ></Image>
                   <h2>Blouses</h2>
                 </Link>
-                <Link href={featured[2].path} className="dropdown-image-link">
+                <Link href={featured[2].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Plus size"
                     src="/dropdown-2.png"
                     width={1400}
                     height={1799}
-                    className="dropdown-image"
+                    className={css.dropdown__image}
                   ></Image>
                   <h2>Plus size</h2>
                 </Link>
@@ -158,18 +168,20 @@ const DropdownCollection = ({
     case "New In":
       content = (
         <div
-          className={`dropdown-collection ${isOpen ? "dropdown-show" : ""}`}
+          className={`${css.dropdown__collection} ${
+            isOpen ? css.dropdown__show : ""
+          }`}
           ref={dropdownRef}
         >
           {isOpen && (
             <div className="container">
-              <nav className="flex">
+              <nav className="flex justify-between">
                 <div className="flex flex-col justify-start">
-                  <h2 className="dropdown-title">Category</h2>
+                  <h2 className={css.dropdown__title}>Category</h2>
                   {collection.map((item, index) => (
                     <Link
                       href={item.path}
-                      className={`dropdown-links  ${
+                      className={`${css.dropdown__links}  ${
                         item.path === router.pathname ? "text-sky-500" : ""
                       }`}
                       key={index}
@@ -180,11 +192,11 @@ const DropdownCollection = ({
                   ))}
                 </div>
                 <div className="flex flex-col justify-start">
-                  <h2 className="dropdown-title">Trending </h2>
+                  <h2 className={css.dropdown__title}>Trending </h2>
                   {trending.map((item, index) => (
                     <Link
                       href={item.path}
-                      className={`dropdown-links  ${
+                      className={`${css.dropdown__links}  ${
                         item.path === router.pathname ? "text-sky-500" : ""
                       }`}
                       key={index}
@@ -194,33 +206,33 @@ const DropdownCollection = ({
                   ))}
                 </div>
 
-                <Link href={trending[1].path} className="dropdown-image-link">
+                <Link href={trending[1].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Fall collection"
                     src="/dropdown-3.png"
                     width={424}
                     height={582}
-                    className="dropdown-image-new"
+                    className={css.dropdown__image_new}
                   ></Image>
                   <h2>Fall Collection</h2>
                 </Link>
-                <Link href={collection[1].path} className="dropdown-image-link">
+                <Link href={collection[1].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Blouses"
                     src="/dropdown-4.png"
                     width={720}
                     height={925}
-                    className="dropdown-image-new"
+                    className={css.dropdown__image_new}
                   ></Image>
                   <h2>Blouses</h2>
                 </Link>
-                <Link href={collection[3].path} className="dropdown-image-link">
+                <Link href={collection[3].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Dresses"
                     src="/dropdown-5.png"
                     width={1400}
                     height={1799}
-                    className="dropdown-image-new"
+                    className={css.dropdown__image_new}
                   ></Image>
                   <h2>Dresses</h2>
                 </Link>
@@ -233,18 +245,18 @@ const DropdownCollection = ({
     case "Plus Size":
       content = (
         <div
-          className={`dropdown-collection ${isOpen ? "dropdown-show" : ""}`}
+          className={`${css.dropdown__collection} ${isOpen ? css.dropdown__show : ""}`}
           ref={dropdownRef}
         >
           {isOpen && (
             <div className="container">
-              <nav className="flex">
+              <nav className="flex justify-between">
                 <div className="flex flex-col justify-start">
-                  <h2 className="dropdown-title">Category</h2>
+                  <h2 className={css.dropdown__title}>Category</h2>
                   {collection.map((item, index) => (
                     <Link
                       href={item.path}
-                      className={`dropdown-links  ${
+                      className={`${css.dropdown__links}  ${
                         item.path === router.pathname ? "text-sky-500" : ""
                       }`}
                       key={index}
@@ -255,33 +267,33 @@ const DropdownCollection = ({
                   ))}
                 </div>
 
-                <Link href={trending[2].path} className="dropdown-image-link">
+                <Link href={trending[2].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Pants"
                     src="/dropdown-6.jpg"
                     width={424}
                     height={582}
-                    className="dropdown-image-new"
+                    className={css.dropdown__image_new}
                   ></Image>
                   <h2>Fall Collection</h2>
                 </Link>
-                <Link href={collection[3].path} className="dropdown-image-link">
+                <Link href={collection[3].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Dresses"
                     src="/dropdown-7.png"
                     width={720}
                     height={925}
-                    className="dropdown-image-new"
+                    className={css.dropdown__image_new}
                   ></Image>
                   <h2>Blouses</h2>
                 </Link>
-                <Link href={collection[1].path} className="dropdown-image-link">
+                <Link href={collection[1].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Blouses"
                     src="/dropdown-8.jpg"
                     width={1400}
                     height={1799}
-                    className="dropdown-image-new"
+                    className={css.dropdown__image_new}
                   ></Image>
                   <h2>Dresses</h2>
                 </Link>
@@ -291,20 +303,21 @@ const DropdownCollection = ({
         </div>
       );
       break;
-      case "Sustainability":content = (
+    case "Sustainability":
+      content = (
         <div
-          className={`dropdown-collection ${isOpen ? "dropdown-show" : ""}`}
+          className={`${css.dropdown__collection} ${isOpen ? css.dropdown__show : ""}`}
           ref={dropdownRef}
         >
           {isOpen && (
             <div className="container">
-              <nav className="flex">
+              <nav className="flex justify-between">
                 <div className="flex flex-col justify-start">
-                  <h2 className="dropdown-title">Category</h2>
+                  <h2 className={css.dropdown__title}>Category</h2>
                   {sustainability.map((item, index) => (
                     <Link
                       href={item.path}
-                      className={`dropdown-links  ${
+                      className={`${css.dropdown__links}  ${
                         item.path === router.pathname ? "text-sky-500" : ""
                       }`}
                       key={index}
@@ -315,7 +328,7 @@ const DropdownCollection = ({
                   ))}
                 </div>
 
-                <Link href={trending[2].path} >
+                <Link href={trending[2].path}>
                   <Image
                     alt="Pants"
                     src="/dropdown-9.jpg"
@@ -323,9 +336,8 @@ const DropdownCollection = ({
                     height={428}
                     className="w-[39.2rem] h-[43.8rem] object-cover"
                   ></Image>
-                  
                 </Link>
-                <Link href={collection[3].path} >
+                <Link href={collection[3].path}>
                   <Image
                     alt="Dresses"
                     src="/dropdown-10.jpg"
@@ -334,7 +346,6 @@ const DropdownCollection = ({
                     className="w-[39.2rem] h-[43.8rem] object-cover"
                   ></Image>
                 </Link>
-                
               </nav>
             </div>
           )}
@@ -344,4 +355,4 @@ const DropdownCollection = ({
   }
   return <div>{content}</div>;
 };
-export default DropdownCollection;
+export default DropdownMenu;

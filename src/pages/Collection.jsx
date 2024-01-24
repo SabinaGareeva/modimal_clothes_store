@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
-import Footer from "../components/Navigation/Footer";
+import Footer from "../components/layout/Footer/Footer";
 import Image from "next/image";
-import Filter from "../components/Filter";
+import Filter from "../components/Filter/Filter";
 import ProductElements from "../components/cards/ProductElements";
 import Pagination from "../components/Navigation/Pagination";
-import dataProducts from "../../dataProducts.json"
+
 // Массивы значений фильтров
 const sortBy = [
   { name: "Featured", id: 111 },
@@ -41,13 +41,12 @@ const colorOptions = [
 
 // Получение данных с сервера
 export const getStaticProps = 
-// async
- () => {
-  // const response = await fetch("http://localhost:3000/products");
-  // const data = await response.json();
-  // const data=dataProducts.json();
+async() => {
+  const response = await fetch("http://localhost:3000/products");
+  const data = await response.json();
+  
   return {
-    props: { products: dataProducts.products },
+    props: { products: data },
   };
 };
 

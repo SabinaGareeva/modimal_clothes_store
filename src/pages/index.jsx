@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import Footer from "../components/Navigation/Footer";
+import Footer from "../components/layout/Footer/Footer";
 import SliderMain from "../components/slider/SliderMain";
 import Image from "next/image";
 // import DropdownCollection from "../components/dropdown-menus/DropdownCollection";
@@ -23,9 +23,9 @@ const Home = () => (
       <section className="mb-24">
         <div className="container">
           <h2 className="main-title">Best Sellers</h2>
-          <div className="flex">
+          <div className="flex justify-between">
             {data.slice(0, 3).map((element, index) => (
-              <Cards dataelement={{ element, index }} key={index}></Cards>
+              <Cards prodactElement={{ element, index }} key={index}></Cards>
             ))}
           </div>
         </div>

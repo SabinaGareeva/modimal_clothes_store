@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import HeaderIcons from "../Header/HeaderIcons";
-import DropdownCollection from "../dropdown-menus/DropdownCollection";
+import HeaderIcons from "./HeaderIcons";
+import DropdownMenu from "../../dropdown-menus/DropdownMenu";
+import css from './Navigation.module.css'
 
 /* пункты меню в шапке */
 const navItems = [
@@ -48,14 +49,14 @@ const Navigation = () => {
      shadow bg-white h-110px  items-center flex-col 
     "
     >
-      <div className="header-free-shopping">
+      <div className={css.header__free_shopping}>
         <p className="text-[1.2rem] font-semibold">
           Enjoy Free Shopping On All Orders
         </p>
       </div>
       <div className="container">
         <div className="flex justify-between items-center">
-          <Link href="/" className="logo-link">
+          <Link href="/" className={css.logo__link}>
             <svg
               width="184"
               height="46"
@@ -69,14 +70,14 @@ const Navigation = () => {
               />
               <mask id="path-2-inside-1_3833_2223" fill="white">
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M164.75 26C167.511 26 169.75 23.7614 169.75 21C169.75 18.2386 167.511 16 164.75 16C161.989 16 159.75 18.2386 159.75 21C159.75 23.2156 161.191 25.0947 163.187 25.7509C163.209 25.6708 163.232 25.5918 163.257 25.5139C162.676 24.8379 162.675 24.1806 162.675 23.8498L162.675 23.8495C162.678 22.9562 162.946 22.1361 163.631 21.5419C164.313 20.9503 165.388 20.5998 166.967 20.5998H168.36C168.43 20.5998 168.485 20.6558 168.485 20.7248V21.4193V21.4264L168.485 21.4264C168.397 22.9568 167.976 24.0325 167.284 24.7253C166.59 25.4194 165.642 25.7109 164.541 25.7109H163.494C163.483 25.7109 163.471 25.7092 163.459 25.7059C163.448 25.7446 163.437 25.7837 163.427 25.823C163.848 25.9384 164.292 26 164.75 26ZM163.951 24.6353C163.783 24.8874 163.647 25.1611 163.541 25.4551L163.547 25.4609H164.541C165.599 25.4609 166.474 25.1816 167.107 24.5486C167.74 23.9149 168.149 22.9084 168.235 21.4157V20.8498H166.967C165.42 20.8498 164.414 21.1938 163.795 21.7307C163.179 22.2649 162.927 23.0072 162.925 23.85V23.8508C162.925 24.1441 162.925 24.6737 163.356 25.2388C163.46 24.9766 163.588 24.7287 163.743 24.4966C164.148 23.8891 164.731 23.397 165.532 23.0412C165.595 23.0131 165.669 23.0415 165.697 23.1046C165.725 23.1677 165.697 23.2416 165.633 23.2696C164.872 23.6082 164.327 24.0709 163.951 24.6353Z"
                 />
               </mask>
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M164.75 26C167.511 26 169.75 23.7614 169.75 21C169.75 18.2386 167.511 16 164.75 16C161.989 16 159.75 18.2386 159.75 21C159.75 23.2156 161.191 25.0947 163.187 25.7509C163.209 25.6708 163.232 25.5918 163.257 25.5139C162.676 24.8379 162.675 24.1806 162.675 23.8498L162.675 23.8495C162.678 22.9562 162.946 22.1361 163.631 21.5419C164.313 20.9503 165.388 20.5998 166.967 20.5998H168.36C168.43 20.5998 168.485 20.6558 168.485 20.7248V21.4193V21.4264L168.485 21.4264C168.397 22.9568 167.976 24.0325 167.284 24.7253C166.59 25.4194 165.642 25.7109 164.541 25.7109H163.494C163.483 25.7109 163.471 25.7092 163.459 25.7059C163.448 25.7446 163.437 25.7837 163.427 25.823C163.848 25.9384 164.292 26 164.75 26ZM163.951 24.6353C163.783 24.8874 163.647 25.1611 163.541 25.4551L163.547 25.4609H164.541C165.599 25.4609 166.474 25.1816 167.107 24.5486C167.74 23.9149 168.149 22.9084 168.235 21.4157V20.8498H166.967C165.42 20.8498 164.414 21.1938 163.795 21.7307C163.179 22.2649 162.927 23.0072 162.925 23.85V23.8508C162.925 24.1441 162.925 24.6737 163.356 25.2388C163.46 24.9766 163.588 24.7287 163.743 24.4966C164.148 23.8891 164.731 23.397 165.532 23.0412C165.595 23.0131 165.669 23.0415 165.697 23.1046C165.725 23.1677 165.697 23.2416 165.633 23.2696C164.872 23.6082 164.327 24.0709 163.951 24.6353Z"
                 fill="#748C70"
               />
@@ -101,7 +102,7 @@ const Navigation = () => {
                 // className={`header-links  ${
                 //   item.path === router.pathname ? "text-sky-500" : ""
                 // }`}
-                className="header-button"
+                className={css.header__button}
                 onClick={() => {
                   setIsOpen(!isOpen);
                   setSelectedItemName(item.name);
@@ -111,20 +112,20 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
-            <Link href="/Modiweek" className="header-links">
+            <Link href="/Modiweek" className={css.header__links}>
               Modiweek
             </Link>
           </nav>
           <HeaderIcons></HeaderIcons>
         </div>
       </div>
-      <DropdownCollection
+      <DropdownMenu
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         buttonsHeader={buttonsHeader}
         itemName={selectedItemName}
         headerLinkClass="header-button"
-      ></DropdownCollection>
+      ></DropdownMenu>
     </header>
   );
 };

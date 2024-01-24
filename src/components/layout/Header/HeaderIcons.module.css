@@ -1,0 +1,5 @@
+.header__icons {
+    display: flex;
+    min-width: 184px;
+    justify-content: space-between;
+  }

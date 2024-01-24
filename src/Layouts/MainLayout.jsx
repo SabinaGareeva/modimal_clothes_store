@@ -1,5 +1,5 @@
 import React from "react";
-import Navigation from "../components/Navigation/Navigation";
+import Navigation from "../components/layout/Header/Navigation";
 
 /* Обертка контента основной страницы */
 const MainLayout = ({ children }) => {

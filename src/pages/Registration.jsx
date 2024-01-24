@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../components/Navigation/Footer";
+import Footer from "../components/layout/Footer/Footer";
 import RegisterForm from "../components/registerForm/RegisterForm";
 import Image from "next/image";
 

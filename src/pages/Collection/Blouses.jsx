@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../../components/Navigation/Footer";
+import Footer from "../../components/layout/Footer/Footer";
 export const getStaticProps = async () => {
   const response = await fetch("http://localhost:3000/products");
   const data = await response.json();

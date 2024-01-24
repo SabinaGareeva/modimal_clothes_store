@@ -1,4 +1,4 @@
-.dropdown-collection{
+.dropdown__collection{
     display: none;
     padding-bottom: 5.7rem;
     padding-top: 3.2rem;
@@ -22,41 +22,38 @@
       max-height: 600px; /* Ваше значение максимальной высоты */
     }
   }
-.dropdown-show{
+.dropdown__show{
     display: block;
  
 }
-.dropdown-title {
+.dropdown__title {
   font-size: 1.8rem;
   color: #0c0c0c;
   font-weight: 400;
   margin-bottom: 2.4rem;
 }
-.dropdown-links {
+.dropdown__links {
   font-size: 18px;
   color: #404040;
   font-weight: 400;
   margin-bottom: 0.8rem;
 }
-.dropdown-image-link{
+.dropdown__image_link{
     font-size: 16px;
 }
-.dropdown-image{
+.dropdown__image{
     margin-bottom: 1.2rem;
     object-fit: cover;
    height:420px;
    width: 280px;
 }
-.dropdown-image-new{
+.dropdown__image_new{
   margin-bottom: 1.2rem;
   object-fit: cover;
  height:420px;
  width: 208px;
 }
-.dropdown-image-link:hover,
-.dropdown-links:hover{
+.dropdown__image_link:hover,
+.dropdown__links:hover{
     color:#5A6D57;
 }
-/* .blur-background{
- 
-} */

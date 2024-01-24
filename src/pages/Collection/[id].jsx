@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CardDetailsPage from "../../components/cardDetails/CardDetailsPage";
+import CardDetailsPage from "../../components/cardDetailsPage/CardDetailsPage";
 
 // const Product = ({ productId }) => {
 //   const [product, setProduct] = useState(null);

@@ -1,0 +1,25 @@
+.header__free_shopping {
+    height: 30px;
+    background-color: #5a6d57;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header__button {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #404040;
+  }
+  .header__links{
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #404040;
+    order:2
+  }
+  
+  .logo__link {
+    padding-top: 1.6rem;
+    padding-bottom: 1.8rem;
+  }

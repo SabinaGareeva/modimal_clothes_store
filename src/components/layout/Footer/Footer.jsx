@@ -1,19 +1,20 @@
 import React from "react";
+import css from "./Footer.module.css";
 const Footer = () => {
   return (
-    <footer>
-      <div className="container flex">
-        <div className="footer-column">
-          <h3 className="footer-title">
+    <footer className={css.footer}>
+      <div className={`container ${css.flex}`}>
+        <div className={css.footer__column}>
+          <h3 className={css.footer__title}>
             Join our club, get 15% off for your Birthday
           </h3>
-          <div className="footer-text-field">
+          <div className={css.footer__text_field}>
             <input
               type="text"
               placeholder="Enter Your Email Address"
-              className="input-footer"
+              className={css.input__footer}
             />
-            <button className="text-field__btn">
+            <button className={css.text__field_btn}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -29,9 +30,9 @@ const Footer = () => {
             </button>
           </div>
 
-          <div className="footer-container-checkbox">
-            <label for="checkbox-footer" className="footer-label-checkbox">
-              <input type="checkbox" id="checkbox-footer" />
+          <div className={css.footer__container_checkbox}>
+            <label htmlFor="checkbox-footer" className={css.footer__label_checkbox}>
+              <input type="checkbox" id="checkbox-footer" className={css.checkbox__footer} />
               <span>
                 By Submittng your email, you agree to receive advertising emails
                 from Modimal.
@@ -39,8 +40,8 @@ const Footer = () => {
             </label>
           </div>
 
-          <div className="social-icons flex">
-            <a href="#" className="social-link">
+          <div className={`${css.social__icons} ${css.flex}`}>
+            <a href="#" className={css.social__link}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -62,7 +63,7 @@ const Footer = () => {
                 />
               </svg>
             </a>
-            <a href="social-link">
+            <a href={css.social__link}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -77,7 +78,7 @@ const Footer = () => {
                 />
               </svg>
             </a>
-            <a href="#" className="social-link">
+            <a href="#" className={css.social__link}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -91,7 +92,7 @@ const Footer = () => {
                 />
               </svg>
             </a>
-            <a href="#" className="social-link">
+            <a href="#" className={css.social__link}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="21"
@@ -110,7 +111,7 @@ const Footer = () => {
               </svg>
             </a>
           </div>
-          <div className="footer-container-rights ">
+          <div className={css.footer__container_rights}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -123,67 +124,75 @@ const Footer = () => {
                 fill="#CBCBCB"
               />
             </svg>
-            <span className="footer-rights">
+            <span className={css.footer__rights}>
               2023 modimal. All Rights Reserved.
             </span>
           </div>
         </div>
-        <div className="container-link">
-          <div className="footer-column">
-            <h3 className="footer-title">About Modimal</h3>
-            <a href="#" className="social-link">
+        <div className={css.container__link}>
+          <div className={css.footer__column}>
+            <h3 className={css.footer__title}>About Modimal</h3>
+            <a href="#" className={css.social__link}>
               Collection
             </a>
-            <a href="#" className="social-link">
+            <a href="#" className={css.social__link}>
               Sustainability
             </a>
-            <a href="#" className="social-link">
+            <a href="#" className={css.social__link}>
               Privacy Policy
             </a>
-            <a href="#" className="social-link">
+            <a href="#" className={css.social__link}>
               Support System
             </a>
-            <a href="#" className="social-link">
+            <a href="#" className={css.social__link}>
               Terms & Condition
             </a>
-            <a href="#" className="social-link">
+            <a href="#" className={css.social__link}>
               Copyright Notice
             </a>
           </div>
-          <div className="footer-column">
-            <h3 className="footer-title">Help & Support</h3>
-            <a href="#" className="social-link">
+          <div className={css.footer__column}>
+            <h3 className={css.footer__title}>Help & Support</h3>
+            <a href="#" className={css.social__link}>
               Orders & Shipping
             </a>
-            <a href="#" className="social-link">
+            <a href="#" className={css.social__link}>
               Returns & Refunds
             </a>
-            <a href="#" className="social-link">
+            <a href="#" className={css.social__link}>
               FAQs
             </a>
-            <a href="#" className="social-link">
+            <a href="#" className={css.social__link}>
               Contact Us
             </a>
           </div>
-          <div className="footer-column">
-            <h3 className="footer-title"> Join Up</h3>
-            <a href="#" className="social-link">
+          <div className={css.footer__column}>
+            <h3 className={css.footer__title}> Join Up</h3>
+            <a href="#" className={css.social__link}>
               Modimal Club
             </a>
-            <a href="#" className="social-link">
+            <a href="#" className={css.social__link}>
               Careers
             </a>
-            <a href="#" className="social-link">
+            <a href="#" className={css.social__link}>
               Visit Us
             </a>
           </div>
         </div>
       </div>
-      <button className="chat-button">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-<path d="M20 2H4.01C2.91 2 2.01 2.9 2.01 4L2 22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H5.17L4 17.17V4H20V16ZM12 10C13.1 10 14 9.1 14 8C14 6.9 13.1 6 12 6C10.9 6 10 6.9 10 8C10 9.1 10.9 10 12 10ZM16 13.43C16 12.62 15.52 11.9 14.78 11.58C13.93 11.21 12.99 11 12 11C11.01 11 10.07 11.21 9.22 11.58C8.48 11.9 8 12.62 8 13.43V14H16V13.43Z" fill="white"/>
-</svg>
-
+      <button className={css.chat__button}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M20 2H4.01C2.91 2 2.01 2.9 2.01 4L2 22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H5.17L4 17.17V4H20V16ZM12 10C13.1 10 14 9.1 14 8C14 6.9 13.1 6 12 6C10.9 6 10 6.9 10 8C10 9.1 10.9 10 12 10ZM16 13.43C16 12.62 15.52 11.9 14.78 11.58C13.93 11.21 12.99 11 12 11C11.01 11 10.07 11.21 9.22 11.58C8.48 11.9 8 12.62 8 13.43V14H16V13.43Z"
+            fill="white"
+          />
+        </svg>
       </button>
     </footer>
   );

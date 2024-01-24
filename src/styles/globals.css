@@ -2,13 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "../styles/header.css";
-@import "../styles/footer.css";
+
+
 @import "../styles/main-page.css";
-@import "../styles/dropdown.css";
 @import "../styles/slider.module.css";
-@import "../styles/cards.css";
-@import "../styles/filter.css";
 @import '../styles/pagination.css';
 @import '../styles/registration.css';
 html {
@@ -26,6 +23,13 @@ body {
   font-size: 3.2rem;
   font-weight: 600;
   margin-bottom: 2.4rem;
+}
+.main-button{
+  background-color: #5A6D57;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 0.8rem 0;
+  width: inherit;
 }
 /* .my-header{
   background-color: #fff;

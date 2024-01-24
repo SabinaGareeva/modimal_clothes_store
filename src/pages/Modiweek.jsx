@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../components/Navigation/Footer";
+import Footer from "../components/layout/Footer/Footer";
 const Modiweek = () => {
   return (
     <section className="collection">
