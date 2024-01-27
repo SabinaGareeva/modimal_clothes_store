@@ -141,7 +141,7 @@ const DropdownMenu = ({
                 <Link href={collection[1].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Blouses"
-                    src="/dropdown-1.png"
+                    src="/dropdown/dropdown-1.png"
                     width={1400}
                     height={1799}
                     className={css.dropdown__image}
@@ -151,7 +151,7 @@ const DropdownMenu = ({
                 <Link href={featured[2].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Plus size"
-                    src="/dropdown-2.png"
+                    src="/dropdown/dropdown-2.png"
                     width={1400}
                     height={1799}
                     className={css.dropdown__image}
@@ -209,7 +209,7 @@ const DropdownMenu = ({
                 <Link href={trending[1].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Fall collection"
-                    src="/dropdown-3.png"
+                    src="/dropdown/dropdown-3.png"
                     width={424}
                     height={582}
                     className={css.dropdown__image_new}
@@ -219,7 +219,7 @@ const DropdownMenu = ({
                 <Link href={collection[1].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Blouses"
-                    src="/dropdown-4.png"
+                    src="/dropdown/dropdown-4.png"
                     width={720}
                     height={925}
                     className={css.dropdown__image_new}
@@ -229,7 +229,7 @@ const DropdownMenu = ({
                 <Link href={collection[3].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Dresses"
-                    src="/dropdown-5.png"
+                    src="/dropdown/dropdown-5.png"
                     width={1400}
                     height={1799}
                     className={css.dropdown__image_new}
@@ -270,7 +270,7 @@ const DropdownMenu = ({
                 <Link href={trending[2].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Pants"
-                    src="/dropdown-6.jpg"
+                    src="/dropdown/dropdown-6.jpg"
                     width={424}
                     height={582}
                     className={css.dropdown__image_new}
@@ -280,7 +280,7 @@ const DropdownMenu = ({
                 <Link href={collection[3].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Dresses"
-                    src="/dropdown-7.png"
+                    src="/dropdown/dropdown-7.png"
                     width={720}
                     height={925}
                     className={css.dropdown__image_new}
@@ -290,7 +290,7 @@ const DropdownMenu = ({
                 <Link href={collection[1].path} className={css.dropdown__image_link}>
                   <Image
                     alt="Blouses"
-                    src="/dropdown-8.jpg"
+                    src="/dropdown/dropdown-8.jpg"
                     width={1400}
                     height={1799}
                     className={css.dropdown__image_new}
@@ -331,7 +331,7 @@ const DropdownMenu = ({
                 <Link href={trending[2].path}>
                   <Image
                     alt="Pants"
-                    src="/dropdown-9.jpg"
+                    src="/dropdown/dropdown-9.jpg"
                     width={392}
                     height={428}
                     className="w-[39.2rem] h-[43.8rem] object-cover"
@@ -340,7 +340,7 @@ const DropdownMenu = ({
                 <Link href={collection[3].path}>
                   <Image
                     alt="Dresses"
-                    src="/dropdown-10.jpg"
+                    src="/dropdown/dropdown-10.jpg"
                     width={392}
                     height={428}
                     className="w-[39.2rem] h-[43.8rem] object-cover"

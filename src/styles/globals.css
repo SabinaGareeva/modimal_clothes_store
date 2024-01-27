@@ -5,8 +5,6 @@
 
 
 @import "../styles/main-page.css";
-@import "../styles/slider.module.css";
-@import '../styles/pagination.css';
 @import '../styles/registration.css';
 html {
   font-size: 62.5%;
