@@ -10,7 +10,7 @@
 .filter__title {
   font-size: 1.6rem;
   font-weight: 700;
-  /* color: #748c70; */
+
 }
 /* Скрыть оригинальный чекбокс */
 input[type="checkbox"].checkbox__filter {

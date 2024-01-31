@@ -8,9 +8,9 @@ import css from "./Collection.module.css";
 
 // Объект всех фильтров
 const filters = {
-  sortBy: [
-    "Featured",
-    "Best Seller",
+  sort: [
+    // "Featured",
+    // "Best Seller",   возможно добавить позже
     "Price: Low To Hight",
     "Price: Hight To Low",
   ],
@@ -27,6 +27,7 @@ const filters = {
     "white",
   ],
   fabric: ["cotton", "linen", "wool", "silk", "cashmere"],
+  size: ["XS / US (0-4)","S / US (4-6)","M / US (6-10)","L / US (10-14)","XL / US (12-16)"]
 };
 
 // Массивы значений фильтров
@@ -84,20 +85,21 @@ const Collection = ({ products }) => {
   // const [selectedColor, setSelectedColors] = useState([]);
 
   const [checkedOption, setCheckedOption] = useState({
-    sortBy: [],
+    sort: [],
     fabric: [],
     color: [],
+    size:[]
   });
 
   const handleCheckboxChange = (filterType, value) => {
     setCheckedOption((prevFilter) => {
-      if (filterType === "sortBy") {
+      if (filterType === "sort") {
         // проверка есть ли опция уже в массиве sortBy
-        const isValueIncluded = prevFilter.sortBy.includes(value);
+        const isValueIncluded = prevFilter.sort.includes(value);
 
         //если значение уже есть то итеррируюсь по массиву опций
         const updatedSortBy = isValueIncluded
-          ? prevFilter.sortBy.filter(
+          ? prevFilter.sort.filter(
               (option) =>
                 // option === value ? value : option
                 option !== value
@@ -106,7 +108,7 @@ const Collection = ({ products }) => {
 
         return {
           ...prevFilter,
-          sortBy: updatedSortBy,
+          sort: updatedSortBy,
         };
       }
 
@@ -121,7 +123,19 @@ const Collection = ({ products }) => {
       };
     });
   };
-  console.log(checkedOption);
+  const sortByPrice = (products, arraySortBy) => {
+    if (arraySortBy.includes("Price: Low To Hight")) {
+     return products.sort(
+        (a, b) => Number(a.price) - Number(b.price)
+      );
+    } 
+     if (arraySortBy.includes("Price: Hight To Low")) {
+      return products.sort(
+        (a, b) => Number(b.price) - Number(a.price)
+      );
+     }
+    return products
+  };
 
   let filteredProducts = products.filter((product) => {
     const colorMatch =
@@ -130,13 +144,12 @@ const Collection = ({ products }) => {
     const fabricMatch =
       checkedOption.fabric.length === 0 ||
       checkedOption.fabric.includes(product.fabric);
-    return colorMatch && fabricMatch;
+      const sizeMatch = checkedOption.size.length === 0 || checkedOption.size.some(item=>product.size.includes(item))
+    return colorMatch && fabricMatch && sizeMatch;
   });
-  if (checkedOption.sortBy.includes("Price: Low To Hight")) {
-    filteredProducts = filteredProducts.sort(
-      (a, b) => Number(a.price) - Number(b.price)
-    );
-  }
+
+  filteredProducts = sortByPrice(filteredProducts, checkedOption.sort);
+
 
   // Код для пагинации
   const lastProdactsIndex = currentPage * productsPerPage;
@@ -258,91 +271,4 @@ const Collection = ({ products }) => {
 
 export default Collection;
 
-// useEffect(() => {
-//   const fetchData = async () => {
-//     try {
-//       const response = await fetch("http://localhost:3000/products");
-//       const data = await response.json();
-//       setProducts(data);
-//       setFilteredProducts(data);
-//     } catch (error) {
-//       console.log(`Error fetching data: `, error);
-//     }
-//   };
-//   fetchData();
-// }, []);
 
-// Функция фильтрации карточек по выбранным цветам и тканям
-// const filterCards = ({ products }) => {
-//   let filtered = products;
-//   if (selectedColors.length > 0) {
-//     filtered = filtered.filter((product) =>
-//       selectedColors.includes(product.color)
-//     );
-//   }
-//   if (selectedFabrics.length > 0) {
-//     filtered = filtered.filter((product) =>
-//       selectedColors.includes(product.fabric)
-//     );
-//   }
-//   if (selectedColors.length === 0 && selectedFabrics.length === 0) {
-//     setFilteredProducts(products);
-//   } else {
-//     setFilteredProducts(filtered);
-//   }
-// };
-// Функции для обработки выбора цветов и тканей
-// const handleColorChange = (selectedColorsOptions) => {
-//   setSelectedColors(selectedColorsOptions);
-
-// if (selectedColors.includes(color)) {
-//   selectedColors.filter((c) => c !== color);
-// } else {
-//   setSelectedColors([...selectedColors, color]);
-// }
-// };
-// const handleFabricChange = (fabric) => {
-//   if (selectedFabrics.includes(fabric)) {
-//     selectedFabrics.filter((f) => f !== fabric);
-//   } else {
-//     setSelectedFabrics([...selectedFabrics, fabric]);
-//   }
-// };
-// Обработка изменений в выбранных цветах и тканях
-// useEffect(() => {
-//   filterCards({ products });
-// }, [selectedColors, selectedFabrics]);
-
-// const handleFilterChange = (filterName, selectedOptions) => {
-//   console.log(selectedOptions);
-//   //  console.log(selectedSortBy)
-//   // Логика обработки выбранных фильтров
-
-//   if (filterName === "Sort By") {
-//     // Если выбран фильтр "Sort By", обработка логики выбора только одного чекбокса
-//     if (selectedOptions.includes("Price: Low To Hight")) {
-//       setSelectedSortBy("Price: Low To Hight");
-//     } else if (selectedOptions.includes("Price: Hight To Low")) {
-//       setSelectedSortBy("Price: Hight To Low");
-//     } else {
-//       setSelectedSortBy(null);
-//     }
-//   } else if (filterName === "Color") {
-//     if (selectedOptions.includes("black")) {
-//       setSelectedColors(selectedOptions);
-//     }
-//   }
-// };
-// // Логика фильтрации с использованием useMemo
-// const filteredProducts = useMemo(() => {
-//   const filterArray = [...products];
-//   if (selectedSortBy === "Price: Low To Hight") {
-//     return filterArray.sort((a, b) => Number(a.price) - Number(b.price));
-//   } else if (selectedSortBy === "Price: Hight To Low") {
-//     return filterArray.sort((a, b) => Number(b.price) - Number(a.price));
-//   } else if (selectedColor === "black") {
-//     return filterArray.filter((elem) => elem.color === "black");
-//   } else {
-//     return products;
-//   }
-// }, [selectedSortBy, selectedColor, products]);
