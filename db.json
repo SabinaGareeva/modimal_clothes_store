@@ -1,13 +1,14 @@
 {
   "products": [
     {
+    
       "id": 1,
       "imgPath": "/cards/card-1.png",
       "name": "Tailored stretch",
       "description": "Turn it up pants",
       "price": "180",
       "category": "Pants",
-      "size": "xs s m l xl",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "fabric": "linen",
       "color": "brown",
       "collection": "Best Seller"
@@ -19,7 +20,7 @@
       "description": "Make A Splash",
       "price": "120",
       "category": "Dresses",
-      "size": "l xl",
+      "size": "L / US (10-14), XL / US (12-16)",
       "fabric": "silk",
       "color": "green",
       "collection": "Best Seller",
@@ -32,7 +33,7 @@
       "description": "Anywhere Dress",
       "price": "210",
       "category": "Dresses",
-      "size": "xs s m l xl",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "fabric": "cotton",
       "color": "black",
       "collection": "Best Seller"
@@ -44,7 +45,7 @@
       "description": "Turn It Up Top",
       "price": "160",
       "category": "Blouses & top",
-      "size": "xs s m l",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14)",
       "fabric": "cotton",
       "color": "white"
     },
@@ -55,7 +56,7 @@
       "description": "turn it up t-shirt",
       "price": "95",
       "category": "Tees",
-      "size": "xs s m l xl",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "fabric": "cotton",
       "color": "brown",
       "collection": "New In"
@@ -67,7 +68,7 @@
       "description": "turn it up dress",
       "price": "245",
       "category": "Dresses",
-      "size": "xs s m",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10)",
       "fabric": "cotton",
       "color": "dark blue"
     },
@@ -78,7 +79,7 @@
       "description": "Turn It Up Jacket",
       "price": "199",
       "category": "Outwear",
-      "size": "xs s m l xl",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "fabric": "linen",
       "color": "red"
     },
@@ -89,7 +90,7 @@
       "description": "Turn It Up Pants",
       "price": "180",
       "category": "Pants",
-      "size": "s m l",
+      "size": "S / US (4-6), M / US (6-10), L / US (10-14)",
       "fabric": "linen",
       "color": "pink"
     },
@@ -100,7 +101,7 @@
       "description": "Turn It Up Pullover",
       "price": "180",
       "category": "Pullovers",
-      "size": "xs s m l xl",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "fabric": "cashemere",
       "color": "white"
     },
@@ -111,7 +112,7 @@
       "description": "Turn It Up Skirt",
       "price": "60",
       "category": "Shorts & skirts",
-      "size": "xs s m ",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10)",
       "fabric": "cotton",
       "color": "white",
       "collection": "New In"
@@ -123,7 +124,7 @@
       "description": "Turn It Up T-shirt",
       "price": "30",
       "category": "Tees",
-      "size": "xs s m  l xl",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "fabric": "cotton",
       "color": "white",
       "collection": "Best Seller"
@@ -135,7 +136,7 @@
       "description": "Turn It Up Blouse",
       "price": "50",
       "category": "Blouses & top",
-      "size": "xs s",
+      "size": "XS / US (0-4), S / US (4-6)",
       "fabric": "silk",
       "color": "white",
       "collection": "New In"
@@ -147,7 +148,7 @@
       "description": "Turn It Up Jacket",
       "price": "200",
       "category": "Outwear",
-      "size": "xs s m l xl",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "fabric": "wool",
       "color": "black",
       "collection": "Best Seller"
@@ -159,7 +160,7 @@
       "description": "Turn It Up Pullover",
       "price": "170",
       "category": "Pullovers",
-      "size": "xs s m l",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14)",
       "fabric": "cashemere",
       "color": "red",
       "collection": "New In"
@@ -171,7 +172,7 @@
       "description": "Turn It Up Pants",
       "price": "110",
       "category": "Pants",
-      "size": "s m l xl",
+      "size": "S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "fabric": "linen",
       "color": "white",
       "collection": "Best Seller"
@@ -183,7 +184,7 @@
       "description": "Turn It Up Skirt",
       "price": "90",
       "category": "Shorts & skirts",
-      "size": "xs s m l xl ",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "fabric": "wool",
       "color": "white",
       "collection": "New In"
@@ -195,7 +196,7 @@
       "description": "Turn It Up T-shirt",
       "price": "40",
       "category": "Tees",
-      "size": "xs s m l xl",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "fabric": "cotton",
       "color": "white",
       "collection": "New In"
@@ -207,7 +208,7 @@
       "description": "Turn It Up Blouse",
       "price": "70",
       "category": "Blouses & top",
-      "size": "xs s m l xl",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "fabric": "linen",
       "color": "dark blue",
       "collection": "Best Seller"
@@ -219,7 +220,7 @@
       "description": "Turn It Up Jacket",
       "price": "350",
       "category": "Outwear",
-      "size": "s m l xl",
+      "size": "S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "color": "light blue",
       "fabric": "cotton"
     },
@@ -230,7 +231,7 @@
       "description": "Turn It Up Dress",
       "price": "100",
       "category": "Dresses",
-      "size": "xs s m l",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14)",
       "color": "black",
       "fabric": "silk"
     },
@@ -241,7 +242,7 @@
       "description": "Turn It Up Pullover",
       "price": "160",
       "category": "Pullovers",
-      "size": "xs s m l xl",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "color": "dark blue",
       "fabric": "cashemere",
       "collection": "Best Seller"
@@ -253,7 +254,7 @@
       "description": "Turn It Up Pants",
       "price": "90",
       "category": "Pants",
-      "size": "s m l xl",
+      "size": "S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "color": "red",
       "fabric": "cotton",
       "collection": "New In"
@@ -265,7 +266,7 @@
       "description": "Turn It Up Skirt",
       "price": "80",
       "category": "Shorts & skirts",
-      "size": "xs s m",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10)",
       "color": "green",
       "fabric": "wool",
       "collection": "Best Seller"
@@ -277,7 +278,7 @@
       "description": "Turn It Up T-shirt",
       "price": "40",
       "category": "Tees",
-      "size": "xs s m l xl",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "color": "brown",
       "fabric": "linen",
       "collection": "New In"
@@ -289,7 +290,7 @@
       "description": "Turn It Up Blouse",
       "price": "60",
       "category": "Blouses & top",
-      "size": "s m l xl",
+      "size": "S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "fabric": "cotton",
       "color": "white",
       "collection": "Best Seller"
@@ -301,7 +302,7 @@
       "description": "Turn It Up Jacket",
       "price": "450",
       "category": "Outwear",
-      "size": "s m l xl",
+      "size": "S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "color": "white",
       "fabric": "linen"
     },
@@ -312,7 +313,7 @@
       "description": "Turn It Up Pullover",
       "price": "150",
       "category": "Pullovers",
-      "size": "xs s m l xl",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10), L / US (10-14), XL / US (12-16)",
       "color": "green",
       "fabric": "wool",
       "collection": "Best Seller"
@@ -324,7 +325,7 @@
       "description": "Turn It Up Skirt",
       "price": "90",
       "category": "Shorts & skirts",
-      "size": "xs s m",
+      "size": "XS / US (0-4), S / US (4-6), M / US (6-10)",
       "color": "black",
       "fabric": "linen",
       "collection": "New In"
