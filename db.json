@@ -3,7 +3,7 @@
     {
     
       "id": 1,
-      "imgPath": "/cards/card-1.png",
+      "imgPath": "/cards/card-1.jpg",
       "name": "Tailored stretch",
       "description": "Turn it up pants",
       "price": "180",
@@ -28,7 +28,7 @@
     },
     {
       "id": "3",
-      "imgPath": "/dropdown/dropdown-5.png",
+      "imgPath": "/cards/card-3.jpg",
       "name": "Cool Weave",
       "description": "Anywhere Dress",
       "price": "210",
@@ -40,7 +40,7 @@
     },
     {
       "id": "4",
-      "imgPath": "/cards/card-4.png",
+      "imgPath": "/cards/card-4.jpg",
       "name": "Chill Wrap Top",
       "description": "Turn It Up Top",
       "price": "160",
@@ -51,7 +51,7 @@
     },
     {
       "id": "5",
-      "imgPath": "/cards/card-3.png",
+      "imgPath": "/cards/card-5.jpg",
       "name": "essential t-shirt",
       "description": "turn it up t-shirt",
       "price": "95",
@@ -63,7 +63,7 @@
     },
     {
       "id": "6",
-      "imgPath": "/cards/card-5.png",
+      "imgPath": "/cards/card-6.jpg",
       "name": "Shirt Dress",
       "description": "turn it up dress",
       "price": "245",
@@ -74,7 +74,7 @@
     },
     {
       "id": "7",
-      "imgPath": "/cards/card-6.png",
+      "imgPath": "/cards/card-7.jpg",
       "name": "Rule Zip Jacket",
       "description": "Turn It Up Jacket",
       "price": "199",
@@ -85,7 +85,7 @@
     },
     {
       "id": "8",
-      "imgPath": "/cards/card-7.jpg",
+      "imgPath": "/cards/card-8.jpg",
       "name": "New Age Linen",
       "description": "Turn It Up Pants",
       "price": "180",
@@ -96,7 +96,7 @@
     },
     {
       "id": "9",
-      "imgPath": "/cards/card-8.jpg",
+      "imgPath": "/cards/card-9.jpg",
       "name": "Boss Pullover",
       "description": "Turn It Up Pullover",
       "price": "180",
