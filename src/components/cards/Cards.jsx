@@ -27,7 +27,7 @@ const Cards = ({ prodactElement }) => {
         </div>
         <Image
           alt={prodactElement.element.name}
-          src={prodactElement.element.imgPath}
+          src={prodactElement.element.imgPath[0]}
           width={392}
           height={438}
           className={css.card__image}
