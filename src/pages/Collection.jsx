@@ -80,9 +80,6 @@ const Collection = ({ products }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(8);
 
-  // const [filteredProducts, setFilteredProducts] = useState([...products]);
-  // const [selectedSortBy, setSelectedSortBy] = useState(null);
-  // const [selectedColor, setSelectedColors] = useState([]);
 
   const [checkedOption, setCheckedOption] = useState({
     sort: [],

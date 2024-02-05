@@ -2,6 +2,9 @@ import React from "react";
 import Image from "next/image";
 import Footer from "../layout/Footer/Footer";
 import css from "./CardDetailsPage.module.css";
+import MainButton from "../UI/MainButton";
+import WishlistButton from "../UI/WishlistButton";
+import Select from "../UI/Select";
 {
   /* Отображение детальной информации о карточке */
 }
@@ -17,7 +20,7 @@ const CardDetailsPage = ({ product }) => {
     <>
       <div className="container">
         <div className="mt-5 flex mb-9">
-          <div className="flex w-7/12 flex-wrap">
+          <div className="flex w-7/12 flex-wrap gap-1">
             {imgPath.map((item, index) => (
               <Image
                 key={`detail-picture-${id}${index}`}
@@ -30,6 +33,7 @@ const CardDetailsPage = ({ product }) => {
             ))}
           </div>
           <div className="pl-3 pt-9">
+            <div className="mb-4">
             <h2 className={css.product__name}>Name product: {name}</h2>
             <p className={css.product__characteristic}>
               Description: {description}
@@ -37,10 +41,15 @@ const CardDetailsPage = ({ product }) => {
             <p className={css.product__characteristic}>Category: {category}</p>
             <p className={css.product__characteristic}>Fabric: {fabric}</p>
             <p className={css.product__characteristic}>Price: {price}$</p>
+            </div>
+            <Select options={size}></Select>
+            <MainButton>Add To Card</MainButton>
+            <WishlistButton>Add To Whish List</WishlistButton>
+            
           </div>
         </div>
       </div>
-      <Footer></Footer>
+    <Footer></Footer>
     </>
   );
 };
