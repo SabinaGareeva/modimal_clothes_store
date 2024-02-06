@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import css from './HeaderIcons.module.css'
+import Modal from '../../UI/Modal'
 const HeaderIcons = () => {
+  // Показ модального окна при клике на корзину
+  const [showModal,setShowModal]=useState(false)
   return (
     <div className={css.header__icons}>
       <Link href="">
@@ -52,7 +55,7 @@ const HeaderIcons = () => {
           />
         </svg>
       </Link>
-      <Link href="">
+      <button  onClick={()=>setShowModal(true)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -65,7 +68,9 @@ const HeaderIcons = () => {
             fill="#202020"
           />
         </svg>
-      </Link>
+      </button>
+      <Modal isOpen={showModal} onClose={()=>setShowModal(false)}/>
+       
     </div>
   );
 };

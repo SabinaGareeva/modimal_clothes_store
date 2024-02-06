@@ -6,7 +6,7 @@ const MainLayout = ({ children }) => {
   return (
     <>
       <Navigation />
-      <div className="p-4 bg-slate-400">{children}</div>
+      <div className="bg-slate-400">{children}</div>
     </>
   );
 };
