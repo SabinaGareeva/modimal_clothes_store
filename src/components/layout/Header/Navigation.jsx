@@ -47,7 +47,7 @@ const Navigation = () => {
     <header
       className="
      shadow bg-white h-110px  items-center flex-col 
-    "
+    " 
     >
       <div className={css.header__free_shopping}>
         <p className="text-[1.2rem] font-semibold">
