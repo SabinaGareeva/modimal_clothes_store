@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import "./Slider.module.css";
+import css from "./Slider.module.css";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -17,7 +17,7 @@ export default function App() {
   // const sliderRef = useRef(null);
   return (
     <>
-      <Swiper 
+      <Swiper
         spaceBetween={30}
         centeredSlides={true}
         // autoplay={{
@@ -30,23 +30,23 @@ export default function App() {
         }}
         // navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className={css.main__swiper}
       >
         <SwiperSlide>
           <div>
-        
-            <img className="slider-img" src="/slider-12.png" alt="" /> 
+            <img className={css.slider__img} src="/slider-12.png" alt="" />
           </div>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide >
           <div>
-            <img className="slider-img" src="/slider-2.jpg" alt="" />
+            <img className={css.slider__img} src="/slider-2.jpg" alt="" />
           </div>
         </SwiperSlide>
-        <SwiperSlide><div>
-            <img className="slider-img" src="/slider-3.jpg" alt="" />
-          </div></SwiperSlide>
-        
+        <SwiperSlide >
+          <div>
+            <img className={css.slider__img} src="/slider-3.jpg" alt="" />
+          </div>
+        </SwiperSlide>
       </Swiper>
     </>
   );

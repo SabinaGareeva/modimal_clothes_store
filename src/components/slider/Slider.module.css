@@ -21,7 +21,7 @@
     height: 600px;
   }
   
-  .swiper-slide {
+  .swiper__slide {
     text-align: center;
     font-size: 18px;
     background: #fff;
@@ -32,15 +32,18 @@
     align-items: center;
   } 
   
-  .swiper-slide img {
+  .slider__img {
     display: block;
     width: 100%;
     height: 100%; 
      object-fit: cover;
  } 
 
-  .mySwiper{height: 600px;
-  margin-bottom: 8.8rem;} 
+  .main__swiper{height: 620px;
+  margin-bottom: 8.8rem;
+  width: 100%;
+  z-index: 0;
+ } 
 
 
   
