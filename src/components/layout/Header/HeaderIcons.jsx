@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import css from './HeaderIcons.module.css'
-import Modal from '../../UI/Modal'
+import Sidebar from '../../UI/Sidebar'
 const HeaderIcons = () => {
   // Показ модального окна при клике на корзину
   const [showModal,setShowModal]=useState(false)
@@ -69,7 +69,7 @@ const HeaderIcons = () => {
           />
         </svg>
       </button>
-      <Modal isOpen={showModal} onClose={()=>setShowModal(false)}/>
+      <Sidebar isOpen={showModal} onClose={()=>setShowModal(false)}/>
        
     </div>
   );

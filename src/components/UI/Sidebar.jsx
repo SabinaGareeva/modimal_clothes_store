@@ -1,8 +1,9 @@
 import { React, useRef, useEffect } from "react";
-import MainButton from "./MainButton";
+import Link from "next/link";
 import { createPortal } from "react-dom";
+import css from './Sidebar.module.css'
 // import css from './Select.module.css'
-const Modal = ({ isOpen, onClose }) => {
+const Sidebar = ({ isOpen, onClose }) => {
   const handleClose = () => onClose();
   const modalRef = useRef(null);
 
@@ -36,7 +37,7 @@ const Modal = ({ isOpen, onClose }) => {
       <div className="fixed top-0 left-0 w-full h-full flex bg-opacity-50 bg-black">
         <div
           ref={modalRef}
-          className="modal bg-white p-4  shadow-md w-[40rem] fixed top-0 right-0 bottom-0"
+          className="modal bg-white p-5  shadow-md w-[40rem] fixed top-0 right-0 bottom-0"
         >
           <button onClick={handleClose}>
             <svg
@@ -49,18 +50,19 @@ const Modal = ({ isOpen, onClose }) => {
                 id="Vector"
                 d="M14 1.41016L12.5898 0L7 5.58984L1.41016 0L0 1.41016L5.58984 7L0 12.5898L1.41016 14L7 8.41016L12.5898 14L14 12.5898L8.41016 7L14 1.41016Z"
                 fill="#202020"
-                fill-opacity="1.000000"
-                fill-rule="nonzero"
+                fillOpacity="1.000000"
+                fillRule="nonzero"
               />
             </svg>
           </button>
-          <h2>Your shopping bag is empty</h2>
-          <p>discover modimal and add products to your Bag</p>
-          <MainButton>Collection</MainButton>
+          <div className="flex flex-col items-center">
+          <h2 className={css.basket__empty_title}>Your shopping bag is empty</h2>
+          <p className={css.basket__empty_subtitle}>Discover modimal and add products to your Bag</p>
+          <Link href="/Collection" className={css.basket__empty_link} onClick={handleClose}>Collection</Link></div>
         </div>
       </div>,
       document.body
     )
   );
 };
-export default Modal;
+export default Sidebar;

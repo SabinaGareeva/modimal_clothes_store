@@ -1,0 +1,19 @@
+.basket__empty_title {
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 2.4rem;
+  margin-top: 19rem;
+}
+.basket__empty_subtitle {
+  font-size: 1.4rem;
+  margin-bottom: 7.2rem;
+}
+.basket__empty_link {
+  text-align: center;
+  background-color: #5a6d57;
+  color: #fff;
+  width: 100%;
+  font-size: 1.4rem;
+  padding: 0.7rem;
+  margin-bottom: 2rem;
+}
