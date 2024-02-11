@@ -8,12 +8,18 @@ const Sidebar = ({ isOpen, onClose }) => {
   const [orderProducts, setorderProducts] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/orders");
-      const result = await response.json();
-      setorderProducts(result);
+      try {
+        const response = await fetch("http://localhost:3000/orders");
+        const result = await response.json();
+        setorderProducts(result);
+      } catch (error) {
+        console.log("Ошибка загрузки данных в корзине", error);
+      }
     };
-    fetchData();
-  }, [orderProducts]);
+    if (isOpen) {
+      fetchData();
+    }
+  }, [isOpen]);
 
   const handleClose = () => onClose();
   const modalRef = useRef(null);
@@ -50,9 +56,9 @@ const Sidebar = ({ isOpen, onClose }) => {
           ref={modalRef}
           className="modal bg-white p-5  shadow-md w-[45rem] fixed top-0 right-0 bottom-0"
         >
-          <CloseButton width="14" height="14" onClick={handleClose}/>
+          <CloseButton width="14" height="14" onClick={handleClose} />
           <h3 className={css.basket__title}>Your Cart</h3>
-          {orderProducts.length ? (
+          {orderProducts ? (
             orderProducts.map((orderProduct, index) => (
               <CardsInBasket
                 prodactInBasket={{ orderProduct, index }}
