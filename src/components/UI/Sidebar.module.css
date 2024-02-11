@@ -1,8 +1,9 @@
-.basket__empty_title {
+.basket__title {
   font-weight: 700;
   font-size: 1.6rem;
-  margin-bottom: 2.4rem;
-  margin-top: 19rem;
+  text-align: center;
+  /* margin-bottom: 2.4rem;
+  margin-top: 19rem; */
 }
 .basket__empty_subtitle {
   font-size: 1.4rem;
