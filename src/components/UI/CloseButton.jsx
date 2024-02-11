@@ -1,8 +1,9 @@
 import React from "react";
 import css from "./MainButton.module.css";
 const CloseButton = ({ width, height, onClick }) => {
+    const handleClick =onClick||(()=>{})
   return (
-    <button onClick={onClick}>
+    <button onClick={handleClick}>
       <svg width={`${width}.000000`} height={`${height}.000000`} viewBox="0 0 14 14" fill="none">
         <path
           id="Vector"
