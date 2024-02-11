@@ -3,7 +3,6 @@ import React from "react";
 import Footer from "../components/layout/Footer/Footer";
 import SliderMain from "../components/slider/SliderMain";
 import Image from "next/image";
-// import DropdownCollection from "../components/dropdown-menus/DropdownCollection";
 
 import Cards from "../components/cards/Cards";
 import Link from "next/link";

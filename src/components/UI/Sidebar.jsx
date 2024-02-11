@@ -51,22 +51,6 @@ const Sidebar = ({ isOpen, onClose }) => {
           className="modal bg-white p-5  shadow-md w-[45rem] fixed top-0 right-0 bottom-0"
         >
           <CloseButton width="14" height="14" onClick={handleClose}/>
-          {/* <button onClick={handleClose}>
-            <svg
-              width="14.000000"
-              height="14.000000"
-              viewBox="0 0 14 14"
-              fill="none"
-            >
-              <path
-                id="Vector"
-                d="M14 1.41016L12.5898 0L7 5.58984L1.41016 0L0 1.41016L5.58984 7L0 12.5898L1.41016 14L7 8.41016L12.5898 14L14 12.5898L8.41016 7L14 1.41016Z"
-                fill="#202020"
-                fillOpacity="1.000000"
-                fillRule="nonzero"
-              />
-            </svg>
-          </button> */}
           <h3 className={css.basket__title}>Your Cart</h3>
           {orderProducts.length ? (
             orderProducts.map((orderProduct, index) => (

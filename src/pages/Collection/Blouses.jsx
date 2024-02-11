@@ -12,7 +12,6 @@ const Blouses = ({ products }) => {
     <section className="collection">
       <div className="container">
         блузки
-        {/* {products.filter(product =>product.category==='Blouse')} */}
       </div>
       <Footer></Footer>
     </section>
