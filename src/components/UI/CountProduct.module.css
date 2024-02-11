@@ -1,0 +1,12 @@
+.count__container {
+  display: flex;
+  width: 7rem;
+  justify-content: space-between;
+  background-color: #d1d9cf;
+  color: #404e3e;
+  padding: 0 1rem;
+}
+.count__product {
+  font-weight: 400;
+  font-size: 2rem;
+}

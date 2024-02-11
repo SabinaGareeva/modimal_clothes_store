@@ -13,7 +13,6 @@ const Pagination = ({
   }
   return (
     <div>
-      {/* <div className="pagination-centre"> */}
         <div className="flex">
           {pageNumbers.map((number) => (
             <button
@@ -29,7 +28,6 @@ const Pagination = ({
             </button>
           ))}
         </div>
-      {/* </div> */}
     </div>
   );
 };
