@@ -1,0 +1,18 @@
+.basket__product_image{
+    margin-right: 1rem;
+    margin-bottom: 0.8rem;
+}
+.basket__product_title{
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+}
+.basket__product_subtitle{
+ color: #404040;
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+}
+.basket__product_price{
+    font-weight: 700;
+    font-size: 1.6rem;
+}

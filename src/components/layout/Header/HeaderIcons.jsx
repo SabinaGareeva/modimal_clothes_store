@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
-import css from './HeaderIcons.module.css'
-import Sidebar from '../../UI/Sidebar'
+import css from "./HeaderIcons.module.css";
+import Sidebar from "../../UI/Sidebar";
+
 const HeaderIcons = () => {
+  const router = useRouter();
+  const [isWishlistPage, setIsWishlistPage] = useState(false);
+  useEffect(() => {
+    setIsWishlistPage(router.pathname === "/Wishlist");
+  }, [router.pathname]);
   // Показ модального окна при клике на корзину
-  const [showModal,setShowModal]=useState(false)
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className={css.header__icons}>
       <Link href="">
@@ -39,13 +46,13 @@ const HeaderIcons = () => {
           />
         </svg>
       </Link>
-      <Link href="/Whishlist">
+      <Link href="/Wishlist">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
           viewBox="0 0 20 20"
-          fill="none"
+          fill={isWishlistPage?"red":"none"}
         >
           <path
             d="M9.22318 17.1147L9.22174 17.1134C6.62662 14.7602 4.55384 12.878 3.1178 11.1223C1.69324 9.38069 1 7.88574 1 6.32422C1 3.7965 2.97228 1.82422 5.5 1.82422C6.93721 1.82422 8.33224 2.49815 9.23865 3.56256L10 4.45662L10.7614 3.56256C11.6678 2.49815 13.0628 1.82422 14.5 1.82422C17.0277 1.82422 19 3.7965 19 6.32422C19 7.88575 18.3068 9.38075 16.882 11.1239C15.4459 12.8808 13.3734 14.7651 10.7786 17.1232C10.7782 17.1235 10.7778 17.1238 10.7775 17.1241L10.0026 17.8242L9.22318 17.1147Z"
@@ -55,7 +62,7 @@ const HeaderIcons = () => {
           />
         </svg>
       </Link>
-      <button  onClick={()=>setShowModal(true)}>
+      <button onClick={() => setShowModal(true)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -69,8 +76,7 @@ const HeaderIcons = () => {
           />
         </svg>
       </button>
-      <Sidebar isOpen={showModal} onClose={()=>setShowModal(false)}/>
-       
+      <Sidebar isOpen={showModal} onClose={() => setShowModal(false)} />
     </div>
   );
 };

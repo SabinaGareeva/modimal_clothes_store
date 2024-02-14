@@ -13,8 +13,8 @@ const CountProduct = () => {
             id="Vector"
             d="M0 0L12 0L12 2L0 2L0 0Z"
             fill="#404E3E"
-            fill-opacity="1.000000"
-            fill-rule="nonzero"
+            fillOpacity="1.000000"
+            fillRule="nonzero"
           />
         </svg>
       </button>
@@ -30,8 +30,8 @@ const CountProduct = () => {
             id="Vector"
             d="M14 8L8 8L8 14L6 14L6 8L0 8L0 6L6 6L6 0L8 0L8 6L14 6L14 8Z"
             fill="#404E3E"
-            fill-opacity="1.000000"
-            fill-rule="nonzero"
+            fillOpacity="1.000000"
+            fillRule="nonzero"
           />
         </svg>
       </button>
