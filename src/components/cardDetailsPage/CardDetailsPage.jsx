@@ -1,36 +1,27 @@
-import React from "react";
+import { React, useState } from "react";
 import Image from "next/image";
 import Footer from "../layout/Footer/Footer";
 import css from "./CardDetailsPage.module.css";
 import MainButton from "../UI/MainButton";
 import WishlistButton from "../UI/WishlistButton";
 import Select from "../UI/Select";
-{
-  /* Отображение детальной информации о карточке */
-}
-// export const getStaticProps = async () => {
-//   const response = await fetch("http://localhost:3000/orders");
-//   try {
-//     const data = await response.json();
-//     return {
-//       props: { orderProdacts: data},
-//     };
-
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 const CardDetailsPage = ({ product }) => {
+  const [selectedSize, setSelectedSize] = useState("XS / US (0-4)");
+
   if (!product) {
     return <h3>No product data available</h3>;
   }
+  const { id, name, description, price, imgPath, category, size, fabric } =
+    product;
+
   const sendProductToServer = async () => {
     try {
+      const productToSend = { ...product, size: selectedSize };
       const response = await fetch("http://localhost:3000/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product),
+        body: JSON.stringify(productToSend),
       });
       if (response.ok) {
         console.log("Data sent successfully");
@@ -41,10 +32,6 @@ const CardDetailsPage = ({ product }) => {
       console.error("Error sending data:", error);
     }
   };
-
-  const { id, name, description, price, imgPath, category, size, fabric } =
-    product;
-
 
   return (
     <>
@@ -74,7 +61,11 @@ const CardDetailsPage = ({ product }) => {
               <p className={css.product__characteristic}>Fabric: {fabric}</p>
               <p className={css.product__characteristic}>Price: {price}$</p>
             </div>
-            <Select options={size}></Select>
+            <Select
+              options={size}
+              selectedSize={selectedSize}
+              setSelectedSize={setSelectedSize}
+            ></Select>
             <MainButton onClick={sendProductToServer}>Add To Card</MainButton>
             <WishlistButton>Add To Whish List</WishlistButton>
           </div>

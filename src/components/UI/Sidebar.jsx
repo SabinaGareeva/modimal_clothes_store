@@ -5,13 +5,13 @@ import css from "./Sidebar.module.css";
 import CardsInBasket from "../cards/CardsInBasket";
 import CloseButton from "./CloseButton";
 const Sidebar = ({ isOpen, onClose }) => {
-  const [orderProducts, setorderProducts] = useState(null);
+  const [orderProducts, setOrderProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch("http://localhost:3000/orders");
         const result = await response.json();
-        setorderProducts(result);
+        setOrderProducts(result);
       } catch (error) {
         console.log("Ошибка загрузки данных в корзине", error);
       }
@@ -58,10 +58,11 @@ const Sidebar = ({ isOpen, onClose }) => {
         >
           <CloseButton width="14" height="14" onClick={handleClose} />
           <h3 className={css.basket__title}>Your Cart</h3>
-          {orderProducts ? (
+          {orderProducts.length ? (
             orderProducts.map((orderProduct, index) => (
               <CardsInBasket
                 prodactInBasket={{ orderProduct, index }}
+                setOrderProducts={setOrderProducts}
                 key={index}
               />
             ))
