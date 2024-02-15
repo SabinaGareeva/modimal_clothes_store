@@ -1,34 +1,10 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../components/layout/Footer/Footer";
 import Image from "next/image";
 import Filter from "../components/Filter/Filter";
 import ProductElements from "../components/cards/ProductElements";
 import Pagination from "../components/Pagination/Pagination";
 import css from "./Collection.module.css";
-
-// Объект всех фильтров
-const filters = {
-  sort: [
-    // "Featured",
-    // "Best Seller",   возможно добавить позже
-    "Price: Low To Hight",
-    "Price: Hight To Low",
-  ],
-  color: [
-    "black",
-    "red",
-    "green",
-    "yellow",
-    "dark Blue",
-    "brown",
-    "pink",
-    "light blue",
-    "orange",
-    "white",
-  ],
-  fabric: ["cotton", "linen", "wool", "silk", "cashmere"],
-  size: ["XS / US (0-4)","S / US (4-6)","M / US (6-10)","L / US (10-14)","XL / US (12-16)"]
-};
 
 // Массивы значений фильтров
 // const sortBy = [
@@ -65,28 +41,80 @@ const filters = {
 // ];
 
 // Получение данных с сервера
-export const getStaticProps = async () => {
-  const response = await fetch("http://localhost:3000/products");
-  const data = await response.json();
+// export const getStaticProps = async () => {
+//   const response = await fetch("http://localhost:3000/products");
+//   const data = await response.json();
 
-  return {
-    props: { products: data },
+//   return {
+//     props: { products: data },
+//   };
+// };
+
+const Collection = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    // let isMounted = true;
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/products");
+        const result = await response.json();
+        // if (isMounted) {
+          setProducts(result);
+        // }
+      } catch (error) {
+        console.log("Ошибка загрузки данных");
+      }
+     
+    };
+    fetchData();
+    // Функция для проверки, размонтирован ли компонент
+    // return () => {
+    //   isMounted = false;
+    // };
+  }, []);
+
+  console.log(products);
+  // Объект всех фильтров
+  const filters = {
+    sort: [
+      // "Featured",
+      // "Best Seller",   возможно добавить позже
+      "Price: Low To Hight",
+      "Price: Hight To Low",
+    ],
+    color: [
+      "black",
+      "red",
+      "green",
+      "yellow",
+      "dark Blue",
+      "brown",
+      "pink",
+      "light blue",
+      "orange",
+      "white",
+    ],
+    fabric: ["cotton", "linen", "wool", "silk", "cashmere"],
+    size: [
+      "XS / US (0-4)",
+      "S / US (4-6)",
+      "M / US (6-10)",
+      "L / US (10-14)",
+      "XL / US (12-16)",
+    ],
   };
-};
-
-const Collection = ({ products }) => {
   //Все связано с пагинацией
   // const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(8);
 
-
   const [checkedOption, setCheckedOption] = useState({
     sort: [],
     fabric: [],
     color: [],
-    size:[]
+    size: [],
   });
+  console.log(products);
 
   const handleCheckboxChange = (filterType, value) => {
     setCheckedOption((prevFilter) => {
@@ -122,16 +150,12 @@ const Collection = ({ products }) => {
   };
   const sortByPrice = (products, arraySortBy) => {
     if (arraySortBy.includes("Price: Low To Hight")) {
-     return products.sort(
-        (a, b) => Number(a.price) - Number(b.price)
-      );
-    } 
-     if (arraySortBy.includes("Price: Hight To Low")) {
-      return products.sort(
-        (a, b) => Number(b.price) - Number(a.price)
-      );
-     }
-    return products
+      return products.sort((a, b) => Number(a.price) - Number(b.price));
+    }
+    if (arraySortBy.includes("Price: Hight To Low")) {
+      return products.sort((a, b) => Number(b.price) - Number(a.price));
+    }
+    return products;
   };
 
   let filteredProducts = products.filter((product) => {
@@ -141,12 +165,13 @@ const Collection = ({ products }) => {
     const fabricMatch =
       checkedOption.fabric.length === 0 ||
       checkedOption.fabric.includes(product.fabric);
-      const sizeMatch = checkedOption.size.length === 0 || checkedOption.size.some(item=>product.size.includes(item))
+    const sizeMatch =
+      checkedOption.size.length === 0 ||
+      checkedOption.size.some((item) => product.size.includes(item));
     return colorMatch && fabricMatch && sizeMatch;
   });
 
   filteredProducts = sortByPrice(filteredProducts, checkedOption.sort);
-
 
   // Код для пагинации
   const lastProdactsIndex = currentPage * productsPerPage;
@@ -213,30 +238,6 @@ const Collection = ({ products }) => {
                 ></Filter>
               );
             })}
-            {/* <Filter
-              nameFilter="Sort By"
-              options={sortBy}
-              products={products}
-              onChange={handleFilterChange}
-            ></Filter>
-            <Filter
-              nameFilter="Size"
-              options={sizeOption}
-              onChange={handleFilterChange}
-              products={products}
-            ></Filter>
-            <Filter
-              nameFilter="Color"
-              options={colorOptions}
-              onChange={handleFilterChange}
-              products={products}
-            ></Filter>
-            <Filter
-              nameFilter="Fabric"
-              options={fabricOptions}
-              onChange={handleFilterChange}
-              products={products}
-            ></Filter> */}
           </div>
           {/* Отрисовка карточек */}
           <ProductElements products={currentProducts}></ProductElements>
@@ -267,5 +268,3 @@ const Collection = ({ products }) => {
 };
 
 export default Collection;
-
-

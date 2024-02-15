@@ -42,7 +42,7 @@ const CardsInBasket = ({ prodactInBasket, setOrderProducts }) => {
           />
         </div>
 
-        <p className={css.basket__product_subtitle}>Size: </p>
+        <p className={css.basket__product_subtitle}>Size: {prodactInBasket.orderProduct.size}</p>
         <p className={css.basket__product_subtitle}>
           Color: {prodactInBasket.orderProduct.color}
         </p>

@@ -14,7 +14,7 @@ const HeaderIcons = () => {
   const [showModal, setShowModal] = useState(false);
   return (
     <div className={css.header__icons}>
-      <Link href="">
+      <Link href="/SearchPage">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
