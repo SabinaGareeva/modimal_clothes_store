@@ -6,25 +6,19 @@ import Pagination from "../../Pagination/Pagination";
 import css from "./ContentProducts.module.css";
 const ContentProducts = ({ searchName }) => {
   const [products, setProducts] = useState([]);
-//   const [search, setSearch] = useState('s');
+
   useEffect(() => {
     // let isMounted = true;
     const fetchData = async () => {
       try {
         const response = await fetch("http://localhost:3000/products");
         const result = await response.json();
-        // if (isMounted) {
-        setProducts(result);
-        // }
+setProducts(result);
       } catch (error) {
         console.log("Ошибка загрузки данных");
       }
     };
     fetchData();
-    // Функция для проверки, размонтирован ли компонент
-    // return () => {
-    //   isMounted = false;
-    // };
   }, []);
 
   // Объект всех фильтров
@@ -110,11 +104,8 @@ const ContentProducts = ({ searchName }) => {
     }
     return products;
   };
-  let filteredProducts =
-    searchName.trim() !== ""
-      ? products.filter((product) => product.name.toLowerCase() === searchName)
-      : products;
-  filteredProducts = products.filter((product) => {
+
+  const filteredProducts = products.filter((product) => {
     const colorMatch =
       checkedOption.color.length === 0 ||
       checkedOption.color.includes(product.color);
@@ -126,13 +117,22 @@ const ContentProducts = ({ searchName }) => {
       checkedOption.size.some((item) => product.size.includes(item));
     return colorMatch && fabricMatch && sizeMatch;
   });
+  const searchFilteredProducts =
+    searchName.trim() !== ""
+      ? filteredProducts.filter((product) =>
+          product.name.toLowerCase().includes(searchName.toLowerCase())
+        )
+      : filteredProducts;
 
-  filteredProducts = sortByPrice(filteredProducts, checkedOption.sort);
+  const sortedProducts = sortByPrice(
+    searchFilteredProducts,
+    checkedOption.sort
+  );
 
   // Код для пагинации
   const lastProdactsIndex = currentPage * productsPerPage;
   const firstProdactsIndex = lastProdactsIndex - productsPerPage;
-  const currentProducts = filteredProducts.slice(
+  const currentProducts = sortedProducts.slice(
     firstProdactsIndex,
     lastProdactsIndex
   );
@@ -195,7 +195,7 @@ const ContentProducts = ({ searchName }) => {
             </button>
             <Pagination
               productsPerPage={productsPerPage}
-              totalProducts={filteredProducts.length}
+              totalProducts={sortedProducts.length}
               handlePageChange={handlePageChange}
               currentPage={currentPage}
             ></Pagination>

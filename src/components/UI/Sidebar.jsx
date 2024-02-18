@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import css from "./Sidebar.module.css";
 import CardsInBasket from "../cards/CardsInBasket";
 import CloseButton from "./CloseButton";
+import MainButton from "./MainButton"
 const Sidebar = ({ isOpen, onClose }) => {
   const [orderProducts, setOrderProducts] = useState([]);
   useEffect(() => {
@@ -57,16 +58,18 @@ const Sidebar = ({ isOpen, onClose }) => {
           className="modal bg-white p-5  shadow-md w-[45rem] fixed top-0 right-0 bottom-0"
         >
           <CloseButton width="14" height="14" onClick={handleClose} />
-          <h3 className={css.basket__title}>Your Cart</h3>
-          {orderProducts.length ? (
-            orderProducts.map((orderProduct, index) => (
-              <CardsInBasket
-                prodactInBasket={{ orderProduct, index }}
-                setOrderProducts={setOrderProducts}
-                key={index}
-              />
-            ))
-          ) : (
+          {/* <h3 className={css.basket__title}>Your Cart</h3> */}
+          {orderProducts.length ? (<>
+              <h3 className={css.basket__title}>Your Cart</h3>
+           {orderProducts.map((orderProduct, index) => (
+            <CardsInBasket
+              prodactInBasket={{ orderProduct, index }}
+              setOrderProducts={setOrderProducts}
+              key={index}
+            />
+          ))}
+<MainButton>Check out</MainButton>
+          </> ) : (
             <div className="flex flex-col items-center">
               <h2 className={css.basket__title}>Your shopping bag is empty</h2>
               <p className={css.basket__empty_subtitle}>

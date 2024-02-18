@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 import css from "./SearchInput.module.css";
 const SearchInput = ({ setSearchName }) => {
   const handleSearchName = (event) => {
     setSearchName(event.target.value);
   };
+  const inputSearchRef=useRef(null)
+  // очистка input при нажатии на крестик
+  const clearSearchInput=()=>{
+    setSearchName('');
+    inputSearchRef.current.value = '';
+  }
   return (
     <div className="container">
       <div className={css.search__container}>
-        {/* <label for="name"></label> */}
+       
 
         <input
           className={css.main__input}
@@ -15,6 +21,9 @@ const SearchInput = ({ setSearchName }) => {
           placeholder="Enter product name"
           name="name"
           onChange={handleSearchName}
+          ref={inputSearchRef}
+
+        
         />
         <svg
           width="24.000000"
@@ -29,7 +38,7 @@ const SearchInput = ({ setSearchName }) => {
             fill="#ADADAD"
           />
         </svg>
-        <button className={css.button__clear}>
+        <button className={css.button__clear} onClick={clearSearchInput}>
           <svg
             width="18.000000"
             height="18.000000"
