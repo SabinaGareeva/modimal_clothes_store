@@ -61,7 +61,7 @@ setProducts(result);
     color: [],
     size: [],
   });
-  console.log(searchName);
+  // console.log(searchName);
 
   const handleCheckboxChange = (filterType, value) => {
     setCheckedOption((prevFilter) => {
@@ -118,9 +118,9 @@ setProducts(result);
     return colorMatch && fabricMatch && sizeMatch;
   });
   const searchFilteredProducts =
-    searchName.trim() !== ""
+    searchName?.trim()??'' !== ""
       ? filteredProducts.filter((product) =>
-          product.name.toLowerCase().includes(searchName.toLowerCase())
+          product.name.toLowerCase().includes(searchName?.toLowerCase())
         )
       : filteredProducts;
 
