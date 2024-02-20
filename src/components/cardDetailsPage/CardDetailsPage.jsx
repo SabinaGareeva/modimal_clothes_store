@@ -5,9 +5,12 @@ import css from "./CardDetailsPage.module.css";
 import MainButton from "../UI/MainButton";
 import WishlistButton from "../UI/WishlistButton";
 import Select from "../UI/Select";
+import { useOrderContext } from "../../providers/OrderProvider";
 
 const CardDetailsPage = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState("XS / US (0-4)");
+
+  const { orderProducts, updateOrderProducts } = useOrderContext();
 
   if (!product) {
     return <h3>No product data available</h3>;
@@ -24,6 +27,9 @@ const CardDetailsPage = ({ product }) => {
         body: JSON.stringify(productToSend),
       });
       if (response.ok) {
+        const updatedProducts = [...orderProducts, productToSend];
+        updateOrderProducts(updatedProducts);
+
         console.log("Data sent successfully");
       } else {
         console.error("Failed to send data");
