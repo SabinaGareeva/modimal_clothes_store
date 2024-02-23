@@ -8,8 +8,9 @@ import Select from "../UI/Select";
 import { useOrderContext } from "../../providers/OrderProvider";
 
 const CardDetailsPage = ({ product }) => {
+  // Состояние для выбранного контекста, по умолчанию xs
   const [selectedSize, setSelectedSize] = useState("XS / US (0-4)");
-
+  // Из контекста достаю заказанные товары
   const { orderProducts, updateOrderProducts } = useOrderContext();
 
   if (!product) {
@@ -17,7 +18,7 @@ const CardDetailsPage = ({ product }) => {
   }
   const { id, name, description, price, imgPath, category, size, fabric } =
     product;
-
+// Добавляю товар в корзину и обновляю массив orderProducts
   const sendProductToServer = async () => {
     try {
       const productToSend = { ...product, size: selectedSize };

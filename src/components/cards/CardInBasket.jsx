@@ -4,14 +4,14 @@ import CountProduct from "../UI/CountProduct";
 import CloseButton from "../UI/CloseButton";
 import css from "./CardsInBasket.module.css";
 
-const CardsInBasket = ({ prodactInBasket, setOrderProducts }) => {
+const CardInBasket = ({ prodactInBasket, updateOrderProducts }) => {
   function deleteProductBasket(productId) {
     fetch(`http://localhost:3000/orders/${productId}`, {
       method: "DELETE",
     })
       .then((response) => {
         if (response.ok) {
-          setOrderProducts((prevOrder) =>
+          updateOrderProducts((prevOrder) =>
             prevOrder.filter((order) => order.id !== productId)
           );
         }
@@ -42,7 +42,9 @@ const CardsInBasket = ({ prodactInBasket, setOrderProducts }) => {
           />
         </div>
 
-        <p className={css.basket__product_subtitle}>Size: {prodactInBasket.orderProduct.size}</p>
+        <p className={css.basket__product_subtitle}>
+          Size: {prodactInBasket.orderProduct.size}
+        </p>
         <p className={css.basket__product_subtitle}>
           Color: {prodactInBasket.orderProduct.color}
         </p>
@@ -56,4 +58,4 @@ const CardsInBasket = ({ prodactInBasket, setOrderProducts }) => {
     </div>
   );
 };
-export default CardsInBasket;
+export default CardInBasket;
