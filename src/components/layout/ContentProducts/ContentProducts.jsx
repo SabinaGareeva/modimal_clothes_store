@@ -8,12 +8,11 @@ const ContentProducts = ({ searchName }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // let isMounted = true;
     const fetchData = async () => {
       try {
         const response = await fetch("http://localhost:3000/products");
         const result = await response.json();
-setProducts(result);
+        setProducts(result);
       } catch (error) {
         console.log("Ошибка загрузки данных");
       }
@@ -50,7 +49,7 @@ setProducts(result);
       "XL / US (12-16)",
     ],
   };
-  //Все связано с пагинацией
+ 
   // const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(8);
@@ -118,7 +117,7 @@ setProducts(result);
     return colorMatch && fabricMatch && sizeMatch;
   });
   const searchFilteredProducts =
-    searchName?.trim()??'' !== ""
+    searchName?.trim() ?? "" !== ""
       ? filteredProducts.filter((product) =>
           product.name.toLowerCase().includes(searchName?.toLowerCase())
         )

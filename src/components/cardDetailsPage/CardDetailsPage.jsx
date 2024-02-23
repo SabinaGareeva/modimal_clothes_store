@@ -5,16 +5,20 @@ import css from "./CardDetailsPage.module.css";
 import MainButton from "../UI/MainButton";
 import WishlistButton from "../UI/WishlistButton";
 import Select from "../UI/Select";
+import { useOrderContext } from "../../providers/OrderProvider";
 
 const CardDetailsPage = ({ product }) => {
+  // Состояние для выбранного контекста, по умолчанию xs
   const [selectedSize, setSelectedSize] = useState("XS / US (0-4)");
+  // Из контекста достаю заказанные товары
+  const { orderProducts, updateOrderProducts } = useOrderContext();
 
   if (!product) {
     return <h3>No product data available</h3>;
   }
   const { id, name, description, price, imgPath, category, size, fabric } =
     product;
-
+// Добавляю товар в корзину и обновляю массив orderProducts
   const sendProductToServer = async () => {
     try {
       const productToSend = { ...product, size: selectedSize };
@@ -24,6 +28,9 @@ const CardDetailsPage = ({ product }) => {
         body: JSON.stringify(productToSend),
       });
       if (response.ok) {
+        const updatedProducts = [...orderProducts, productToSend];
+        updateOrderProducts(updatedProducts);
+
         console.log("Data sent successfully");
       } else {
         console.error("Failed to send data");

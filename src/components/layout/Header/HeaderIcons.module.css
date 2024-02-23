@@ -1,5 +1,23 @@
 .header__icons {
-    display: flex;
-    min-width: 184px;
-    justify-content: space-between;
-  }
+  display: flex;
+  min-width: 184px;
+  justify-content: space-between;
+}
+.basket__button {
+  position: relative;
+}
+.basket__button :hover{
+  background-color: #EDEDED;
+ 
+}
+.basket__count {
+  position: absolute;
+  top: -1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  right: -0.1rem;
+}
+.basket__count:hover{
+  background-color: #FFF;
+ 
+}

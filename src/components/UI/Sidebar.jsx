@@ -2,25 +2,27 @@ import { React, useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { createPortal } from "react-dom";
 import css from "./Sidebar.module.css";
-import CardsInBasket from "../cards/CardsInBasket";
+import CardInBasket from "../cards/CardInBasket";
 import CloseButton from "./CloseButton";
-import MainButton from "./MainButton"
-const Sidebar = ({ isOpen, onClose }) => {
-  const [orderProducts, setOrderProducts] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/orders");
-        const result = await response.json();
-        setOrderProducts(result);
-      } catch (error) {
-        console.log("Ошибка загрузки данных в корзине", error);
-      }
-    };
-    if (isOpen) {
-      fetchData();
-    }
-  }, [isOpen]);
+import MainButton from "./MainButton";
+import { useOrderContext } from "../../providers/OrderProvider";
+const Sidebar = ({ isOpen, onClose}) => {
+  const { orderProducts, updateOrderProducts } = useOrderContext();
+  // const [orderProducts, setOrderProducts] = useState([]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("http://localhost:3000/orders");
+  //       const result = await response.json();
+  //       setOrderProducts(result);
+  //     } catch (error) {
+  //       console.log("Ошибка загрузки данных в корзине", error);
+  //     }
+  //   };
+  //   if (isOpen) {
+  //     fetchData();
+  //   }
+  // }, [isOpen]);
 
   const handleClose = () => onClose();
   const modalRef = useRef(null);
@@ -59,17 +61,19 @@ const Sidebar = ({ isOpen, onClose }) => {
         >
           <CloseButton width="14" height="14" onClick={handleClose} />
           {/* <h3 className={css.basket__title}>Your Cart</h3> */}
-          {orderProducts.length ? (<>
+          {orderProducts.length ? (
+            <>
               <h3 className={css.basket__title}>Your Cart</h3>
-           {orderProducts.map((orderProduct, index) => (
-            <CardsInBasket
-              prodactInBasket={{ orderProduct, index }}
-              setOrderProducts={setOrderProducts}
-              key={index}
-            />
-          ))}
-<MainButton>Check out</MainButton>
-          </> ) : (
+              {orderProducts.map((orderProduct, index) => (
+                <CardInBasket
+                  prodactInBasket={{ orderProduct, index }}
+                  updateOrderProducts={updateOrderProducts}
+                  key={index}
+                />
+              ))}
+              <MainButton>Check out</MainButton>
+            </>
+          ) : (
             <div className="flex flex-col items-center">
               <h2 className={css.basket__title}>Your shopping bag is empty</h2>
               <p className={css.basket__empty_subtitle}>
