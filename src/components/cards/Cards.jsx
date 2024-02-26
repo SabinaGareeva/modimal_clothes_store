@@ -1,12 +1,33 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import css from './Cards.module.css'
+import css from "./Cards.module.css";
 const Cards = ({ prodactElement }) => {
+  const sendProductToWishlist = async (event) => {
+    event.preventDefault(); // Предотвращаем переход по ссылке
+    try {
+     
+      const response = await fetch("http://localhost:3000/wishlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(prodactElement.element),
+      });
+      if (response.ok) {
+        console.log("Data sent successfully");
+      } else {
+        console.error("Failed to send data");
+      }
+    } catch {
+      console.error("Error sending data:", error);
+    }
+  };
   return (
     <Link href={`Collection/${prodactElement.element.id}`}>
       <div className="flex-col relative" id={prodactElement.element.id}>
-        <div className={css.wishlist__heart}>
+        <button
+          className={css.wishlist__heart}
+          onClick={sendProductToWishlist}
+        >
           <svg
             width="24"
             height="24"
@@ -24,7 +45,7 @@ const Cards = ({ prodactElement }) => {
               />
             </g>
           </svg>
-        </div>
+        </button>
         <Image
           alt={prodactElement.element.name}
           src={prodactElement.element.imgPath[0]}
@@ -34,7 +55,9 @@ const Cards = ({ prodactElement }) => {
         ></Image>
         <h2 className={css.card__title}>{prodactElement.element.name}</h2>
         <div className="flex justify-between items-center">
-          <p className={css.card__subtitle}>{prodactElement.element.description}</p>
+          <p className={css.card__subtitle}>
+            {prodactElement.element.description}
+          </p>
           <p className={css.card__price}>${prodactElement.element.price}</p>
         </div>
       </div>

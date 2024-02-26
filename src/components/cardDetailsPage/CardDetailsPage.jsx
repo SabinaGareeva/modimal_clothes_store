@@ -74,7 +74,7 @@ const CardDetailsPage = ({ product }) => {
               setSelectedSize={setSelectedSize}
             ></Select>
             <MainButton onClick={sendProductToServer}>Add To Card</MainButton>
-            <WishlistButton>Add To Whish List</WishlistButton>
+            <WishlistButton >Add To Whish List</WishlistButton>
           </div>
         </div>
       </div>

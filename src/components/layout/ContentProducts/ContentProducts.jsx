@@ -51,7 +51,10 @@ const ContentProducts = ({ searchName }) => {
   };
  
   // const [products, setProducts] = useState([]);
+  // Состояния для пагинации
+  // Текущая страница
   const [currentPage, setCurrentPage] = useState(1);
+  //количество товаров на одной странице
   const [productsPerPage] = useState(8);
 
   const [checkedOption, setCheckedOption] = useState({
