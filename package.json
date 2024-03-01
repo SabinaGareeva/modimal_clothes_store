@@ -6,7 +6,8 @@
     "dev": "next dev -p 8080",
     "build": "next build",
     "start": "next start -p 8080",
-    "lint": "next lint"
+    "lint": "next lint",
+    "server": "json-server -w db.json"
   },
   "dependencies": {
     "json-server": "^0.17.4",
