@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+
 import Cards from "../components/cards/Cards";
 import Footer from "../components/layout/Footer/Footer";
 
@@ -18,24 +18,25 @@ const Wishlist = () => {
     };
     fetchDataWishlist();
   }, []);
-  // Получаю путь страницы для окрашивания иконки
-  const page=useRouter()
-  const currentPage =page.pathname
-  console.log(currentPage)
 
   return (
     <section className="collection">
       <div className="mb-5">
-      <div className="container">
-        <h2>My Wish List</h2>
-        <div
-          className="grid  grid-cols-3 gap-y-16 gap-x-24"
-          id="container-cards"
-        >
-          {whishlistProducts.map((element, index) => (
-            <Cards prodactElement={{ element, index }} key={index}></Cards>
-          ))}
-        </div></div>
+        <div className="container">
+          <h2>My Wish List</h2>
+          <div
+            className="grid  grid-cols-3 gap-y-16 gap-x-24"
+            id="container-cards"
+          >
+            {whishlistProducts.map((element, index) => (
+              <Cards
+                prodactElement={{ element, index }}
+                setWhishListProducts={setWhishListProducts}
+                key={index}
+              ></Cards>
+            ))}
+          </div>
+        </div>
       </div>
       <Footer></Footer>
     </section>

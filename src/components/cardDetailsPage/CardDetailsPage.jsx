@@ -3,7 +3,7 @@ import Image from "next/image";
 import Footer from "../layout/Footer/Footer";
 import css from "./CardDetailsPage.module.css";
 import MainButton from "../UI/MainButton";
-import WishlistButton from "../UI/WishlistButton";
+import WishlistIcon from "../Icons/WishlistIcon";
 import Select from "../UI/Select";
 import { useOrderContext } from "../../providers/OrderProvider";
 
@@ -74,7 +74,9 @@ const CardDetailsPage = ({ product }) => {
               setSelectedSize={setSelectedSize}
             ></Select>
             <MainButton onClick={sendProductToServer}>Add To Card</MainButton>
-            <WishlistButton >Add To Whish List</WishlistButton>
+           <button>
+            <WishlistIcon/><p>Add whishlist</p>
+           </button>
           </div>
         </div>
       </div>
