@@ -3,7 +3,7 @@ import Image from "next/image";
 import Footer from "../layout/Footer/Footer";
 import css from "./CardDetailsPage.module.css";
 import MainButton from "../UI/MainButton";
-import WishlistIcon from "../Icons/WishlistIcon";
+import WishlistIcon from "../icons/WishlistIcon";
 import Select from "../UI/Select";
 import { useOrderContext } from "../../providers/OrderProvider";
 

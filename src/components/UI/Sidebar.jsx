@@ -6,8 +6,13 @@ import CardInBasket from "../cards/CardInBasket";
 import CloseButton from "./CloseButton";
 import MainButton from "./MainButton";
 import { useOrderContext } from "../../providers/OrderProvider";
-const Sidebar = ({ isOpen, onClose}) => {
+import ProductsStore from "../../components/store/ProductsStore";
+import {observer} from "mobx-react-lite"
+const Sidebar =observer( ({ isOpen, onClose }) => {
   const { orderProducts, updateOrderProducts } = useOrderContext();
+  useEffect(() => {
+    ProductsStore.getOrderProduct();
+  }, []);
   // const [orderProducts, setOrderProducts] = useState([]);
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -51,6 +56,8 @@ const Sidebar = ({ isOpen, onClose}) => {
       }
     };
   }, [isOpen, onClose]);
+  const renderData=ProductsStore.products
+console.log(renderData)
   return (
     isOpen &&
     createPortal(
@@ -80,7 +87,7 @@ const Sidebar = ({ isOpen, onClose}) => {
                 Discover modimal and add products to your Bag
               </p>
               <Link
-                href="/Collection"
+                href="/collection"
                 className={css.basket__empty_link}
                 onClick={handleClose}
               >
@@ -93,5 +100,5 @@ const Sidebar = ({ isOpen, onClose}) => {
       document.body
     )
   );
-};
+});
 export default Sidebar;

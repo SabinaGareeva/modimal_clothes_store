@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import css from "./Cards.module.css";
-import WishlistIcon from "../Icons/WishlistIcon";
+import WishlistIcon from "../icons/WishlistIcon";
 const Cards = ({ prodactElement, setWhishListProducts }) => {
   const [productInWishlist, setProductInWishlist] = useState(false);
   // Получение всех товаров от сервера из whishlist и отметки их красным сердечком (определение какие товары уже присутствуют в вишлисте)
@@ -21,6 +21,7 @@ const Cards = ({ prodactElement, setWhishListProducts }) => {
     };
     fetchProductInWhishlist();
   }, [prodactElement.element.id]);
+
   const sendProductToWishlist = async (event) => {
     event.preventDefault(); // Предотвращаем переход по ссылке т.к кнопка обернута в ссылку
     if (!productInWishlist) {

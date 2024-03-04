@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import React from "react";
-import MainLayout from "../Layouts/MainLayout";
+import MainLayout from "../authorizationLayout/MainLayout";
 import { OrderProvider } from "../providers/OrderProvider";
 import { Montserrat } from "next/font/google";
 

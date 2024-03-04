@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Cards from "../components/cards/Cards";
 import Footer from "../components/layout/Footer/Footer";
 
-const Wishlist = () => {
+const Wishlist= () => {
   // получение данных с сервера с whishlist
   const [whishlistProducts, setWhishListProducts] = useState([]);
   useEffect(() => {
@@ -12,7 +12,7 @@ const Wishlist = () => {
         const response = await fetch("http://localhost:3000/wishlist");
         const result = await response.json();
         setWhishListProducts(result);
-      } catch {
+      } catch (error){
         console.log("Error", error);
       }
     };
@@ -42,5 +42,4 @@ const Wishlist = () => {
     </section>
   );
 };
-
 export default Wishlist;
