@@ -8,7 +8,7 @@ interface Product {
   description: string;
   price: number;
   category: string;
-  size: string[];
+  size: string[] | string;
   fabric: string;
   color: string;
   collection?: string;
@@ -16,7 +16,7 @@ interface Product {
 /**
  * Класс для управления состоянием товаров.
  */
-class ProductsStore extends BaseStore {
+class OrderProductsStore extends BaseStore {
   /**
    * Массив товаров
    */
@@ -31,7 +31,7 @@ class ProductsStore extends BaseStore {
    * Функция для получения товаров с сервера
    */
   @action
-  getOrderProduct = async (): Promise<void> => {
+  getOrderProducts = async (): Promise<void> => {
     try {
       const response: AxiosResponse<Product[]> = await axios.get<Product[]>(
         "http://localhost:3000/orders"
@@ -51,7 +51,7 @@ class ProductsStore extends BaseStore {
    * @param {Product} newProduct - Данные нового продукта.
    */
   @action
-  addProduct = (newProduct: Product): void => {
+  addOrderProduct = (newProduct: Product): void => {
     const api = axios.create({
       baseURL: "http://localhost:3000",
       headers: {
@@ -59,13 +59,34 @@ class ProductsStore extends BaseStore {
       },
     });
     api
-      .post("/orders", { data: this.products })
+      .post("/orders", newProduct)
       .then((response) => {
-        console.log("Данные успешно созданы");
+        // if (response.status !== 200) {
+        //   throw new Error(`HTTP error!Status: ${response.status}`);
+        // }
+        runInAction(() => {
+          this.products.push(newProduct);
+        });
       })
       .catch((error) => {
         console.error("Произошла ошибка при создании данных", error);
       });
   };
+  @action
+  deleteOrderProduct = (deleteProductId: string) => {
+    axios
+      .delete(`http://localhost:3000/orders/${deleteProductId}`)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Delete sucessful");
+        }
+        runInAction(() => {
+         this.products= this.products.filter((order) => order.id !== deleteProductId);
+        });
+      })
+      .catch((error) => {
+        console.error("Error delete", error);
+      });
+  };
 }
-export default new ProductsStore();
+export default new OrderProductsStore();

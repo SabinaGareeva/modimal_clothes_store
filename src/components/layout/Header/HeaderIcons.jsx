@@ -3,33 +3,15 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import css from "./HeaderIcons.module.css";
 import Sidebar from "../../UI/Sidebar";
-import { useOrderContext } from "../../../providers/OrderProvider";
 import WishlistIcon from "../../icons/WishlistIcon";
-const HeaderIcons = () => {
+import OrderProductsStore from "../../store/OrderProductsStore";
+import { observer } from "mobx-react-lite";
+const HeaderIcons = observer(() => {
   const router = useRouter();
   console.log(router.pathname);
-  // const [isWishlistPage, setIsWishlistPage] = useState(false);
-  const { orderProducts, updateOrderProducts } = useOrderContext();
-  console.log(orderProducts);
-  // useEffect(() => {
-  //   setIsWishlistPage(router.pathname === "/Wishlist");
-  // }, [router.pathname]);
   // Показ модального окна при клике на корзину
   const [showModal, setShowModal] = useState(false);
-  // const [orderProducts, setOrderProducts] = useState([]);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch("http://localhost:3000/orders");
-  //       const result = await response.json();
-  //       setOrderProducts(result);
-  //     } catch (error) {
-  //       console.log("Ошибка загрузки данных в корзине", error);
-  //     }
-  //   };
 
-  //   fetchData();
-  // }, []);
   return (
     <div className={css.header__icons}>
       <Link href="/SearchPage">
@@ -86,10 +68,14 @@ const HeaderIcons = () => {
             fill="#202020"
           />
         </svg>
-        <span className={css.basket__count}>{orderProducts.length}</span>
+        <span className={css.basket__count}>
+          {OrderProductsStore.products.length === 0
+            ? null
+            : OrderProductsStore.products.length}
+        </span>
       </button>
       <Sidebar isOpen={showModal} onClose={() => setShowModal(false)} />
     </div>
   );
-};
+});
 export default HeaderIcons;

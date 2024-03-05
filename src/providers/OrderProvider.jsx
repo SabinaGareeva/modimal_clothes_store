@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-
+// Не нужен, т. к. заменила на State из Mobx
 const OrderContext = createContext();
 
 export const useOrderContext = () => useContext(OrderContext);

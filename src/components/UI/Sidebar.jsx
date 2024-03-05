@@ -5,30 +5,23 @@ import css from "./Sidebar.module.css";
 import CardInBasket from "../cards/CardInBasket";
 import CloseButton from "./CloseButton";
 import MainButton from "./MainButton";
-import { useOrderContext } from "../../providers/OrderProvider";
-import ProductsStore from "../../components/store/ProductsStore";
-import {observer} from "mobx-react-lite"
-const Sidebar =observer( ({ isOpen, onClose }) => {
-  const { orderProducts, updateOrderProducts } = useOrderContext();
+import OrderProductsStore from "../store/OrderProductsStore";
+import { observer } from "mobx-react-lite";
+const Sidebar = observer(({ isOpen, onClose }) => {
+  // Выгружаю товар из ProductsStore
   useEffect(() => {
-    ProductsStore.getOrderProduct();
+    OrderProductsStore.getOrderProducts();
   }, []);
-  // const [orderProducts, setOrderProducts] = useState([]);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch("http://localhost:3000/orders");
-  //       const result = await response.json();
-  //       setOrderProducts(result);
-  //     } catch (error) {
-  //       console.log("Ошибка загрузки данных в корзине", error);
-  //     }
-  //   };
-  //   if (isOpen) {
-  //     fetchData();
-  //   }
-  // }, [isOpen]);
-
+  
+  const renderOrderProducts =
+  OrderProductsStore.products.length > 0 &&
+  OrderProductsStore.products.map((orderProduct, index) => (
+      <CardInBasket
+        prodactInBasket={{ orderProduct, index }}
+        key={index}
+      />
+    ));
+ 
   const handleClose = () => onClose();
   const modalRef = useRef(null);
 
@@ -56,8 +49,6 @@ const Sidebar =observer( ({ isOpen, onClose }) => {
       }
     };
   }, [isOpen, onClose]);
-  const renderData=ProductsStore.products
-console.log(renderData)
   return (
     isOpen &&
     createPortal(
@@ -68,16 +59,10 @@ console.log(renderData)
         >
           <CloseButton width="14" height="14" onClick={handleClose} />
           {/* <h3 className={css.basket__title}>Your Cart</h3> */}
-          {orderProducts.length ? (
+          {renderOrderProducts.length ? (
             <>
               <h3 className={css.basket__title}>Your Cart</h3>
-              {orderProducts.map((orderProduct, index) => (
-                <CardInBasket
-                  prodactInBasket={{ orderProduct, index }}
-                  updateOrderProducts={updateOrderProducts}
-                  key={index}
-                />
-              ))}
+              {renderOrderProducts}
               <MainButton>Check out</MainButton>
             </>
           ) : (
