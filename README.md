@@ -1,19 +1,18 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
-First, run server:
-json-server -w db.json
+npm install
 
 Second, run the development server:
 
 ```bash
-npm run dev
+npm run serv
 # or
-yarn dev
+yarn serv
 # or
-pnpm dev
+pnpm serv
 # or
-bun dev
+bun serv
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

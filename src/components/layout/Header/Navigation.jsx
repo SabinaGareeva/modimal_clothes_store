@@ -116,7 +116,7 @@ const Navigation = () => {
               Modiweek
             </Link>
           </nav>
-          <HeaderIcons></HeaderIcons>
+          <HeaderIcons onClickHandler={onClickHandler}></HeaderIcons>
         </div>
       </div>
       <DropdownMenu

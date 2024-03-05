@@ -5,25 +5,23 @@ import css from "./Sidebar.module.css";
 import CardInBasket from "../cards/CardInBasket";
 import CloseButton from "./CloseButton";
 import MainButton from "./MainButton";
-import { useOrderContext } from "../../providers/OrderProvider";
-const Sidebar = ({ isOpen, onClose}) => {
-  const { orderProducts, updateOrderProducts } = useOrderContext();
-  // const [orderProducts, setOrderProducts] = useState([]);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch("http://localhost:3000/orders");
-  //       const result = await response.json();
-  //       setOrderProducts(result);
-  //     } catch (error) {
-  //       console.log("Ошибка загрузки данных в корзине", error);
-  //     }
-  //   };
-  //   if (isOpen) {
-  //     fetchData();
-  //   }
-  // }, [isOpen]);
-
+import OrderProductsStore from "../store/OrderProductsStore";
+import { observer } from "mobx-react-lite";
+const Sidebar = observer(({ isOpen, onClose }) => {
+  // Выгружаю товар из ProductsStore
+  useEffect(() => {
+    OrderProductsStore.getOrderProducts();
+  }, []);
+  
+  const renderOrderProducts =
+  OrderProductsStore.products.length > 0 &&
+  OrderProductsStore.products.map((orderProduct, index) => (
+      <CardInBasket
+        prodactInBasket={{ orderProduct, index }}
+        key={index}
+      />
+    ));
+ 
   const handleClose = () => onClose();
   const modalRef = useRef(null);
 
@@ -61,16 +59,10 @@ const Sidebar = ({ isOpen, onClose}) => {
         >
           <CloseButton width="14" height="14" onClick={handleClose} />
           {/* <h3 className={css.basket__title}>Your Cart</h3> */}
-          {orderProducts.length ? (
+          {renderOrderProducts.length ? (
             <>
               <h3 className={css.basket__title}>Your Cart</h3>
-              {orderProducts.map((orderProduct, index) => (
-                <CardInBasket
-                  prodactInBasket={{ orderProduct, index }}
-                  updateOrderProducts={updateOrderProducts}
-                  key={index}
-                />
-              ))}
+              {renderOrderProducts}
               <MainButton>Check out</MainButton>
             </>
           ) : (
@@ -80,7 +72,7 @@ const Sidebar = ({ isOpen, onClose}) => {
                 Discover modimal and add products to your Bag
               </p>
               <Link
-                href="/Collection"
+                href="/collection"
                 className={css.basket__empty_link}
                 onClick={handleClose}
               >
@@ -93,5 +85,5 @@ const Sidebar = ({ isOpen, onClose}) => {
       document.body
     )
   );
-};
+});
 export default Sidebar;

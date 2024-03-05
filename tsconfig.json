@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "experimentalDecorators": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -22,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/pages/Sustainability.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/pages/Sustainability.jsx", "src/pages/Wishlist.jsx"],
   "exclude": ["node_modules"]
 }

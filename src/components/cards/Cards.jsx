@@ -1,50 +1,68 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import css from "./Cards.module.css";
-const Cards = ({ prodactElement }) => {
-  const sendProductToWishlist = async (event) => {
-    event.preventDefault(); // Предотвращаем переход по ссылке
-    try {
-     
-      const response = await fetch("http://localhost:3000/wishlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(prodactElement.element),
-      });
-      if (response.ok) {
-        console.log("Data sent successfully");
-      } else {
-        console.error("Failed to send data");
+import WishlistIcon from "../icons/WishlistIcon";
+const Cards = ({ prodactElement, setWhishListProducts }) => {
+  const [productInWishlist, setProductInWishlist] = useState(false);
+  // Получение всех товаров от сервера из whishlist и отметки их красным сердечком (определение какие товары уже присутствуют в вишлисте)
+  useEffect(() => {
+    const fetchProductInWhishlist = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/wishlist");
+        const whishlistProducts = await response.json();
+        const isInWhishlist = whishlistProducts.some(
+          (product) => product.id === prodactElement.element.id
+        );
+        setProductInWishlist(isInWhishlist);
+      } catch (error) {
+        console.error("Error fetching wishlist products:", error);
       }
-    } catch {
-      console.error("Error sending data:", error);
+    };
+    fetchProductInWhishlist();
+  }, [prodactElement.element.id]);
+
+  const sendProductToWishlist = async (event) => {
+    event.preventDefault(); // Предотвращаем переход по ссылке т.к кнопка обернута в ссылку
+    if (!productInWishlist) {
+      try {
+        const response = await fetch("http://localhost:3000/wishlist", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(prodactElement.element),
+        });
+        if (response.ok) {
+          console.log("Data sent successfully");
+          setProductInWishlist(true);
+        } else {
+          console.error("Failed to send data");
+        }
+      } catch {
+        console.error("Error sending data:", error);
+      }
+    } else {
+      const response = await fetch(
+        `http://localhost:3000/wishlist/${prodactElement.element.id}`,
+        { method: "DELETE" }
+      );
+      if (response.ok) {
+        setProductInWishlist(false);
+        setWhishListProducts((prevProducts) =>
+          prevProducts.filter(
+            (product) => product.id !== prodactElement.element.id
+          )
+        );
+        console.log("Successfully deleted in wishlist");
+      } else {
+        console.error("Error deleting in wishlist");
+      }
     }
   };
   return (
     <Link href={`Collection/${prodactElement.element.id}`}>
       <div className="flex-col relative" id={prodactElement.element.id}>
-        <button
-          className={css.wishlist__heart}
-          onClick={sendProductToWishlist}
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g id="favorite">
-              <path
-                id="Vector"
-                d="M11.2232 19.1147L11.2217 19.1134C8.62662 16.7602 6.55384 14.878 5.1178 13.1223C3.69324 11.3807 3 9.88574 3 8.32422C3 5.7965 4.97228 3.82422 7.5 3.82422C8.93721 3.82422 10.3322 4.49815 11.2386 5.56256L12 6.45662L12.7614 5.56256C13.6678 4.49815 15.0628 3.82422 16.5 3.82422C19.0277 3.82422 21 5.7965 21 8.32422C21 9.88575 20.3068 11.3807 18.882 13.1239C17.4459 14.8808 15.3734 16.7651 12.7786 19.1232C12.7782 19.1235 12.7778 19.1238 12.7775 19.1241L12.0026 19.8242L11.2232 19.1147Z"
-                fill="white"
-                stroke="#0C0C0C"
-                strokeWidth="2"
-              />
-            </g>
-          </svg>
+        <button className={css.wishlist__heart} onClick={sendProductToWishlist}>
+          <WishlistIcon productInWishlist={productInWishlist} />
         </button>
         <Image
           alt={prodactElement.element.name}

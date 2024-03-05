@@ -1,25 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import CountProduct from "../UI/CountProduct";
 import CloseButton from "../UI/CloseButton";
 import css from "./CardsInBasket.module.css";
+import OrderProductsStore from "../store/OrderProductsStore";
+import { observer } from "mobx-react-lite";
 
-const CardInBasket = ({ prodactInBasket, updateOrderProducts }) => {
-  function deleteProductBasket(productId) {
-    fetch(`http://localhost:3000/orders/${productId}`, {
-      method: "DELETE",
-    })
-      .then((response) => {
-        if (response.ok) {
-          updateOrderProducts((prevOrder) =>
-            prevOrder.filter((order) => order.id !== productId)
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Ошибка при выполнении запроса:", error);
-      });
-  }
+const CardInBasket = observer(({ prodactInBasket }) => {
+  // функция удаления товаров из корзины
+  const deleteProductBasket = (productId) => {
+    OrderProductsStore.deleteOrderProduct(productId);
+  };
   return (
     <div key={`orderProduct__${prodactInBasket.index}`} className="flex mb-3">
       <Image
@@ -57,5 +48,5 @@ const CardInBasket = ({ prodactInBasket, updateOrderProducts }) => {
       </div>
     </div>
   );
-};
+});
 export default CardInBasket;
