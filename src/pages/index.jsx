@@ -4,8 +4,10 @@ import Footer from "../components/layout/Footer/Footer";
 import SliderMain from "../components/slider/SliderMain";
 import Image from "next/image";
 
+
 import Cards from "../components/cards/Cards";
 import Link from "next/link";
+import MainTitle from "../components/UI/MainTitle";
 const response = await fetch("http://localhost:3000/products");
 const data = await response.json();
 /* Домашнаяя страница */
@@ -21,7 +23,8 @@ const Home = () => (
       <SliderMain></SliderMain>
       <section className="mb-24">
         <div className="container">
-          <h2 className="main-title">Best Sellers</h2>
+          <MainTitle tagTitle='h2' fontSize='3.2rem' fontWeight='font-semibold' marginBottom='2.4rem'>Best Sellers</MainTitle>
+          {/* <h2 className="main-title">Best Sellers</h2> */}
           <div className="flex justify-between">
             {data.slice(0, 3).map((element, index) => (
               <Cards prodactElement={{ element, index }} key={index}></Cards>
@@ -31,7 +34,8 @@ const Home = () => (
       </section>
       {/* Секция коллекция */}
       <section className="container collection">
-        <h2 className="main-title">Collection</h2>
+      <MainTitle tagTitle='h2' fontSize='3.2rem' fontWeight='font-semibold' marginBottom='2.4rem'>Collection</MainTitle>
+        {/* <h2 className="main-title">Collection</h2> */}
         <div className="grid grid-cols-2 gap-x-24 gap-y-16 grid-rows-10">
           <div  className="relative row-start-1  row-span-4">
             <Image
@@ -41,7 +45,7 @@ const Home = () => (
               alt=""
               className="main-collection-img img-blouses"
             ></Image>
-            <Link href="/" className="collection-main-subtitle">Blouses</Link>
+            <Link href="/Collection/BlousesAndTop" className="collection-main-subtitle">Blouses</Link>
           </div>
           <div className="relative row-start-1  row-span-5">
             <Image
@@ -61,7 +65,7 @@ const Home = () => (
               alt=""
               className="main-collection-img img-dresses"
             ></Image>
-            <Link href="/" className="collection-main-subtitle">Dresses</Link>
+            <Link href="/Collection/DressesAndJumpsuits" className="collection-main-subtitle">Dresses</Link>
           </div>
           <div  className="relative row-start-6  row-span-4">
             <Image
@@ -71,12 +75,13 @@ const Home = () => (
               alt=""
               className="main-collection-img img-outwear"
             ></Image>
-            <Link href="/" className="collection-main-subtitle">Outwear</Link>
+            <Link href="/Collection/OutwearAndJackets" className="collection-main-subtitle">Outwear</Link>
           </div>
         </div>
       </section>
       <section className="container">
-        <h2 className="main-title">Modiweek</h2>
+      <MainTitle tagTitle='h2' fontSize='3.2rem' fontWeight='font-semibold' marginBottom='2.4rem'>Modiweek</MainTitle>
+        {/* <h2 className="main-title">Modiweek</h2> */}
       </section>
       <section>
         <div className="relative">

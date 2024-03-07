@@ -7,7 +7,7 @@ export const getStaticProps = async () => {
     props: { products: data },
   };
 };
-const Blouses = ({ products }) => {
+const BlousesAndTop = ({ products }) => {
   return (
     <section className="collection">
       <div className="container">
@@ -18,4 +18,4 @@ const Blouses = ({ products }) => {
   );
 };
 
-export default Blouses;
+export default BlousesAndTop;

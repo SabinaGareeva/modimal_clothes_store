@@ -47,13 +47,13 @@ const DropdownMenu = ({
   const collection = [
     // { name: "Home", path: "/" },
     { name: "Shop all", path: "/Collection" },
-    { name: "Blouses & top", path: "/Collection/Blouses" },
+    { name: "Blouses & top", path: "/Collection/BlousesAndTop" },
     { name: "Pants", path: "/Collection/Pants" },
-    { name: "Dresses & jumpsuits", path: "/Plussize" },
-    { name: "Outwear & jackets", path: "/Sustainability" },
-    { name: "Pullovers ", path: "/Sustainability" },
-    { name: "Tees", path: "/Sustainability" },
-    { name: "Shorts & skirts", path: "/Sustainability" },
+    { name: "Dresses & jumpsuits", path: "/Collection/DressesAndJumpsuits" },
+    { name: "Outwear & jackets", path: "/Collection/OutwearAndJackets" },
+    { name: "Pullovers ", path: "/Collection/Pullovers" },
+    { name: "Tees", path: "/Collection/Tees" },
+    { name: "Shorts & skirts", path: "/Collection/ShortsAndSkirts" },
   ];
   const featured = [
     { name: "New In", path: "/NewIn" },
