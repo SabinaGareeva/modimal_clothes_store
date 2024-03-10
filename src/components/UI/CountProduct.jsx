@@ -1,13 +1,32 @@
-import React, { useState } from "react";
-import css from "./CountProduct.module.css"
+import React, { useEffect, useState,useCallback } from "react";
+import css from "./CountProduct.module.css";
+import OrderProductsStore from "../store/OrderProductsStore";
+import { observer } from "mobx-react-lite";
 
-const CountProduct = () => {
-  const [count, setCount] = useState(1);
-  const decrementCount = () => setCount(count - 1);
-  const incrementCount = () => setCount(count + 1);
+const CountProduct =observer(({
+  //  onCountChange, initialCount
+  productId,productCount
+ }) => {
+  const increaseProductCount = (id) => {
+    OrderProductsStore.increaseOrderProductCount(id);
+    console.log(OrderProductsStore.products)
+  };
+  const decreaseProductCount = (id) => {
+    OrderProductsStore.decreaseOrderProductCount(id);
+  };
+
+  // const [productCount, setProductCount] = useState(initialCount);
+  // const decrementCount = () => setProductCount(productCount - 1);
+  // const incrementCount = () => setProductCount(productCount + 1);
+  // useEffect(() => {
+  //   if (productCount !== initialCount) {
+  //     onCountChange(productCount);
+  //   }
+  // }, [productCount, onCountChange, initialCount]);
+ 
   return (
     <div className={css.count__container}>
-      <button onClick={decrementCount} disabled={count === 1}>
+      <button onClick={()=>decreaseProductCount(productId)} disabled={productCount === 1}>
         <svg width="12.000000" height="2.000000" viewBox="0 0 12 2" fill="none">
           <path
             id="Vector"
@@ -18,8 +37,8 @@ const CountProduct = () => {
           />
         </svg>
       </button>
-      <p className={css.count__product}>{count}</p>
-      <button onClick={incrementCount} disabled={count === 10}>
+      <p className={css.count__product}>{productCount}</p>
+      <button onClick={()=>increaseProductCount(productId)} disabled={productCount === 10}>
         <svg
           width="14.000000"
           height="14.000000"
@@ -37,5 +56,5 @@ const CountProduct = () => {
       </button>
     </div>
   );
-};
+});
 export default CountProduct;

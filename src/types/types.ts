@@ -9,8 +9,10 @@ export interface Product{
     fabric:string;
     color:string;
     collection?:string;
+
 }
 // Наследую все свойства от Product, но тип size изменяю 
 export interface OrderProduct extends Omit<Product,'size'>{
     size:string;
+    count:number;
 }

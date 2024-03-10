@@ -4,7 +4,6 @@ import { createPortal } from "react-dom";
 import css from "./Sidebar.module.css";
 import CardInBasket from "../cards/CardInBasket";
 import CloseButton from "./CloseButton";
-import MainButton from "./MainButton";
 import OrderProductsStore from "../store/OrderProductsStore";
 import { observer } from "mobx-react-lite";
 const Sidebar = observer(({ isOpen, onClose }) => {
@@ -12,17 +11,18 @@ const Sidebar = observer(({ isOpen, onClose }) => {
   useEffect(() => {
     OrderProductsStore.getOrderProducts();
   }, []);
-  
+  // рендер товаров из OrderProductsStore
   const renderOrderProducts =
-  OrderProductsStore.products.length > 0 &&
-  OrderProductsStore.products.map((orderProduct, index) => (
-      <CardInBasket
-        prodactInBasket={{ orderProduct, index }}
-        key={index}
-      />
+    OrderProductsStore.products.length > 0 &&
+    OrderProductsStore.products.map((orderProduct, index) => (
+      <CardInBasket prodactInBasket={{ orderProduct, index }} key={index} />
     ));
- 
-  const handleClose = () => onClose();
+
+  //Закрытие Sidebar
+  const handleClose = (e) => {
+    onClose();
+  };
+
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -49,6 +49,7 @@ const Sidebar = observer(({ isOpen, onClose }) => {
       }
     };
   }, [isOpen, onClose]);
+
   return (
     isOpen &&
     createPortal(
@@ -58,13 +59,18 @@ const Sidebar = observer(({ isOpen, onClose }) => {
           className="modal bg-white p-5  shadow-md w-[45rem] fixed top-0 right-0 bottom-0"
         >
           <CloseButton width="14" height="14" onClick={handleClose} />
-          {/* <h3 className={css.basket__title}>Your Cart</h3> */}
           {renderOrderProducts.length ? (
-            <>
+            <div>
               <h3 className={css.basket__title}>Your Cart</h3>
               {renderOrderProducts}
-              <MainButton>Check out</MainButton>
-            </>
+              <Link
+                href="/OrderPages/YourCart"
+                className={css.basket__link}
+                onClick={handleClose}
+              >
+                Check out
+              </Link>
+            </div>
           ) : (
             <div className="flex flex-col items-center">
               <h2 className={css.basket__title}>Your shopping bag is empty</h2>
@@ -72,8 +78,8 @@ const Sidebar = observer(({ isOpen, onClose }) => {
                 Discover modimal and add products to your Bag
               </p>
               <Link
-                href="/collection"
-                className={css.basket__empty_link}
+                href="/Collection"
+                className={css.basket__link}
                 onClick={handleClose}
               >
                 Collection

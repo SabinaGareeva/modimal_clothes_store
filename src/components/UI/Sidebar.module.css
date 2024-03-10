@@ -9,7 +9,8 @@
   font-size: 1.4rem;
   margin-bottom: 7.2rem;
 }
-.basket__empty_link {
+.basket__link {
+  display: inline-block;
   text-align: center;
   background-color: #5a6d57;
   color: #fff;

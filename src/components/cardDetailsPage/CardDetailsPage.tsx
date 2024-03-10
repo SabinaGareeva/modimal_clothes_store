@@ -24,7 +24,11 @@ const CardDetailsPage: React.FC<CardDetailsPageProps> = ({ product }) => {
 
   // Добавляю товар в корзину и обновляю массив orderProducts
   const sendProductToServer = () => {
-    OrderProductsStore.addOrderProduct({ ...product, size: selectedSize });
+    OrderProductsStore.addOrderProduct({
+      ...product,
+      size: selectedSize,
+      count: 1,
+    });
   };
 
   return (

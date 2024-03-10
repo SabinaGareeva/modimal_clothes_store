@@ -1,0 +1,9 @@
+.order__table{
+    width: 100%;
+}
+
+.order__table th:nth-child(1){
+    width: 50%;
+    text-align: left;
+
+}

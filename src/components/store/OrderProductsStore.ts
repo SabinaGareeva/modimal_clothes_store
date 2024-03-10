@@ -1,18 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import BaseStore from "./BaseStore";
 import { observable, action, makeObservable, runInAction } from "mobx";
-interface Product {
-  id: string;
-  imgPath: string[];
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  size: string[] | string;
-  fabric: string;
-  color: string;
-  collection?: string;
-}
+import { OrderProduct } from "@/types/types";
+
 /**
  * Класс для управления состоянием товаров.
  */
@@ -21,7 +11,7 @@ class OrderProductsStore extends BaseStore {
    * Массив товаров
    */
   @observable
-  products: Product[] = [];
+  products: OrderProduct[] = [];
 
   constructor() {
     super();
@@ -33,10 +23,10 @@ class OrderProductsStore extends BaseStore {
   @action
   getOrderProducts = async (): Promise<void> => {
     try {
-      const response: AxiosResponse<Product[]> = await axios.get<Product[]>(
-        "http://localhost:3000/orders"
-      );
-      const data: Product[] = response.data;
+      const response: AxiosResponse<OrderProduct[]> = await axios.get<
+        OrderProduct[]
+      >("http://localhost:3000/orders");
+      const data: OrderProduct[] = response.data;
       runInAction(() => {
         this.products = data;
       });
@@ -51,7 +41,7 @@ class OrderProductsStore extends BaseStore {
    * @param {Product} newProduct - Данные нового продукта.
    */
   @action
-  addOrderProduct = (newProduct: Product): void => {
+  addOrderProduct = (newProduct: OrderProduct): void => {
     const api = axios.create({
       baseURL: "http://localhost:3000",
       headers: {
@@ -61,17 +51,25 @@ class OrderProductsStore extends BaseStore {
     api
       .post("/orders", newProduct)
       .then((response) => {
-        // if (response.status !== 200) {
-        //   throw new Error(`HTTP error!Status: ${response.status}`);
-        // }
-        runInAction(() => {
-          this.products.push(newProduct);
-        });
+
+        if (response.status === 201) { // Проверка успешного ответа
+          const addedProduct: OrderProduct = response.data; // Получение добавленного продукта с сервера
+          runInAction(() => {
+            // Добавление нового продукта в хранилище
+            this.products.push(addedProduct);
+          }) } else {
+            console.error("Произошла ошибка при создании данных. HTTP status:", response.status);
+          }
+    
+        // runInAction(() => {
+        //   this.products.push(newProduct);
+        // });
       })
       .catch((error) => {
         console.error("Произошла ошибка при создании данных", error);
       });
   };
+  // Метод для удаления товара
   @action
   deleteOrderProduct = (deleteProductId: string) => {
     axios
@@ -81,12 +79,52 @@ class OrderProductsStore extends BaseStore {
           console.log("Delete sucessful");
         }
         runInAction(() => {
-         this.products= this.products.filter((order) => order.id !== deleteProductId);
+          this.products = this.products.filter(
+            (order) => order.id !== deleteProductId
+          );
         });
       })
       .catch((error) => {
         console.error("Error delete", error);
       });
+  };
+  // метод для увеличения count каждого продукта
+  @action
+  increaseOrderProductCount = async (updateProductId: string) => {
+    try {
+      const productToUpdate = this.products.find(
+        (product) => product.id === updateProductId
+      );
+      if (productToUpdate) {
+        productToUpdate.count += 1;
+        const response = await axios.put(
+          `http://localhost:3000/orders/${updateProductId}`,
+           productToUpdate 
+        );
+       
+      }
+    } catch (error) {
+      console.error("Error updating product count:", error);
+    }
+  };
+   // метод для уменьшения count каждого продукта
+  @action
+  decreaseOrderProductCount = async(updateProductId: string) => {
+    try {
+      const productToUpdate = this.products.find(
+        (product) => product.id === updateProductId
+      );
+      if (productToUpdate) {
+        productToUpdate.count -= 1;
+        const response = await axios.put(
+          `http://localhost:3000/orders/${updateProductId}`,
+           productToUpdate 
+        );
+       
+      }
+    } catch (error) {
+      console.error("Error updating product count:", error);
+    }
   };
 }
 export default new OrderProductsStore();
