@@ -1,9 +1,14 @@
-.order__table{
-    width: 100%;
+.order__table {
+  width: 100%;
+  margin-bottom: 2.4rem;
 }
 
-.order__table th:nth-child(1){
-    width: 50%;
-    text-align: left;
-
+.order__table th:nth-child(1) {
+  width: 50%;
+  text-align: left;
+}
+.order__table tbody tr:last-child td:nth-last-child(2),
+.order__table tbody tr:last-child td:nth-last-child(3),
+.order__table tbody tr:last-child td:nth-last-child(1) {
+  border-bottom: 1px solid #DFDFDF;
 }

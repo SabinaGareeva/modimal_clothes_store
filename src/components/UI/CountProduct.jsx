@@ -15,14 +15,6 @@ const CountProduct =observer(({
     OrderProductsStore.decreaseOrderProductCount(id);
   };
 
-  // const [productCount, setProductCount] = useState(initialCount);
-  // const decrementCount = () => setProductCount(productCount - 1);
-  // const incrementCount = () => setProductCount(productCount + 1);
-  // useEffect(() => {
-  //   if (productCount !== initialCount) {
-  //     onCountChange(productCount);
-  //   }
-  // }, [productCount, onCountChange, initialCount]);
  
   return (
     <div className={css.count__container}>

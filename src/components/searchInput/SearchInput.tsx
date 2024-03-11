@@ -1,20 +1,23 @@
-import React, { useRef } from "react";
+import React, { useRef, ChangeEventHandler } from "react";
 import css from "./SearchInput.module.css";
-const SearchInput = ({ setSearchName }) => {
-  const handleSearchName = (event) => {
+interface SearchInputProps {
+  setSearchName: (values: string) => void;
+}
+const SearchInput: React.FC<SearchInputProps> = ({ setSearchName }) => {
+  const handleSearchName: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchName(event.target.value);
   };
-  const inputSearchRef=useRef(null)
+  const inputSearchRef = useRef<HTMLInputElement | null>(null);
   // очистка input при нажатии на крестик
-  const clearSearchInput=()=>{
-    setSearchName('');
-    inputSearchRef.current.value = '';
-  }
+  const clearSearchInput = () => {
+    if (inputSearchRef.current) {
+      setSearchName("");
+      inputSearchRef.current.value = "";
+    }
+  };
   return (
     <div className="container">
       <div className={css.search__container}>
-       
-
         <input
           className={css.main__input}
           type="text"
@@ -22,8 +25,6 @@ const SearchInput = ({ setSearchName }) => {
           name="name"
           onChange={handleSearchName}
           ref={inputSearchRef}
-
-        
         />
         <svg
           width="24.000000"

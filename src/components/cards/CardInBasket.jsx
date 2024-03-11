@@ -41,13 +41,6 @@ const CardInBasket = observer(({ prodactInBasket }) => {
         </p>
         <div className="flex justify-between items-center">
           <CountProduct
-            // onCountChange={(count) => {
-            //   OrderProductsStore.updateOrderProductCount(
-            //     prodactInBasket.orderProduct.id,
-            //     count
-            //   );
-            // }}
-            // initialCount={prodactInBasket.orderProduct.count}
             productId={prodactInBasket.orderProduct.id}
             productCount={prodactInBasket.orderProduct.count}
           />

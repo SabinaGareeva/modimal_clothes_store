@@ -1,5 +1,11 @@
 import React from "react";
-const CloseButton = ({ width, height, onClick }) => {
+interface CloseButtonProps{
+  width: number;
+  height: number;
+  onClick:()=>void;
+}
+
+const CloseButton:React.FC<CloseButtonProps> = ({ width, height, onClick }) => {
  
   return (
     <button onClick={onClick} className="p-2">
