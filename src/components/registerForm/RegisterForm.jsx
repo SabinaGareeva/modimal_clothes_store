@@ -1,11 +1,12 @@
 import React from "react";
 import InputForRegister from "./InputForRegister";
+import Link from "next/link";
 const nameInputs = ["First name", "Last name", "Email", "Password"];
 
 const RegisterForm = () => {
   return (
     <div>
-      <h2 className="main-title">Create Account</h2>
+      <h2 className="main-title text-center">Create Account</h2>
 
       <form action="#" className="w-[392px]">
         {nameInputs.map((input) => (
@@ -15,13 +16,15 @@ const RegisterForm = () => {
         <button className="main-button">Register Now</button>
       </form>
       <div>
-        <p>Already have an account?</p>
-        <button>Sign in</button>
+        <div className="flex">
+          <p className="text-[1.4rem]">Already have an account?</p>
+          <Link href="/LogIn" className="text-[1.4rem] text-[#748C70]">Sign in</Link>
+        </div>
       </div>
       <div>
         <p>or</p>
       </div>
-      <div className="form-icons">
+      <div className="form-icons flex w-[12rem] justify-between">
         <svg
           width="35"
           height="35"

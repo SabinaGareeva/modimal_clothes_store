@@ -2,10 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @import "../styles/main-page.css";
-@import '../styles/registration.css';
 html {
   font-size: 62.5%;
 }
@@ -22,11 +19,10 @@ body {
   font-weight: 600;
   margin-bottom: 2.4rem;
 }
-.main-button{
-  background-color: #5A6D57;
+.main-button {
+  background-color: #5a6d57;
   color: #fff;
   font-size: 1.4rem;
   padding: 0.8rem 0;
   width: inherit;
 }
-

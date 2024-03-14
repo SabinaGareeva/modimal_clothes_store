@@ -31,7 +31,7 @@ const HeaderIcons = observer(() => {
           />
         </svg>
       </Link>
-      <Link href="/Registration">
+      <Link href="/CreateAccount">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -39,7 +39,7 @@ const HeaderIcons = observer(() => {
           viewBox="0 0 24 24"
           fill="none"
           className={
-            router.pathname === "/Registration" ? "bg-[#CBCBCB]" : "#FFFFFF"
+            router.pathname === "/CreateAccount" ? "bg-[#CBCBCB]" : "#FFFFFF"
           }
         >
           <path

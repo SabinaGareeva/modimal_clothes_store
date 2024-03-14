@@ -13,7 +13,7 @@ import css from "./Slider.module.css";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
-export default function App() {
+export default function SliderMain() {
   // const sliderRef = useRef(null);
   return (
     <>

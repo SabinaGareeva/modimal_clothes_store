@@ -208,7 +208,7 @@ const ContentProducts = ({ searchName }) => {
           </div>
         </div>
       </div>
-      <Footer></Footer>
+   
     </>
   );
 };

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import MainTitle from "../components/UI/MainTitle";
 import Cards from "../components/cards/Cards";
-import Footer from "../components/layout/Footer/Footer";
+
+import PageLayout from "../components/layout/Product/PageLayout";
+
 
 const Wishlist = () => {
   // получение данных с сервера с whishlist
@@ -20,9 +22,11 @@ const Wishlist = () => {
   }, []);
 
   return (
-    <section className="collection">
-      <div className="mb-5">
-        <div className="container">
+
+    // <section className="collection">
+    //   <div className="mb-5">
+    //     <div className="container">
+    <PageLayout>
           <div className="flex justify-center">
             <div className="flex flex-col">
    
@@ -56,10 +60,12 @@ const Wishlist = () => {
               ></Cards>
             ))}
           </div>
-        </div>
-      </div>
-      <Footer></Footer>
-    </section>
+          </PageLayout>
+          
+        // </div>
+    //   </div>
+    //   <Footer></Footer>
+    // </section>
   );
 };
 export default Wishlist;
