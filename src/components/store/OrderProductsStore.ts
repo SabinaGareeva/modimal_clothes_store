@@ -71,7 +71,7 @@ class OrderProductsStore extends BaseStore {
   };
   // Метод для удаления товара
   @action
-  deleteOrderProduct = (deleteProductId: string) => {
+  deleteOrderProduct = (deleteProductId: number) => {
     axios
       .delete(`http://localhost:3000/orders/${deleteProductId}`)
       .then((response) => {
@@ -82,6 +82,7 @@ class OrderProductsStore extends BaseStore {
           this.products = this.products.filter(
             (order) => order.id !== deleteProductId
           );
+         
         });
       })
       .catch((error) => {
@@ -90,11 +91,12 @@ class OrderProductsStore extends BaseStore {
   };
   // метод для увеличения count каждого продукта
   @action
-  increaseOrderProductCount = async (updateProductId: string) => {
+  increaseOrderProductCount = async (updateProductId: number) => {
     try {
       const productToUpdate = this.products.find(
         (product) => product.id === updateProductId
       );
+  
       if (productToUpdate) {
         productToUpdate.count += 1;
         const response = await axios.put(
@@ -109,7 +111,7 @@ class OrderProductsStore extends BaseStore {
   };
    // метод для уменьшения count каждого продукта
   @action
-  decreaseOrderProductCount = async(updateProductId: string) => {
+  decreaseOrderProductCount = async(updateProductId: number) => {
     try {
       const productToUpdate = this.products.find(
         (product) => product.id === updateProductId

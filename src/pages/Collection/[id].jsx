@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CardDetailsPage from "../../components/cardDetailsPage/CardDetailsPage";
+import MainLayout from "../../components/layout/MainLayout/MainLayout";
 
 // const Product = ({ productId }) => {
 //   const [product, setProduct] = useState(null);
@@ -56,8 +57,9 @@ const Product = ({product}) => {
 
   return (
     <div>
-      <title>More information</title>
+    <MainLayout>
       <CardDetailsPage product={product}></CardDetailsPage>
+      </MainLayout>
     </div>
   );
 };

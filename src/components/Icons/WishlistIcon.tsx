@@ -1,4 +1,4 @@
-import React from "react";
+
 interface Props {
   productInWishlist?: boolean;
   router?: { pathname: string };

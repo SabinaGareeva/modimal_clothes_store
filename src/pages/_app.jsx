@@ -1,8 +1,8 @@
 import "@/styles/globals.css";
 import React from "react";
-import MainLayout from "../authorizationLayout/MainLayout";
-import { OrderProvider } from "../providers/OrderProvider";
+// import { OrderProvider } from "../providers/OrderProvider";
 import { Montserrat } from "next/font/google";
+import { Providers } from "../providers/Providers";
 
 const montserrat = Montserrat({
   weight: ["400", "700", "900"],
@@ -19,11 +19,13 @@ const App = ({ Component, pageProps }) => {
           font-family: ${montserrat.style.fontFamily};
         }
       `}</style>{" "}
-      <OrderProvider>
-        <MainLayout>
+      <Providers>
+        {/* <OrderProvider> */}
+        {/* <MainLayout> */}
           <Component {...pageProps} />
-        </MainLayout>{" "}
-      </OrderProvider>
+        {/* </MainLayout>{" "} */}
+        {/* </OrderProvider> */}
+      </Providers>
     </>
   );
 };

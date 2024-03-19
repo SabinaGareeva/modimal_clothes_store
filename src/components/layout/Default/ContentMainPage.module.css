@@ -1,0 +1,26 @@
+.main__collection_img {
+    width: 600px;
+    object-fit: cover;
+  }
+  
+  .img__blouses {
+    height: 45.2rem;
+  }
+  .img__pants {
+    height: 90.4rem;
+  }
+  .img__dresses {
+    height: 90.4rem;
+  }
+  .img__outwear {
+    height: 45.2rem;
+  }
+  .collection__main_subtitle {
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 1.2rem 5rem;
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    background-color: #fff;
+  }

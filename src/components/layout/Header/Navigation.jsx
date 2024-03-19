@@ -1,9 +1,11 @@
+"use client";
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import HeaderIcons from "./HeaderIcons";
 import DropdownMenu from "../../dropdown-menus/DropdownMenu";
-import css from './Navigation.module.css'
+import css from "./Navigation.module.css";
+import { useSession,signOut } from "next-auth/react";
 
 /* пункты меню в шапке */
 const navItems = [
@@ -21,6 +23,8 @@ const navItems = [
 ];
 
 const Navigation = () => {
+  const session = useSession();
+  console.log(session);
   const buttonRef = useRef(null);
   // состояние (стейт) для активного пункта меню
   const [activeLink, setActiveLink] = useState("");
@@ -47,7 +51,7 @@ const Navigation = () => {
     <header
       className="
      shadow bg-white h-110px  items-center flex-col 
-    " 
+    "
     >
       <div className={css.header__free_shopping}>
         <p className="text-[1.2rem] font-semibold">
@@ -115,8 +119,11 @@ const Navigation = () => {
             <Link href="/Modiweek" className={css.header__links}>
               Modiweek
             </Link>
+          
           </nav>
           <HeaderIcons onClickHandler={onClickHandler}></HeaderIcons>
+          {session.data && (<Link href='#'>Profile</Link>)}
+          {session.data ? <Link href='#' onClick={()=>signOut({callbackUrl:'/'})}>Sign Out</Link>:<Link href="/api/auth/signin">Sign in</Link>}
         </div>
       </div>
       <DropdownMenu

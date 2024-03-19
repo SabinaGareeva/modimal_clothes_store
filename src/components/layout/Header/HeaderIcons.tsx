@@ -7,8 +7,9 @@ import WishlistIcon from "../../icons/WishlistIcon";
 import OrderProductsStore from "../../store/OrderProductsStore";
 import { observer } from "mobx-react-lite";
 const HeaderIcons = observer(() => {
+  // router необходим для перекрашивания иконки wishList
   const router = useRouter();
-  console.log(router.pathname);
+ 
   // Показ модального окна при клике на корзину
   const [showModal, setShowModal] = useState(false);
 
@@ -31,7 +32,7 @@ const HeaderIcons = observer(() => {
           />
         </svg>
       </Link>
-      <Link href="/Registration">
+      <Link href="/CreateAccount">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -39,7 +40,7 @@ const HeaderIcons = observer(() => {
           viewBox="0 0 24 24"
           fill="none"
           className={
-            router.pathname === "/Registration" ? "bg-[#CBCBCB]" : "#FFFFFF"
+            router.pathname === "/CreateAccount" ? "bg-[#CBCBCB]" : "#FFFFFF"
           }
         >
           <path

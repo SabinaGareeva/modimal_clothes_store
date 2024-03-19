@@ -1,13 +1,12 @@
 import React from "react";
-import CollectionBanner from "../components/layout/Banners/CollectionBanner";
 import ContentProducts from "../components/layout/ContentProducts/ContentProducts";
+import MainLayout from "../components/layout/MainLayout/MainLayout";
 
 const Collection = () => {
   return (
-    <div>
-      <CollectionBanner />
+    <MainLayout srcForBanner={"/collection-banner.png"}>
       <ContentProducts />
-    </div>
+    </MainLayout>
   );
 };
 
