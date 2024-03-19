@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import SearchInput from "../components/searchInput/SearchInput";
 import ContentProducts from "../components/layout/ContentProducts/ContentProducts";
-import PageLayout from "../components/layout/Product/PageLayout";
+import MainLayout from "../components/layout/MainLayout/MainLayout";
 
 const SearchPage = () => {
+  //state для поиска среди продуктов 
   const [searchName, setSearchName] = useState("");
 
   return (
-    <PageLayout>
+    <MainLayout>
       <SearchInput setSearchName={setSearchName} />
       <ContentProducts searchName={searchName} />
-    </PageLayout>
+    </MainLayout>
   );
 };
 

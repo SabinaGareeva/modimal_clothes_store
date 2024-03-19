@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-
+// Страница не сделана
 const NewIn = () => {
   return (
     <section className="new-in">

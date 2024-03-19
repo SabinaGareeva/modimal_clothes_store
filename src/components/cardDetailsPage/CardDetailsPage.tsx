@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import Footer from "../layout/Footer/Footer";
 import css from "./CardDetailsPage.module.css";
 import MainButton from "../UI/MainButton";
 import WishlistIcon from "../icons/WishlistIcon";

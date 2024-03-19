@@ -1,7 +1,7 @@
 import React from "react";
 interface CloseButtonProps{
-  width: number;
-  height: number;
+  width: string;
+  height: string;
   onClick:()=>void;
 }
 

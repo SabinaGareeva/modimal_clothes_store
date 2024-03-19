@@ -1,5 +1,5 @@
 export interface Product{
-    id:string;
+    id:number;
     imgPath:string[];
     name:string;
     description:string;
@@ -11,7 +11,7 @@ export interface Product{
     collection?:string;
 
 }
-// Наследую все свойства от Product, но тип size изменяю 
+// Наследую все свойства от Product, но тип size изменяю и добавляю count
 export interface OrderProduct extends Omit<Product,'size'>{
     size:string;
     count:number;

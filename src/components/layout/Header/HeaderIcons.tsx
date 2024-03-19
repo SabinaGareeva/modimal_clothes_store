@@ -7,8 +7,9 @@ import WishlistIcon from "../../icons/WishlistIcon";
 import OrderProductsStore from "../../store/OrderProductsStore";
 import { observer } from "mobx-react-lite";
 const HeaderIcons = observer(() => {
+  // router необходим для перекрашивания иконки wishList
   const router = useRouter();
-  console.log(router.pathname);
+ 
   // Показ модального окна при клике на корзину
   const [showModal, setShowModal] = useState(false);
 

@@ -1,4 +1,4 @@
-import { React, useRef, useEffect, useState } from "react";
+import { useRef, useEffect} from "react";
 import Link from "next/link";
 import { createPortal } from "react-dom";
 import css from "./Sidebar.module.css";
@@ -6,7 +6,11 @@ import CardInBasket from "../cards/CardInBasket";
 import CloseButton from "./CloseButton";
 import OrderProductsStore from "../store/OrderProductsStore";
 import { observer } from "mobx-react-lite";
-const Sidebar = observer(({ isOpen, onClose }) => {
+interface SidebarProps{
+  isOpen: boolean;
+  onClose: ()=>void;
+}
+const Sidebar = observer(({ isOpen, onClose }:SidebarProps) => {
   // Выгружаю товар из ProductsStore
   useEffect(() => {
     OrderProductsStore.getOrderProducts();
@@ -15,20 +19,20 @@ const Sidebar = observer(({ isOpen, onClose }) => {
   const renderOrderProducts =
     OrderProductsStore.products.length > 0 &&
     OrderProductsStore.products.map((orderProduct, index) => (
-      <CardInBasket prodactInBasket={{ orderProduct, index }} key={index} />
+      <CardInBasket productInBasket={{ orderProduct, index }} key={index} />
     ));
 
   //Закрытие Sidebar
-  const handleClose = (e) => {
+  const handleClose = ():void => {
     onClose();
   };
 
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleOutsideClick = (event) => {
+    const handleOutsideClick = (event:MouseEvent):void => {
       // Проверяем, был ли клик вне модального окна
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         // Закрываем модалку
         onClose();
       }
@@ -59,7 +63,7 @@ const Sidebar = observer(({ isOpen, onClose }) => {
           className="modal bg-white p-5  shadow-md w-[45rem] fixed top-0 right-0 bottom-0"
         >
           <CloseButton width="14" height="14" onClick={handleClose} />
-          {renderOrderProducts.length ? (
+          {renderOrderProducts ? (
             <div>
               <h3 className={css.basket__title}>Your Cart</h3>
               {renderOrderProducts}

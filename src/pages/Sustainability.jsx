@@ -1,5 +1,5 @@
 import React from "react";
-
+// Переименовать страницу т. к. в dropdown есть переходы по другим страницам
 const Sustainability = () => {
   return (
     <section className="new-in">

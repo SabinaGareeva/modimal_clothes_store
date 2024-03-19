@@ -132,11 +132,11 @@ const ContentProducts = ({ searchName }) => {
   );
 
   // Код для пагинации
-  const lastProdactsIndex = currentPage * productsPerPage;
-  const firstProdactsIndex = lastProdactsIndex - productsPerPage;
+  const lastProductsIndex = currentPage * productsPerPage;
+  const firstProductsIndex = lastProductsIndex - productsPerPage;
   const currentProducts = sortedProducts.slice(
-    firstProdactsIndex,
-    lastProdactsIndex
+    firstProductsIndex,
+    lastProductsIndex
   );
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
