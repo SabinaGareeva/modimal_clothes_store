@@ -1,5 +1,6 @@
 import Link from "next/link";
-import InputForRegister from "./InputForRegister";
+// import InputForRegister from "./InputForRegister";
+import css from "./RegisterForm.module.css";
 import SocialIcon from "../icons/SocialIcons";
 import { useRouter } from "next/router";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -11,21 +12,13 @@ const RegisterForm = () => {
     router.pathname === "/CreateAccount";
   const createNameInputs =
     // : string[]
-    ["firstname", "last name", "email", "password"];
+    ["firstname", "lastname", "email", "password"];
   const loginNameInputs =
     // : string[]
     createNameInputs.slice(-2);
 
-  {
-    /* Пример для Formik */
-  }
-  const handleSubmit = (
-    values
-    // : any
-    // { setSubmiting }
-  ) => {
+  const handleSubmit = (values) => {
     console.log(values);
-    // setSubmiting(false);
   };
 
   return (
@@ -34,7 +27,7 @@ const RegisterForm = () => {
         {isCreateAccountPage ? "Create Account" : "Log in"}
       </h2>
 
-      <form action="#" className="w-[392px]">
+      {/* <form action="#" className="w-[392px]">
         {isCreateAccountPage
           ? createNameInputs.map((input) => (
               <InputForRegister name={input} key={input}></InputForRegister>
@@ -47,14 +40,96 @@ const RegisterForm = () => {
         <button className="main-button mb-[0.8rem]">
           {isCreateAccountPage ? "Register Now" : "Log in"}
         </button>
-      </form>
+      </form> */}
       {/* Та же форма только с использованием Formik */}
-      <Formik className="w-[392px]">
-        <Form>
-          {createNameInputs.map((input) => (
-            <InputForRegister name={input} key={input}></InputForRegister>
-          ))}
-        </Form>
+      <Formik
+        className="w-[392px]"
+        initialValues={
+          isCreateAccountPage
+            ? { email: "", password: "", firstname: "", lastname: "" }
+            : { email: "", password: "" }
+        }
+        onSubmit={handleSubmit}
+        validate={(values) => {
+          const errors = {};
+          if (!values.email) {
+            errors.email = "Required";
+          } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+          ) {
+            errors.email = "Invalid email address";
+          }
+          if (!values.password) {
+            errors.password = "Required";
+          } else if (values.password.length < 6) {
+            errors.password = "Password must be at least 6 characters long";
+          }
+          if (!values.firstname) {
+            errors.firstname = "Required";
+          }
+          if (!values.lastname) {
+            errors.lastname = "Required";
+          }
+
+          return errors;
+        }}
+      >
+        {(formikProps) => {
+          console.log(formikProps);
+          return (
+            <Form>
+              {isCreateAccountPage
+                ? createNameInputs.map((input) => (
+                    <div key={input} className="relative">
+                      <label htmlFor={input}></label>
+                      <Field
+                        type="text"
+                        name={input}
+                        placeholder={input[0].toUpperCase() + input.slice(1)}
+                        className={`${css.input__for_register} ${
+                          formikProps.touched[input] &&
+                          formikProps.errors[input]
+                            ? css.input__error
+                            : ""
+                        }`}
+                      ></Field>
+
+                      <ErrorMessage
+                        name={input}
+                        component="div"
+                        className={css.error__input_message}
+                      ></ErrorMessage>
+                    </div>
+                  ))
+                : loginNameInputs.map((input) => (
+                    <div key={input} className="relative">
+                      <label htmlFor={input}></label>
+                      <Field
+                        type="text"
+                        name={input}
+                        placeholder={input[0].toUpperCase() + input.slice(1)}
+                        className={`${css.input__for_register} ${
+                          formikProps.touched[input] &&
+                          formikProps.errors[input]
+                            ? css.input__error
+                            : ""
+                        }`}
+                      ></Field>
+
+                      <ErrorMessage
+                        name={input}
+                        component="div"
+                        className={css.error__input_message}
+                      ></ErrorMessage>
+                    </div>
+                  ))}
+
+              <button className="main-button mb-[0.8rem] w-full" type="submit">
+                {isCreateAccountPage ? "Register Now" : "Log in"}
+              </button>
+            </Form>
+          );
+        }}
       </Formik>
       {/* <div> */}
       <div className="flex justify-center">
@@ -89,8 +164,8 @@ const RegisterForm = () => {
         </p>
       )}
       {/* Пример для Formik */}
-      <Formik
-        initialValues={{ email: "", password: "", firstName: "", lastName: "" }}
+      {/* <Formik
+        initialValues={{ email: "", password: "", firstname: "", lastname: "" }}
         onSubmit={handleSubmit}
         validate={(values) => {
           const errors = {};
@@ -106,10 +181,10 @@ const RegisterForm = () => {
           } else if (values.password < 6) {
             errors.password = "Password must be at least 6 characters long";
           }
-          if (!values.firstName) {
-            errors.firstName = "required";
+          if (!values.firstname) {
+            errors.firstname = "required";
           }
-          if (!values.lastName) {
+          if (!values.lastname) {
             errors.lastName = "required";
           }
           return errors;
@@ -125,11 +200,11 @@ const RegisterForm = () => {
           <button
             type="submit"
             className="bg-blue-500 text-white py-2 px-4 rounded"
-          >
+            onClick={handleSubmit}>
             Submit
           </button>
         </Form>
-      </Formik>
+      </Formik> */}
     </div>
   );
 };

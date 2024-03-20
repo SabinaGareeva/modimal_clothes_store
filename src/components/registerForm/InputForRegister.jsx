@@ -1,10 +1,14 @@
 import React from "react";
+import {Formik, Form, Field, ErrorMessage } from "formik";
 import css from "./InputForRegister.module.css";
 
-const InputForRegister = ({ name }) => {
+const InputForRegister = ({ name,formikProps}) => {
+  
+  const {getFieldProps,errors}=formikProps;
+ 
   return (
     <div>
-      <label htmlFor={name}></label>
+      {/* <label htmlFor={name}></label>
       <input
         className={css.input__for_register}
         type="text"
@@ -12,8 +16,15 @@ const InputForRegister = ({ name }) => {
         required
         name={name}
         placeholder={name}
+      /> */}
+
+      <label htmlFor={name}>{name}</label>
+      <input
+        {...getFieldProps(name)} // используем getFieldProps для получения значений полей формы
+        className={css.input__for_register}
       />
-      {name === "Password" && (
+      {errors[name] && <div className="error-message">{errors[name]}</div>}
+      {/* {name === "password" && (
         <button>
           <svg
             width="16"
@@ -21,7 +32,6 @@ const InputForRegister = ({ name }) => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
             aria-hidden="true"
-           
           >
             <path
               fillRule="evenodd"
@@ -35,7 +45,7 @@ const InputForRegister = ({ name }) => {
             ></path>
           </svg>
         </button>
-      )}
+      )} */}
     </div>
   );
 };

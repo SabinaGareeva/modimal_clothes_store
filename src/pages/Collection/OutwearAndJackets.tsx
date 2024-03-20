@@ -1,15 +1,14 @@
-import React from "react";
+
 import Footer from "../../components/layout/Footer/Footer";
-// страница не сделана
-const Tees= ({ products }) => {
+const OutwearAndJackets= () => {
     return (
       <section className="collection">
         <div className="container">
-        Tees
+        OutwearAndJackets
         </div>
         <Footer></Footer>
       </section>
     );
   };
   
-  export default Tees;
+  export default OutwearAndJackets;

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Navigation from "../Header/Navigation";
 import Footer from "../Footer/Footer";
 import PageBanner from "../Banners/PageBanner";
-const MainLayout = ({ children, srcForBanner }) => {
+
+const MainLayout = ({ children, srcForBanner }:{children:ReactNode,srcForBanner?:string}) => {
   return (
     <div>
       <Navigation />

@@ -1,11 +1,11 @@
-import React from "react";
 import Head from "next/head";
 import Navigation from "../Header/Navigation";
 import Footer from "../Footer/Footer";
 import SliderMain from "../../slider/SliderMain";
 import Image from "next/image";
 import Link from "next/link";
-const DefaultLayout = ({ children }) => {
+import { ReactNode } from "react";
+const DefaultLayout= ({ children }:{children:ReactNode}) => {
   return (
     <div>
       <Head>

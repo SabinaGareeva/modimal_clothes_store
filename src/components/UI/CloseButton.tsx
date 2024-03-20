@@ -1,12 +1,14 @@
-import React from "react";
-interface CloseButtonProps{
+interface CloseButtonProps {
   width: string;
   height: string;
-  onClick:()=>void;
+  onClick: () => void;
 }
 
-const CloseButton:React.FC<CloseButtonProps> = ({ width, height, onClick }) => {
- 
+const CloseButton: React.FC<CloseButtonProps> = ({
+  width,
+  height,
+  onClick,
+}) => {
   return (
     <button onClick={onClick} className="p-2">
       <svg
