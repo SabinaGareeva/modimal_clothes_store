@@ -1,10 +1,21 @@
 import Link from "next/link";
-// import InputForRegister from "./InputForRegister";
 import css from "./RegisterForm.module.css";
 import SocialIcon from "../icons/SocialIcons";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { VisibilityButton } from "../UI/Buttons/VisibilityButton";
+
+interface RegisterInputs {
+  email: string;
+  password: string;
+  firstname?: string;
+  lastname?: string;
+}
+
 const RegisterForm = () => {
+  // состояние для показа или скрытия пароля
+  const [visibilityPassword, setVisibilityPassword] = useState(true);
   // router используется для перерисовки компонента взависимости от входа нового user или для зарегистрированного user
   const router = useRouter();
   const isCreateAccountPage =
@@ -16,8 +27,9 @@ const RegisterForm = () => {
   const loginNameInputs =
     // : string[]
     createNameInputs.slice(-2);
+  // Функция для отправки данных
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values: RegisterInputs) => {
     console.log(values);
   };
 
@@ -26,22 +38,6 @@ const RegisterForm = () => {
       <h2 className="main-title text-center">
         {isCreateAccountPage ? "Create Account" : "Log in"}
       </h2>
-
-      {/* <form action="#" className="w-[392px]">
-        {isCreateAccountPage
-          ? createNameInputs.map((input) => (
-              <InputForRegister name={input} key={input}></InputForRegister>
-            ))
-          : loginNameInputs.map((input) => (
-              <InputForRegister name={input} key={input}></InputForRegister>
-            ))}
-        {isCreateAccountPage ? null : <p>Forgot your password?</p>}
-
-        <button className="main-button mb-[0.8rem]">
-          {isCreateAccountPage ? "Register Now" : "Log in"}
-        </button>
-      </form> */}
-      {/* Та же форма только с использованием Formik */}
       <Formik
         className="w-[392px]"
         initialValues={
@@ -51,7 +47,7 @@ const RegisterForm = () => {
         }
         onSubmit={handleSubmit}
         validate={(values) => {
-          const errors = {};
+          const errors: Partial<RegisterInputs> = {};
           if (!values.email) {
             errors.email = "Required";
           } else if (
@@ -64,11 +60,13 @@ const RegisterForm = () => {
           } else if (values.password.length < 6) {
             errors.password = "Password must be at least 6 characters long";
           }
-          if (!values.firstname) {
-            errors.firstname = "Required";
-          }
-          if (!values.lastname) {
-            errors.lastname = "Required";
+          if (isCreateAccountPage) {
+            if (!values.firstname) {
+              errors.firstname = "Required";
+            }
+            if (!values.lastname) {
+              errors.lastname = "Required";
+            }
           }
 
           return errors;
@@ -83,17 +81,30 @@ const RegisterForm = () => {
                     <div key={input} className="relative">
                       <label htmlFor={input}></label>
                       <Field
-                        type="text"
+                        type={
+                          input === "password" && !visibilityPassword
+                            ? "password"
+                            : "text"
+                        }
                         name={input}
                         placeholder={input[0].toUpperCase() + input.slice(1)}
                         className={`${css.input__for_register} ${
-                          formikProps.touched[input] &&
-                          formikProps.errors[input]
+                          formikProps.touched[
+                            input as keyof typeof formikProps.touched
+                          ] &&
+                          formikProps.errors[
+                            input as keyof typeof formikProps.touched
+                          ]
                             ? css.input__error
                             : ""
                         }`}
                       ></Field>
-
+                      {input === "password" && (
+                        <VisibilityButton
+                          visibilityPassword={visibilityPassword}
+                          setVisibilityPassword={setVisibilityPassword}
+                        />
+                      )}
                       <ErrorMessage
                         name={input}
                         component="div"
@@ -105,17 +116,30 @@ const RegisterForm = () => {
                     <div key={input} className="relative">
                       <label htmlFor={input}></label>
                       <Field
-                        type="text"
+                        type={
+                          input === "password" && !visibilityPassword
+                            ? "password"
+                            : "text"
+                        }
                         name={input}
                         placeholder={input[0].toUpperCase() + input.slice(1)}
                         className={`${css.input__for_register} ${
-                          formikProps.touched[input] &&
-                          formikProps.errors[input]
+                          formikProps.touched[
+                            input as keyof typeof formikProps.touched
+                          ] &&
+                          formikProps.errors[
+                            input as keyof typeof formikProps.touched
+                          ]
                             ? css.input__error
                             : ""
                         }`}
                       ></Field>
-
+                      {input === "password" && (
+                        <VisibilityButton
+                          visibilityPassword={visibilityPassword}
+                          setVisibilityPassword={setVisibilityPassword}
+                        />
+                      )}
                       <ErrorMessage
                         name={input}
                         component="div"
@@ -131,7 +155,7 @@ const RegisterForm = () => {
           );
         }}
       </Formik>
-      {/* <div> */}
+      <button>asvsdvdsv</button>
       <div className="flex justify-center">
         {isCreateAccountPage ? (
           <>
@@ -163,48 +187,6 @@ const RegisterForm = () => {
           New to modimal? <Link href="#">create an account</Link>
         </p>
       )}
-      {/* Пример для Formik */}
-      {/* <Formik
-        initialValues={{ email: "", password: "", firstname: "", lastname: "" }}
-        onSubmit={handleSubmit}
-        validate={(values) => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = "required";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "invalid email address";
-          }
-          if (!values.password) {
-            errors.password = "required";
-          } else if (values.password < 6) {
-            errors.password = "Password must be at least 6 characters long";
-          }
-          if (!values.firstname) {
-            errors.firstname = "required";
-          }
-          if (!values.lastname) {
-            errors.lastName = "required";
-          }
-          return errors;
-        }}
-      >
-        <Form>
-          <div>
-            <label htmlFor="email">Email:</label>
-            <Field type="email" name="email"></Field>
-
-            <ErrorMessage name="email" component="div"></ErrorMessage>
-          </div>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded"
-            onClick={handleSubmit}>
-            Submit
-          </button>
-        </Form>
-      </Formik> */}
     </div>
   );
 };

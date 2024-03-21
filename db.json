@@ -1,4 +1,5 @@
 {
+  "users": [],
   "wishlist": [],
   "orders": [],
   "products": [
@@ -43,8 +44,7 @@
       ],
       "fabric": "silk",
       "color": "green",
-      "collection": "Best Seller",
-      "plussize": "true"
+      "collection": "Best Seller"
     },
     {
       "id": "3",
@@ -325,7 +325,7 @@
         "XL / US (12-16)"
       ],
       "fabric": "linen",
-      "color": "white",
+      "color": "black",
       "collection": "Best Seller"
     },
     {
@@ -568,7 +568,7 @@
         "L / US (10-14)",
         "XL / US (12-16)"
       ],
-      "color": "white",
+      "color": "brown",
       "fabric": "linen"
     },
     {

@@ -1,16 +1,16 @@
-import { useRef, useEffect} from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { createPortal } from "react-dom";
 import css from "./Sidebar.module.css";
 import CardInBasket from "../cards/CardInBasket";
-import CloseButton from "./CloseButton";
+import CloseButton from "./Buttons/CloseButton";
 import OrderProductsStore from "../store/OrderProductsStore";
 import { observer } from "mobx-react-lite";
-interface SidebarProps{
+interface SidebarProps {
   isOpen: boolean;
-  onClose: ()=>void;
+  onClose: () => void;
 }
-const Sidebar = observer(({ isOpen, onClose }:SidebarProps) => {
+const Sidebar = observer(({ isOpen, onClose }: SidebarProps) => {
   // Выгружаю товар из ProductsStore
   useEffect(() => {
     OrderProductsStore.getOrderProducts();
@@ -23,16 +23,19 @@ const Sidebar = observer(({ isOpen, onClose }:SidebarProps) => {
     ));
 
   //Закрытие Sidebar
-  const handleClose = ():void => {
+  const handleClose = (): void => {
     onClose();
   };
 
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleOutsideClick = (event:MouseEvent):void => {
+    const handleOutsideClick = (event: MouseEvent): void => {
       // Проверяем, был ли клик вне модального окна
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
         // Закрываем модалку
         onClose();
       }
