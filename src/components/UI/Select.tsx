@@ -1,4 +1,3 @@
-import React from "react";
 import css from "./Select.module.css";
 interface Props {
   options: string[];

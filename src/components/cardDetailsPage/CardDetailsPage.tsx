@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import css from "./CardDetailsPage.module.css";
-import MainButton from "../UI/MainButton";
+import MainButton from "../UI/Buttons/MainButton";
 import WishlistIcon from "../icons/WishlistIcon";
 import Select from "../UI/Select";
 import OrderProductsStore from "../store/OrderProductsStore";

@@ -1,15 +1,15 @@
-import React from "react";
+
 import Footer from "../../components/layout/Footer/Footer";
 // страница не сделана
-const Pullovers= ({ products }) => {
+const Tees= () => {
     return (
       <section className="collection">
         <div className="container">
-        Pants
+        Tees
         </div>
         <Footer></Footer>
       </section>
     );
   };
   
-  export default Pullovers;
+  export default Tees;

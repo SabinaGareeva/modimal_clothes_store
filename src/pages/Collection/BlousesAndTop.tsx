@@ -1,4 +1,4 @@
-import React from "react";
+
 import Footer from "../../components/layout/Footer/Footer";
 export const getStaticProps = async () => {
   const response = await fetch("http://localhost:3000/products");
@@ -7,7 +7,7 @@ export const getStaticProps = async () => {
     props: { products: data },
   };
 };
-const BlousesAndTop = ({ products }) => {
+const BlousesAndTop = () => {
   return (
     <section className="collection">
       <div className="container">

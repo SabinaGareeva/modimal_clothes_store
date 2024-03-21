@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import CountProduct from "../UI/CountProduct";
-import CloseButton from "../UI/CloseButton";
+import CloseButton from "../UI/Buttons/CloseButton";
 import css from "./CardsInBasket.module.css";
 import OrderProductsStore from "../store/OrderProductsStore";
 import { observer } from "mobx-react-lite";

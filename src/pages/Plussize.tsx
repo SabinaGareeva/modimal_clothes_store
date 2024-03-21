@@ -1,4 +1,4 @@
-import React from "react";
+
 // Страница не сделана
 const Plussize = () => {
   return (

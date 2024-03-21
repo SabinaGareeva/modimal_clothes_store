@@ -33,7 +33,7 @@ const Wishlist = () => {
           </MainTitle>
 
           <p className="text-[1.6rem]">
-            {wishlistProducts.length}{" "}
+            {wishlistProducts.length}
             {wishlistProducts.length === 0 || wishlistProducts.length === 1
               ? "Item"
               : "Items"}

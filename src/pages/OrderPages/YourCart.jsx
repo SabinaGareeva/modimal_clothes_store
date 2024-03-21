@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import MainTitle from "../../components/UI/MainTitle";
 import css from "./YourCart.module.css";
-import CloseButton from "../../components/UI/CloseButton";
+import CloseButton from "../../components/UI/Buttons/CloseButton";
 import OrderProductsStore from "../../components/store/OrderProductsStore";
 import { observer } from "mobx-react-lite";
 import CountProduct from "../../components/UI/CountProduct";
