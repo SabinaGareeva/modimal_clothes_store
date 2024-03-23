@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import css from "./Cards.module.css";
-import WishlistIcon from "../icons/WishlistIcon";
+import WishlistIcon from "../Icons/WishlistIcon";
 import { Product } from "@/types/types";
 
 interface productElementProps {

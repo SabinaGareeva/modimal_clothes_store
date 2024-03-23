@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import css from "./CardDetailsPage.module.css";
 import MainButton from "../UI/Buttons/MainButton";
-import WishlistIcon from "../icons/WishlistIcon";
+import WishlistIcon from "../Icons/WishlistIcon";
 import Select from "../UI/Select";
 import OrderProductsStore from "../store/OrderProductsStore";
 import { observer } from "mobx-react-lite";

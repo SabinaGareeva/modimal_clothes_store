@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import css from "./HeaderIcons.module.css";
 import Sidebar from "../../UI/Sidebar";
-import WishlistIcon from "../../icons/WishlistIcon";
+import WishlistIcon from "../../Icons/WishlistIcon";
 import OrderProductsStore from "../../store/OrderProductsStore";
 import { observer } from "mobx-react-lite";
 const HeaderIcons = observer(() => {
