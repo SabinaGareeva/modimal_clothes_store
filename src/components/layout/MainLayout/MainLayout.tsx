@@ -1,8 +1,7 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Navigation from "../Header/Navigation";
 import Footer from "../Footer/Footer";
 import PageBanner from "../Banners/PageBanner";
-import { ReactNode } from "react";
 interface MainLayoutProps{
   children:ReactNode,
   srcForBanner?:string
