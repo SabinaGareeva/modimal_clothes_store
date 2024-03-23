@@ -1,4 +1,3 @@
-import React from "react";
 import MainLayout from "../components/layout/MainLayout/MainLayout";
 import Footer from "../components/layout/Footer/Footer";
 // Страница не сделана

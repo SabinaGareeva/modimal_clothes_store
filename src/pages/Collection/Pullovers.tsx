@@ -1,7 +1,7 @@
-import React from "react";
+
 import Footer from "../../components/layout/Footer/Footer";
 // страница не сделана
-const ShortsAndSkirts= ({ products }) => {
+const Pullovers= () => {
     return (
       <section className="collection">
         <div className="container">
@@ -12,4 +12,4 @@ const ShortsAndSkirts= ({ products }) => {
     );
   };
   
-  export default ShortsAndSkirts;
+  export default Pullovers;

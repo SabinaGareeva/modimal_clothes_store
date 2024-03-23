@@ -2,7 +2,12 @@ import React from "react";
 import Navigation from "../Header/Navigation";
 import Footer from "../Footer/Footer";
 import PageBanner from "../Banners/PageBanner";
-const MainLayout = ({ children, srcForBanner }) => {
+import { ReactNode } from "react";
+interface MainLayoutProps{
+  children:ReactNode,
+  srcForBanner?:string
+}
+const MainLayout:React.FC<MainLayoutProps> = ({ children, srcForBanner }) => {
   return (
     <div>
       <Navigation />

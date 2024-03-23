@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import MainTitle from "../components/UI/MainTitle";
 import Cards from "../components/cards/Cards";
 import MainLayout from "../components/layout/MainLayout/MainLayout";
+import { Product } from "@/types/types";
 
 const Wishlist = () => {
   // получение данных с сервера с whishlist
-  const [wishlistProducts, setWishListProducts] = useState([]);
+  const [wishlistProducts, setWishListProducts] = useState<Product[]|[]>([]);
   useEffect(() => {
     const fetchDataWishlist = async () => {
       try {
         const response = await fetch("http://localhost:3000/wishlist");
-        const result = await response.json();
+        const result= await response.json();
         setWishListProducts(result);
       } catch (error) {
         console.log("Error", error);
@@ -33,7 +34,7 @@ const Wishlist = () => {
           </MainTitle>
 
           <p className="text-[1.6rem]">
-            {wishlistProducts.length}
+            {wishlistProducts.length}{" "}
             {wishlistProducts.length === 0 || wishlistProducts.length === 1
               ? "Item"
               : "Items"}

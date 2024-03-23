@@ -1,4 +1,3 @@
-import React from "react";
 import ContentProducts from "../components/layout/ContentProducts/ContentProducts";
 import MainLayout from "../components/layout/MainLayout/MainLayout";
 

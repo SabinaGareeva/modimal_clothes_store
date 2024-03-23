@@ -1,7 +1,7 @@
-import React from "react";
+
 import Footer from "../../components/layout/Footer/Footer";
 // страница не сделана
-const Pants= ({ products }) => {
+const Pants= () => {
     return (
       <section className="collection">
         <div className="container">
