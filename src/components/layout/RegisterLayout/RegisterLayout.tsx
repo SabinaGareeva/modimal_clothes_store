@@ -1,11 +1,11 @@
-
 import RegisterForm from "../../registerForm/RegisterForm";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+
 
 const RegisterLayout = () => {
-
+  const session = useSession();
   return (
-  
     <section className="mt-5">
       <div className="container">
         <div className="flex justify-evenly mb-12 items-center">
@@ -17,12 +17,11 @@ const RegisterLayout = () => {
             className="w-[600px] h-[837px] object-cover"
           ></Image>
           <div>
-          <RegisterForm/>
+          <RegisterForm />
           </div>
         </div>
       </div>
     </section>
-
   );
 };
 

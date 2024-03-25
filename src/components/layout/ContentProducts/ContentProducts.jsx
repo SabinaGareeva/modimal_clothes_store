@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../Footer/Footer";
-import Filter from "../../Filter/Filter";
+import Filter from "../../filter/Filter";
 import ProductElements from "../../cards/ProductElements";
 import Pagination from "../../Pagination/Pagination";
-import css from "./ContentProducts.module.css";
+
 const ContentProducts = ({ searchName }) => {
   const [products, setProducts] = useState([]);
 
@@ -49,8 +48,7 @@ const ContentProducts = ({ searchName }) => {
       "XL / US (12-16)",
     ],
   };
- 
-  // const [products, setProducts] = useState([]);
+
   // Состояния для пагинации
   // Текущая страница
   const [currentPage, setCurrentPage] = useState(1);
@@ -63,7 +61,6 @@ const ContentProducts = ({ searchName }) => {
     color: [],
     size: [],
   });
-  // console.log(searchName);
 
   const handleCheckboxChange = (filterType, value) => {
     setCheckedOption((prevFilter) => {
@@ -190,25 +187,15 @@ const ContentProducts = ({ searchName }) => {
           <ProductElements products={currentProducts}></ProductElements>
         </div>
         {/* Пагинация */}
-        <div className={css.pagination__centre}>
-          <div className={css.pagination__container}>
-            <button className={css.pagination__button} onClick={prevPage}>
-              &lt;
-            </button>
-            <Pagination
-              productsPerPage={productsPerPage}
-              totalProducts={sortedProducts.length}
-              handlePageChange={handlePageChange}
-              currentPage={currentPage}
-            ></Pagination>
-
-            <button className={css.pagination__button} onClick={nextPage}>
-              &gt;
-            </button>
-          </div>
-        </div>
+        <Pagination
+          productsPerPage={productsPerPage}
+          totalProducts={sortedProducts.length}
+          handlePageChange={handlePageChange}
+          currentPage={currentPage}
+          prevPage={prevPage}
+          nextPage={nextPage}
+        ></Pagination>
       </div>
-   
     </>
   );
 };

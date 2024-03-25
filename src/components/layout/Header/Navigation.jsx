@@ -23,8 +23,8 @@ const navItems = [
 ];
 
 const Navigation = () => {
-  const session = useSession();
-  console.log(session);
+  // const session = useSession();
+  // console.log(session);
   const buttonRef = useRef(null);
   // состояние (стейт) для активного пункта меню
   const [activeLink, setActiveLink] = useState("");
@@ -122,8 +122,8 @@ const Navigation = () => {
           
           </nav>
           <HeaderIcons onClickHandler={onClickHandler}></HeaderIcons>
-          {session.data && (<Link href='#'>Profile</Link>)}
-          {session.data ? <Link href='#' onClick={()=>signOut({callbackUrl:'/'})}>Sign Out</Link>:<Link href="/api/auth/signin">Sign in</Link>}
+          {/* {session.data && (<Link href='#'>Profile</Link>)}
+          {session.data ? <Link href='#' onClick={()=>signOut({callbackUrl:'/'})}>Sign Out</Link>:<Link href="/LogIn">Sign in</Link>} */}
         </div>
       </div>
       <DropdownMenu

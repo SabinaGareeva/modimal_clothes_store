@@ -1,11 +1,10 @@
 import React from "react";
 import MainLayout from "../components/layout/MainLayout/MainLayout";
-import RegisterLayout from "../components/layout/RegisterLayout/RegisterLayout"
+import RegisterLayout from "../components/layout/RegisterLayout/RegisterLayout";
 const CreateAccount = () => {
-
   return (
     <MainLayout>
-    <RegisterLayout/>
+      <RegisterLayout />
     </MainLayout>
   );
 };

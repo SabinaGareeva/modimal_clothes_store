@@ -1,10 +1,12 @@
 import Link from "next/link";
 import css from "./RegisterForm.module.css";
-import SocialIcon from "../icons/SocialIcons";
-import { useState } from "react";
+import SocialIcon from "../Icons/SocialIcons";
+import { FormEventHandler, useState } from "react";
 import { useRouter } from "next/router";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { VisibilityButton } from "../UI/Buttons/VisibilityButton";
+import { signIn } from "next-auth/react";
+import { FormikHelpers } from "formik";
 
 interface RegisterInputs {
   email: string;
@@ -18,19 +20,58 @@ const RegisterForm = () => {
   const [visibilityPassword, setVisibilityPassword] = useState(true);
   // router используется для перерисовки компонента взависимости от входа нового user или для зарегистрированного user
   const router = useRouter();
-  const isCreateAccountPage =
-    // : boolean
-    router.pathname === "/CreateAccount";
-  const createNameInputs =
-    // : string[]
-    ["firstname", "lastname", "email", "password"];
-  const loginNameInputs =
-    // : string[]
-    createNameInputs.slice(-2);
+  //проверка на какую страницу зашел пользователь
+  const isCreateAccountPage: boolean = router.pathname === "/CreateAccount";
+  const createNameInputs: string[] = [
+    "firstname",
+    "lastname",
+    "email",
+    "password",
+  ];
+  const loginNameInputs: string[] = createNameInputs.slice(-2);
+  // Функция валидации формы
+  const validateForm = (inputValue: RegisterInputs) => {
+    const errors: Partial<RegisterInputs> = {};
+    if (!inputValue.email) {
+      errors.email = "Required";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(inputValue.email)
+    ) {
+      errors.email = "Invalid email address";
+    }
+    if (!inputValue.password) {
+      errors.password = "Required";
+    } else if (inputValue.password.length < 6) {
+      errors.password = "Password must be at least 6 characters long";
+    }
+    if (isCreateAccountPage) {
+      if (!inputValue.firstname) {
+        errors.firstname = "Required";
+      }
+      if (!inputValue.lastname) {
+        errors.lastname = "Required";
+      }
+    }
+
+    return errors;
+  };
+
   // Функция для отправки данных
 
-  const handleSubmit = (values: RegisterInputs) => {
-    console.log(values);
+  const handleSubmit: any= async (values: RegisterInputs, formikHelpers: FormikHelpers<RegisterInputs>) => {
+    formikHelpers.setSubmitting(true);
+    // const formData = new FormData(event.currentTarget);
+    const res = await signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      redirect: false,
+    });
+    if (res && !res.error) {
+      router.push("/Collection");
+    } else {
+      console.log(res);
+    }
+    formikHelpers.setSubmitting(false); 
   };
 
   return (
@@ -46,34 +87,9 @@ const RegisterForm = () => {
             : { email: "", password: "" }
         }
         onSubmit={handleSubmit}
-        validate={(values) => {
-          const errors: Partial<RegisterInputs> = {};
-          if (!values.email) {
-            errors.email = "Required";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Invalid email address";
-          }
-          if (!values.password) {
-            errors.password = "Required";
-          } else if (values.password.length < 6) {
-            errors.password = "Password must be at least 6 characters long";
-          }
-          if (isCreateAccountPage) {
-            if (!values.firstname) {
-              errors.firstname = "Required";
-            }
-            if (!values.lastname) {
-              errors.lastname = "Required";
-            }
-          }
-
-          return errors;
-        }}
+        validate={validateForm}
       >
         {(formikProps) => {
-          console.log(formikProps);
           return (
             <Form>
               {isCreateAccountPage
@@ -155,7 +171,6 @@ const RegisterForm = () => {
           );
         }}
       </Formik>
-      <button>asvsdvdsv</button>
       <div className="flex justify-center">
         {isCreateAccountPage ? (
           <>
