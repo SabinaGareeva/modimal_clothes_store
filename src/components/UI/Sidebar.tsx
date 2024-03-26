@@ -71,7 +71,7 @@ const Sidebar = observer(({ isOpen, onClose }: SidebarProps) => {
               <h3 className={css.basket__title}>Your Cart</h3>
               {renderOrderProducts}
               <Link
-                href="/OrderPages/YourCart"
+                href="/OrderPages/YourCard"
                 className={css.basket__link}
                 onClick={handleClose}
               >

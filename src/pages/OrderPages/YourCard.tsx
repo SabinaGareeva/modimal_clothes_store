@@ -1,22 +1,22 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import MainTitle from "../../components/UI/MainTitle";
-import css from "./YourCart.module.css";
+import css from "./YourCard.module.css";
 import CloseButton from "../../components/UI/Buttons/CloseButton";
 import OrderProductsStore from "../../components/store/OrderProductsStore";
 import { observer } from "mobx-react-lite";
 import CountProduct from "../../components/UI/CountProduct";
 
-const YourCart = observer(() => {
+const YourCard = observer(() => {
   const orderTableHeaders = ["Order summary", "Price", "Quantity", "Total"];
-  const deleteProductBasket = (productId) => {
+  const deleteProductBasket = (productId: number) => {
     OrderProductsStore.deleteOrderProduct(productId);
   };
   useEffect(() => {
     OrderProductsStore.getOrderProducts();
   }, []);
-  console.log(OrderProductsStore.products);
+
   const priceAllProducts = OrderProductsStore.products.reduce(
     (prev, counter) => prev + counter.price * counter.count,
     0
@@ -30,11 +30,9 @@ const YourCart = observer(() => {
           fontSize={3.2}
           fontWeight="font-semibold"
           marginBottom="2.4rem"
-          className="text-[3.2rem]"
         >
           Your cart
         </MainTitle>
-        {/* <Link>Continue shopping</Link>  */}
 
         <table className={css.order__table}>
           <thead>
@@ -81,8 +79,8 @@ const YourCart = observer(() => {
                     </div>
                     <div className="pt-[1rem]">
                       <CloseButton
-                        width={14}
-                        height={14}
+                        width="14"
+                        height="14"
                         onClick={() => deleteProductBasket(product.id)}
                       />
                     </div>
@@ -109,29 +107,30 @@ const YourCart = observer(() => {
 
         <div className="float-right w-2/4 ">
           <div className="flex justify-between  text-[1.8rem] items-center mb-[0.8rem]">
-            <div >
-              <p className="mb-[0.8rem]">Subtotal ({OrderProductsStore.products.length})</p>
+            <div>
+              <p className="mb-[0.8rem]">
+                Subtotal ({OrderProductsStore.products.length})
+              </p>
               <p className="mb-[0.8rem]">Tax</p>
               <p className="mb-[1.6rem]">Shipping</p>
               <p>Total Orders:</p>
             </div>
-            <div >
+            <div>
               <p className="mb-[0.8rem]">${priceAllProducts}.00</p>
               <p className="mb-[0.8rem]">${tax}</p>
               <p className="mb-[1.6rem]">Free</p>
               <p>${Number(priceAllProducts) + Number(tax)}</p>
             </div>
-           
           </div>
           <p className="text-[1.2rem] font-semibold">
             The total amount you pay includes all applicable customs duties &
             taxes. We guarantee no additional charges on delivery
-          </p>  <Link href="/Collection">Next</Link>
+          </p>{" "}
+          <Link href="/Collection">Next</Link>
         </div>
-      
       </div>
     </main>
   );
 });
 
-export default YourCart;
+export default YourCard;

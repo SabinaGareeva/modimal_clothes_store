@@ -23,8 +23,7 @@ const navItems = [
 ];
 
 const Navigation = () => {
-  // const session = useSession();
-  // console.log(session);
+ 
   const buttonRef = useRef(null);
   // состояние (стейт) для активного пункта меню
   const [activeLink, setActiveLink] = useState("");
@@ -96,7 +95,7 @@ const Navigation = () => {
               />
             </svg>
           </Link>
-          {/* <button > Открыть меню</button> */}
+      
           <nav className="inline-flex items-center gap-10" ref={buttonsHeader}>
             {navItems.map((item, index) => (
               <button
