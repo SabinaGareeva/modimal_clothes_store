@@ -1,7 +1,7 @@
 import Link from "next/link";
 import css from "./RegisterForm.module.css";
 import SocialIcon from "../Icons/SocialIcons";
-import { FormEventHandler, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { VisibilityButton } from "../UI/Buttons/VisibilityButton";
@@ -18,10 +18,14 @@ interface RegisterInputs {
 const RegisterForm = () => {
   // состояние для показа или скрытия пароля
   const [visibilityPassword, setVisibilityPassword] = useState(true);
-  // router используется для перерисовки компонента взависимости от входа нового user или для зарегистрированного user
+  // в зависимости от состояния показывается форма дли создания аккаунта или форма входа для зарегистрированного пользователя
+  const [createAccount, setCreateAccount] = useState(true);
+  const handlerCreateAccount = () => {
+    setCreateAccount(!createAccount);
+  };
+  // router используется для перенаправления пользователя на страницу Collection
   const router = useRouter();
-  //проверка на какую страницу зашел пользователь
-  const isCreateAccountPage: boolean = router.pathname === "/CreateAccount";
+
   const createNameInputs: string[] = [
     "firstname",
     "lastname",
@@ -44,7 +48,7 @@ const RegisterForm = () => {
     } else if (inputValue.password.length < 6) {
       errors.password = "Password must be at least 6 characters long";
     }
-    if (isCreateAccountPage) {
+    if (createAccount) {
       if (!inputValue.firstname) {
         errors.firstname = "Required";
       }
@@ -58,9 +62,11 @@ const RegisterForm = () => {
 
   // Функция для отправки данных
 
-  const handleSubmit: any= async (values: RegisterInputs, formikHelpers: FormikHelpers<RegisterInputs>) => {
+  const handleSubmit: any = async (
+    values: RegisterInputs,
+    formikHelpers: FormikHelpers<RegisterInputs>
+  ) => {
     formikHelpers.setSubmitting(true);
-    // const formData = new FormData(event.currentTarget);
     const res = await signIn("credentials", {
       email: values.email,
       password: values.password,
@@ -71,18 +77,18 @@ const RegisterForm = () => {
     } else {
       console.log(res);
     }
-    formikHelpers.setSubmitting(false); 
+    formikHelpers.setSubmitting(false);
   };
 
   return (
     <div className="text-center">
       <h2 className="main-title text-center">
-        {isCreateAccountPage ? "Create Account" : "Log in"}
+        {createAccount ? "Create Account" : "Log in"}
       </h2>
       <Formik
         className="w-[392px]"
         initialValues={
-          isCreateAccountPage
+          createAccount
             ? { email: "", password: "", firstname: "", lastname: "" }
             : { email: "", password: "" }
         }
@@ -92,7 +98,7 @@ const RegisterForm = () => {
         {(formikProps) => {
           return (
             <Form>
-              {isCreateAccountPage
+              {createAccount
                 ? createNameInputs.map((input) => (
                     <div key={input} className="relative">
                       <label htmlFor={input}></label>
@@ -165,19 +171,22 @@ const RegisterForm = () => {
                   ))}
 
               <button className="main-button mb-[0.8rem] w-full" type="submit">
-                {isCreateAccountPage ? "Register Now" : "Log in"}
+                {createAccount ? "Register Now" : "Log in"}
               </button>
             </Form>
           );
         }}
       </Formik>
       <div className="flex justify-center">
-        {isCreateAccountPage ? (
+        {createAccount ? (
           <>
             <p className="text-[1.4rem]">Already have an account?</p>
-            <Link href="/LogIn" className="text-[1.4rem] text-[#748C70]">
+            <button
+              onClick={handlerCreateAccount}
+              className="text-[1.4rem] text-[#748C70]"
+            >
               Sign in
-            </Link>
+            </button>
           </>
         ) : null}
       </div>
@@ -188,7 +197,7 @@ const RegisterForm = () => {
         <SocialIcon />
       </div>
 
-      {isCreateAccountPage ? (
+      {createAccount ? (
         <>
           <p className="text-[1.2rem]">
             By Clicking Register Now{"'"} You Agree To
@@ -199,7 +208,13 @@ const RegisterForm = () => {
         </>
       ) : (
         <p>
-          New to modimal? <Link href="#">create an account</Link>
+          New to modimal?{" "}
+          <button
+            onClick={handlerCreateAccount}
+            className="text-[1.4rem] text-[#748C70]"
+          >
+            create an account
+          </button>
         </p>
       )}
     </div>

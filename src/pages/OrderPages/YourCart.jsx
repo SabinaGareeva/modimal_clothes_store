@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import MainTitle from "../../components/UI/MainTitle";
