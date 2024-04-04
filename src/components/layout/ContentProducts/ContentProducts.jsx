@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Filter from "../../filter/Filter";
 import ProductElements from "../../cards/ProductElements";
 import Pagination from "../../Pagination/Pagination";
+import axios from "axios";
 
 const ContentProducts = ({ searchName }) => {
   const [products, setProducts] = useState([]);
@@ -9,9 +10,8 @@ const ContentProducts = ({ searchName }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/products");
-        const result = await response.json();
-        setProducts(result);
+        const response = await axios.get("http://localhost:3000/products");
+        setProducts(response.data);
       } catch (error) {
         console.log("Ошибка загрузки данных");
       }

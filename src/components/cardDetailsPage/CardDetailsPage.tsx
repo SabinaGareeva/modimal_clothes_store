@@ -4,9 +4,10 @@ import css from "./CardDetailsPage.module.css";
 import MainButton from "../UI/Buttons/MainButton";
 import WishlistIcon from "../Icons/WishlistIcon";
 import Select from "../UI/Select";
-import OrderProductsStore from "../store/OrderProductsStore";
-import { observer } from "mobx-react-lite";
 import { Product } from "../../types/types";
+import { fetchUser } from "../../components/store/ProductSlice";
+import { useDispatch } from "react-redux";
+import { addProductInBasket } from "../../components/store/ProductSlice";
 interface CardDetailsPageProps {
   product: Product;
 }
@@ -16,19 +17,24 @@ const CardDetailsPage: React.FC<CardDetailsPageProps> = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState("XS / US (0-4)");
   const { id, name, description, price, imgPath, category, size, fabric } =
     product;
-
+  const dispatch = useDispatch();
   if (!product) {
     return <h3>No product data available</h3>;
   }
+  // @ts-ignore
 
   // Добавляю товар в корзину и обновляю массив orderProducts
-  const sendProductToServer = () => {
-    OrderProductsStore.addOrderProduct({
-      ...product,
-      size: selectedSize,
-      count: 1,
-    });
-  };
+  const sendProductToServer =async () => {
+    // @ts-ignore
+    await dispatch(addProductInBasket({
+        ...product,
+        size: selectedSize,
+       count: 1,
+       }))
+       // @ts-ignore
+      dispatch(fetchUser())
+      };
+ 
 
   return (
     <>
@@ -67,4 +73,4 @@ const CardDetailsPage: React.FC<CardDetailsPageProps> = ({ product }) => {
   );
 };
 
-export default observer(CardDetailsPage);
+export default CardDetailsPage;

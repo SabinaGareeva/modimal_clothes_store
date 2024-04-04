@@ -4,10 +4,12 @@ import Link from "next/link";
 import css from "./HeaderIcons.module.css";
 import Sidebar from "../../UI/Sidebar";
 import WishlistIcon from "../../Icons/WishlistIcon";
-import OrderProductsStore from "../../store/OrderProductsStore";
-import { observer } from "mobx-react-lite";
 
-const HeaderIcons = observer(() => {
+import { useSelector } from "react-redux";
+
+const HeaderIcons = () => {
+  // @ts-ignore
+  const orderProducts = useSelector((state) => state.user.user.orders);
   // router необходим для перекрашивания иконки wishList
   const router = useRouter();
 
@@ -70,13 +72,13 @@ const HeaderIcons = observer(() => {
           />
         </svg>
         <span className={css.basket__count}>
-          {OrderProductsStore.products.length === 0
+          {orderProducts?.length === 0
             ? null
-            : OrderProductsStore.products.length}
+            : orderProducts?.length}
         </span>
       </button>
       <Sidebar isOpen={showModal} onClose={() => setShowModal(false)} />
     </div>
   );
-});
+};
 export default HeaderIcons;

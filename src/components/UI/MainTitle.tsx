@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 interface MainTitleProps {
   tagTitle: keyof JSX.IntrinsicElements;
   children: ReactNode;
-  fontSize: number;
+  fontSize: string ;
   fontWeight: string;
   marginBottom: string;
 }
@@ -16,7 +16,7 @@ const MainTitle:React.FC<MainTitleProps> = ({
 }) => {
   const Tag = tagTitle || "div";
   return (
-    <Tag className={`text-[${fontSize}rem] ${fontWeight} mb-[${marginBottom}]`}>
+    <Tag className={`${fontSize} ${fontWeight} mb-[${marginBottom}]`}>
       {children}
     </Tag>
   );

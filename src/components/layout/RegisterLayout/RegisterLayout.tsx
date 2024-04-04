@@ -6,6 +6,7 @@ import UserInformation from "../../userInformation/UserInformation"
 
 const RegisterLayout = () => {
   const session = useSession();
+  console.log(session)
   return (
     <section className="mt-5">
       <div className="container">
@@ -19,7 +20,7 @@ const RegisterLayout = () => {
           ></Image>
           <div>
             {/* @ts-ignore */}
-          {session.data?<UserInformation user={session?.data?.user}/>:<RegisterForm />}
+          {session.data?<UserInformation />:<RegisterForm />}
           </div>
         </div>
       </div>

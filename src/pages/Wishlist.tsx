@@ -3,16 +3,16 @@ import MainTitle from "../components/UI/MainTitle";
 import Cards from "../components/cards/Cards";
 import MainLayout from "../components/layout/MainLayout/MainLayout";
 import { Product } from "@/types/types";
+import axios from "axios";
 
 const Wishlist = () => {
   // получение данных с сервера с whishlist
-  const [wishlistProducts, setWishListProducts] = useState<Product[]|[]>([]);
+  const [wishlistProducts, setWishListProducts] = useState<Product[] | []>([]);
   useEffect(() => {
     const fetchDataWishlist = async () => {
       try {
-        const response = await fetch("http://localhost:3000/wishlist");
-        const result= await response.json();
-        setWishListProducts(result);
+        const response = await axios.get("http://localhost:3000/wishlist");
+        setWishListProducts(response.data);
       } catch (error) {
         console.log("Error", error);
       }
@@ -26,7 +26,7 @@ const Wishlist = () => {
         <div className="flex flex-col">
           <MainTitle
             tagTitle="h3"
-            fontSize={2}
+            fontSize="text-[2rem]"
             fontWeight="font-bold"
             marginBottom="1.6rem"
           >

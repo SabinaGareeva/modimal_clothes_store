@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import CountProduct from "../UI/CountProduct";
 import CloseButton from "../UI/Buttons/CloseButton";
 import css from "./CardsInBasket.module.css";
-import OrderProductsStore from "../store/OrderProductsStore";
-import { observer } from "mobx-react-lite";
 import { OrderProduct } from "@/types/types";
+import { useDispatch } from "react-redux";
+import { deleteProductInBasket } from "../store/ProductSlice";
+import { fetchUser } from "../store/ProductSlice";
+
 interface ProductInBasketProps {
   productInBasket: {
     orderProduct: OrderProduct;
@@ -13,12 +15,21 @@ interface ProductInBasketProps {
   };
 }
 
-const CardInBasket: React.FC<ProductInBasketProps> = observer(
+const CardInBasket: React.FC<ProductInBasketProps> =
+
   ({ productInBasket }) => {
+  
+    const dispatch = useDispatch();
     // функция удаления товаров из корзины
-    const deleteProductBasket = (productId: string) => {
-      OrderProductsStore.deleteOrderProduct(productId);
-    };
+    const deleteProductBasket= async (productId: number) => {
+
+      // @ts-ignore
+     await dispatch(deleteProductInBasket(productId))
+       // @ts-ignore
+      dispatch(fetchUser());
+    }
+  
+
     return (
       <div key={`orderProduct__${productInBasket.index}`} className="flex mb-3">
         <Image
@@ -61,6 +72,6 @@ const CardInBasket: React.FC<ProductInBasketProps> = observer(
         </div>
       </div>
     );
-  }
-);
+  };
+
 export default CardInBasket;
