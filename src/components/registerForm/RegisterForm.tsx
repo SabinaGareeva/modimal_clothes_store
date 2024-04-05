@@ -7,6 +7,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { VisibilityButton } from "../UI/Buttons/VisibilityButton";
 import { signIn } from "next-auth/react";
 import { FormikHelpers } from "formik";
+import axios from "axios";
+import { nanoid } from "nanoid";
 
 interface RegisterInputs {
   email: string;
@@ -59,7 +61,22 @@ const RegisterForm = () => {
 
     return errors;
   };
-
+  // Функция добавления нового user в базу данных
+  async function addNewUser(user: any) {
+    try {
+      const response = await axios.post("http://localhost:3000/users", user);
+      if (response.status === 201) {
+        console.log("Пользователь добавлен");
+      } else {
+        console.error(
+          "Произошла ошибка при создании пользователя. HTTP статус:",
+          response.status
+        );
+      }
+    } catch (error) {
+      console.log("Произошла ошибка", error);
+    }
+  }
   // Функция для отправки данных
 
   const handleSubmit: any = async (
@@ -67,17 +84,31 @@ const RegisterForm = () => {
     formikHelpers: FormikHelpers<RegisterInputs>
   ) => {
     formikHelpers.setSubmitting(true);
-    const res = await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      redirect: false,
-    });
-    if (res && !res.error) {
-      router.push("/Collection");
+    if (values.firstname && values.lastname) {
+      const newUser = {
+        id: nanoid(),
+        role: "user",
+        firstname: values.firstname,
+        lastname: values.lastname,
+        email: values.email,
+        password: values.password,
+        wishlist: [],
+        orders: [],
+      };
+      addNewUser(newUser);
     } else {
-      console.log(res);
+      const res = await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        redirect: false,
+      });
+      if (res && !res.error) {
+        router.push("/Collection");
+      } else {
+        console.log(res);
+      }
+      formikHelpers.setSubmitting(false);
     }
-    formikHelpers.setSubmitting(false);
   };
 
   return (
@@ -170,7 +201,7 @@ const RegisterForm = () => {
                     </div>
                   ))}
 
-              <button className="main-button mb-[0.8rem] w-full" type="submit">
+              <button className="main-button mb-[1.55rem] w-full" type="submit">
                 {createAccount ? "Register Now" : "Log in"}
               </button>
             </Form>
@@ -179,21 +210,21 @@ const RegisterForm = () => {
       </Formik>
       <div className="flex justify-center">
         {createAccount ? (
-          <>
+          <div className="flex mb-[2.35rem]">
             <p className="text-[1.4rem]">Already have an account?</p>
             <button
               onClick={handlerCreateAccount}
-              className="text-[1.4rem] text-[#748C70]"
+              className="text-[1.4rem] text-[#748C70] ml-[2.4rem]"
             >
               Sign in
             </button>
-          </>
+          </div>
         ) : null}
       </div>
       <div>
-        <p>Or</p>
+        <p className="mb-[2.4rem]">Or</p>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center mb-[2.4rem]">
         <SocialIcon />
       </div>
 
@@ -207,15 +238,16 @@ const RegisterForm = () => {
           </p>
         </>
       ) : (
-        <p>
-          New to modimal?{" "}
+        <div className="flex justify-center text-[1.6rem]">
+          {" "}
+          <p className="mr-[0.2rem]">New to modimal?</p>
           <button
             onClick={handlerCreateAccount}
             className="text-[1.4rem] text-[#748C70]"
           >
-            create an account
+            Create an account
           </button>
-        </p>
+        </div>
       )}
     </div>
   );

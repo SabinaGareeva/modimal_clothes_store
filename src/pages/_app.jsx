@@ -2,7 +2,9 @@ import "@/styles/globals.css";
 import React from "react";
 // import { OrderProvider } from "../providers/OrderProvider";
 import { Montserrat } from "next/font/google";
-import { Providers } from "../providers/Providers";
+import { AuthProvider } from "../providers/Providers";
+import { Provider } from "react-redux";
+import store from "../../src/store/ProductStoreRedux"
 
 const montserrat = Montserrat({
   weight: ["400", "700", "900"],
@@ -18,14 +20,16 @@ const App = ({ Component, pageProps }) => {
         html {
           font-family: ${montserrat.style.fontFamily};
         }
-      `}</style>{" "}
-      <Providers>
-        {/* <OrderProvider> */}
-        {/* <MainLayout> */}
+      `}</style>
+      <Provider store={store}>
+        <AuthProvider>
+          {/* <OrderProvider> */}
+          {/* <MainLayout> */}
           <Component {...pageProps} />
-        {/* </MainLayout>{" "} */}
-        {/* </OrderProvider> */}
-      </Providers>
+          {/* </MainLayout>{" "} */}
+          {/* </OrderProvider> */}
+        </AuthProvider>
+      </Provider>
     </>
   );
 };

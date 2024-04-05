@@ -4,20 +4,32 @@ import Image from "next/image";
 import MainTitle from "../../components/UI/MainTitle";
 import css from "./YourCard.module.css";
 import CloseButton from "../../components/UI/Buttons/CloseButton";
-import OrderProductsStore from "../../components/store/OrderProductsStore";
-import { observer } from "mobx-react-lite";
+
 import CountProduct from "../../components/UI/CountProduct";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "../../../src/store/ProductSlice";
+import { deleteProductInBasket } from "../../../src/store/ProductSlice";
 
-const YourCard = observer(() => {
+const YourCard = () => {
   const orderTableHeaders = ["Order summary", "Price", "Quantity", "Total"];
-  const deleteProductBasket = (productId: number) => {
-    OrderProductsStore.deleteOrderProduct(productId);
-  };
-  useEffect(() => {
-    OrderProductsStore.getOrderProducts();
-  }, []);
 
-  const priceAllProducts = OrderProductsStore.products.reduce(
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   // @ts-ignore
+  //   dispatch(fetchUser());
+  // }, [dispatch]);
+  // @ts-ignore
+  const orderProducts = useSelector((state) => state.user.user.orders);
+  const deleteProductBasket = async (productId: number) => {
+    // @ts-ignore
+    await dispatch(deleteProductInBasket(productId));
+    // @ts-ignore
+    dispatch(fetchUser());
+  };
+
+  const priceAllProducts = orderProducts?.reduce(
+    // @ts-ignore
     (prev, counter) => prev + counter.price * counter.count,
     0
   );
@@ -27,7 +39,7 @@ const YourCard = observer(() => {
       <div className="container">
         <MainTitle
           tagTitle="h2"
-          fontSize={3.2}
+          fontSize="text-[3.2rem]"
           fontWeight="font-semibold"
           marginBottom="2.4rem"
         >
@@ -53,7 +65,8 @@ const YourCard = observer(() => {
             </tr>
           </thead>
           <tbody>
-            {OrderProductsStore.products.map((product, index) => {
+            {/* @ts-ignore */}
+            {orderProducts?.map((product, index) => {
               return (
                 <tr key={`order-tableBody-${index}`} className="align-top ">
                   <td className="flex justify-between mb-[3.2rem] items-start">
@@ -108,9 +121,7 @@ const YourCard = observer(() => {
         <div className="float-right w-2/4 ">
           <div className="flex justify-between  text-[1.8rem] items-center mb-[0.8rem]">
             <div>
-              <p className="mb-[0.8rem]">
-                Subtotal ({OrderProductsStore.products.length})
-              </p>
+              <p className="mb-[0.8rem]">Subtotal ({orderProducts?.length})</p>
               <p className="mb-[0.8rem]">Tax</p>
               <p className="mb-[1.6rem]">Shipping</p>
               <p>Total Orders:</p>
@@ -125,12 +136,12 @@ const YourCard = observer(() => {
           <p className="text-[1.2rem] font-semibold">
             The total amount you pay includes all applicable customs duties &
             taxes. We guarantee no additional charges on delivery
-          </p>{" "}
+          </p>
           <Link href="/Collection">Next</Link>
         </div>
       </div>
     </main>
   );
-});
+};
 
 export default YourCard;

@@ -4,21 +4,26 @@ import { createPortal } from "react-dom";
 import css from "./Sidebar.module.css";
 import CardInBasket from "../cards/CardInBasket";
 import CloseButton from "./Buttons/CloseButton";
-import OrderProductsStore from "../store/OrderProductsStore";
-import { observer } from "mobx-react-lite";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "../../store/ProductSlice";
+
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
 }
-const Sidebar = observer(({ isOpen, onClose }: SidebarProps) => {
-  // Выгружаю товар из ProductsStore
+const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
+  const dispatch = useDispatch();
   useEffect(() => {
-    OrderProductsStore.getOrderProducts();
-  }, []);
-  // рендер товаров из OrderProductsStore
+    // @ts-ignore
+    dispatch(fetchUser());
+  }, [dispatch]);
+  // @ts-ignore
+  const orderProducts = useSelector((state) => state.user.user.orders);
+
   const renderOrderProducts =
-    OrderProductsStore.products.length > 0 &&
-    OrderProductsStore.products.map((orderProduct, index) => (
+    orderProducts?.length > 0 &&
+    // @ts-ignore
+    orderProducts.map((orderProduct, index) => (
       <CardInBasket productInBasket={{ orderProduct, index }} key={index} />
     ));
 
@@ -98,5 +103,5 @@ const Sidebar = observer(({ isOpen, onClose }: SidebarProps) => {
       document.body
     )
   );
-});
+};
 export default Sidebar;

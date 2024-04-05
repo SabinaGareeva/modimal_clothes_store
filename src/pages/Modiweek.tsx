@@ -8,7 +8,7 @@ const Modiweek = () => {
         <div className="container">
           <h3>This is modiweek page</h3>
         </div>
-        <Footer></Footer>
+     
       </section>
     </MainLayout>
   );
