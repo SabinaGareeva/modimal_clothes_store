@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DefaultLayout from "../components/layout/Default/DefaultLayout";
 import ContentMainPage from "../components/layout/Default/ContentMainPage";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "../components/store/ProductSlice";
+import { fetchUser } from "../../src/store/ProductSlice";
 import { getSession } from "next-auth/react";
 
 /* Домашнаяя страница */

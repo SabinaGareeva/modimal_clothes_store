@@ -61,8 +61,8 @@ const RegisterForm = () => {
 
     return errors;
   };
-// Функция добавления нового user в базу данных
-  async function addNewUser (user: any) {
+  // Функция добавления нового user в базу данных
+  async function addNewUser(user: any) {
     try {
       const response = await axios.post("http://localhost:3000/users", user);
       if (response.status === 201) {
@@ -76,7 +76,7 @@ const RegisterForm = () => {
     } catch (error) {
       console.log("Произошла ошибка", error);
     }
-  };
+  }
   // Функция для отправки данных
 
   const handleSubmit: any = async (
@@ -201,7 +201,7 @@ const RegisterForm = () => {
                     </div>
                   ))}
 
-              <button className="main-button mb-[0.8rem] w-full" type="submit">
+              <button className="main-button mb-[1.55rem] w-full" type="submit">
                 {createAccount ? "Register Now" : "Log in"}
               </button>
             </Form>
@@ -210,21 +210,21 @@ const RegisterForm = () => {
       </Formik>
       <div className="flex justify-center">
         {createAccount ? (
-          <>
+          <div className="flex mb-[2.35rem]">
             <p className="text-[1.4rem]">Already have an account?</p>
             <button
               onClick={handlerCreateAccount}
-              className="text-[1.4rem] text-[#748C70]"
+              className="text-[1.4rem] text-[#748C70] ml-[2.4rem]"
             >
               Sign in
             </button>
-          </>
+          </div>
         ) : null}
       </div>
       <div>
-        <p>Or</p>
+        <p className="mb-[2.4rem]">Or</p>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center mb-[2.4rem]">
         <SocialIcon />
       </div>
 
@@ -238,15 +238,16 @@ const RegisterForm = () => {
           </p>
         </>
       ) : (
-        <p>
-          New to modimal?{" "}
+        <div className="flex justify-center text-[1.6rem]">
+          {" "}
+          <p className="mr-[0.2rem]">New to modimal?</p>
           <button
             onClick={handlerCreateAccount}
             className="text-[1.4rem] text-[#748C70]"
           >
-            create an account
+            Create an account
           </button>
-        </p>
+        </div>
       )}
     </div>
   );

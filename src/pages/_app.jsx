@@ -4,7 +4,7 @@ import React from "react";
 import { Montserrat } from "next/font/google";
 import { AuthProvider } from "../providers/Providers";
 import { Provider } from "react-redux";
-import store from "../components/store/ProductStoreRedux"
+import store from "../../src/store/ProductStoreRedux"
 
 const montserrat = Montserrat({
   weight: ["400", "700", "900"],

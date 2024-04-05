@@ -27,14 +27,14 @@ export const fetchUser = createAsyncThunk(
   }
 );
 // Получение всех users
-const getAllUsers =async()=>{
+const getAllUsers = async () => {
   const response = await fetch(`http://localhost:3000/users`);
   if (!response.ok) {
     throw new Error("Failed to fetch users");
   }
   const allUsers = await response.json();
-  return allUsers
-}
+  return allUsers;
+};
 
 // функция добавления продукта в корзину
 export const addProductInBasket = createAsyncThunk(
@@ -42,7 +42,7 @@ export const addProductInBasket = createAsyncThunk(
   async function (product, { rejectWithValue, dispatch }) {
     try {
       const userId = await getUserId();
-      const users =await getAllUsers()
+      const users = await getAllUsers();
       // Находим авторизованного пользователя
       const user = users.find((user) => user.id === userId);
       if (!user) {
@@ -65,7 +65,7 @@ export const addProductInBasket = createAsyncThunk(
         throw new Error("Failed to update user's orders");
       }
       const updatedUserData = await updateUserResponse.json();
- 
+
       dispatch(addProduct(updatedUserData));
     } catch (e) {
       return rejectWithValue(e.message);
@@ -77,8 +77,8 @@ export const deleteProductInBasket = createAsyncThunk(
   async function (id, { rejectWithValue, dispatch }) {
     try {
       const userId = await getUserId();
-      const users =await getAllUsers()
-        // Находим авторизованного пользователя
+      const users = await getAllUsers();
+      // Находим авторизованного пользователя
       const user = users.find((user) => user.id === userId);
 
       if (!user) {
@@ -100,13 +100,81 @@ export const deleteProductInBasket = createAsyncThunk(
       }
       const updatedUserData = await updateUserResponse.json();
       // dispatch(removeProduct({id}));
-      dispatch(removeUser(updatedUserData));
+      dispatch(removeProduct(updatedUserData));
     } catch (e) {
       return rejectWithValue(e.message);
     }
   }
 );
+export const addProductInWishList = createAsyncThunk(
+  "users/addProductInWishList",
+  async function (product, { rejectWithValue, dispatch }) {
+    try {
+      const userId = await getUserId();
+      const users = await getAllUsers();
+      // Находим авторизованного пользователя
+      const user = users.find((user) => user.id === userId);
+      if (!user) {
+        throw new Error("User not found");
+      }
 
+      const prevWishlistProduct = user.wishlist;
+      const updatedWishList = [...prevWishlistProduct, product];
+      const updateWishlistResponse = await fetch(
+        `http://localhost:3000/users/${userId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ wishlist: updatedWishList }),
+        }
+      );
+      if (!updateWishlistResponse.ok) {
+        throw new Error("Failed to update user's orders");
+      }
+      const updatedUserData = await updateWishlistResponse.json();
+
+      dispatch(addProductWishlist(updatedUserData));
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+export const deleteProductInWishlist = createAsyncThunk(
+  "users/deleteProductInBasket",
+  async function (id, { rejectWithValue, dispatch }) {
+    try {
+      const userId = await getUserId();
+      const users = await getAllUsers();
+      // Находим авторизованного пользователя
+      const user = users.find((user) => user.id === userId);
+
+      if (!user) {
+        throw new Error("User not found");
+      }
+      const updatedWishlist = user.wishlist.filter((product) => product.id !== id);
+      const updateUserResponse = await fetch(
+        `http://localhost:3000/users/${userId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ wishlist: updatedWishlist  }),
+        }
+      );
+      if (!updateUserResponse.ok) {
+        throw new Error("Failed to update user's orders");
+      }
+      const updatedUserData = await updateUserResponse.json();
+      // dispatch(removeProduct({id}));
+      dispatch(removeProduct(updatedUserData));
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
 
 const setError = (state, action) => {
   state.status = "rejected";
@@ -123,15 +191,17 @@ const usersSlice = createSlice({
   reducers: {
     addProduct(state, action) {
       // state.user.orders.push(action.payload);
-      state.user=action.payload;
+      state.user = action.payload;
     },
     removeProduct(state, action) {
       // state.user = state.user.orders.filter(
       //   (elem) => elem.id !== action.payload.id
       // );
-      state.user=action.payload;
+      state.user = action.payload;
     },
-    
+    addProductWishlist(state, action) {
+      state.user = action.payload;
+    },
   },
   // Меняю статус initialState и в state user попадает полученный массив с сервера
   extraReducers: (buildier) => {
@@ -145,17 +215,13 @@ const usersSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(fetchUser.rejected, setError)
-    .addCase(deleteProductInBasket.rejected, setError)
-    .addCase(addProductInBasket.rejected, setError);
+      .addCase(deleteProductInBasket.rejected, setError)
+      .addCase(addProductInBasket.rejected, setError)
+      .addCase(addProductInWishList.rejected, setError);
   },
 });
 
 export default usersSlice.reducer;
-
-
-
-
-
 
 // Пример на списке дел
 // export const fetchTodos = createAsyncThunk(

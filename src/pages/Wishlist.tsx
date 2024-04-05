@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import MainTitle from "../components/UI/MainTitle";
 import Cards from "../components/cards/Cards";
 import MainLayout from "../components/layout/MainLayout/MainLayout";
-import { Product } from "@/types/types";
-import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Wishlist = () => {
-  // получение данных с сервера с whishlist
-  const [wishlistProducts, setWishListProducts] = useState<Product[] | []>([]);
-  useEffect(() => {
-    const fetchDataWishlist = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/wishlist");
-        setWishListProducts(response.data);
-      } catch (error) {
-        console.log("Error", error);
-      }
-    };
-    fetchDataWishlist();
-  }, []);
+  // получение продуктов в  whishlist авторизованного пользователя из store
+
+// @ts-ignore
+  const wishlistProducts = useSelector((state) => state.user.user.wishlist);
 
   return (
     <MainLayout>
@@ -34,20 +24,17 @@ const Wishlist = () => {
           </MainTitle>
 
           <p className="text-[1.6rem]">
-            {wishlistProducts.length}{" "}
-            {wishlistProducts.length === 0 || wishlistProducts.length === 1
-              ? "Item"
-              : "Items"}
+            {wishlistProducts?.length}
+            {wishlistProducts?.length === 0 || wishlistProducts?.length === 1
+              ? " Item"
+              : " Items"}
           </p>
         </div>
       </div>
       <div className="grid  grid-cols-3 gap-y-16 gap-x-24" id="container-cards">
-        {wishlistProducts.map((element, index) => (
-          <Cards
-            productElement={{ element, index }}
-            setWhishListProducts={setWishListProducts}
-            key={index}
-          ></Cards>
+        {/* @ts-ignore */}
+        {wishlistProducts?.map((element, index) => (
+          <Cards productElement={{ element, index }} key={index}></Cards>
         ))}
       </div>
     </MainLayout>

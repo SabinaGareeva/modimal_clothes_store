@@ -25,3 +25,17 @@ export interface User {
   wishlist: Product[];
   orders: OrderProduct[];
 }
+export interface RootState {
+  user: {
+    user: {
+      id: string;
+      role: string;
+      firstname: string;
+      lastname: string;
+      email: string;
+      password: string;
+      wishlist: Product[];
+      orders: OrderProduct[];
+    };
+  };
+}

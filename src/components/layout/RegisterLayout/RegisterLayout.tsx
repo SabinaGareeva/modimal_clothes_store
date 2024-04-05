@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import UserInformation from "../../userInformation/UserInformation"
 
 
-const RegisterLayout = () => {
+const RegisterLayout:React.FC = () => {
   const session = useSession();
   console.log(session)
   return (

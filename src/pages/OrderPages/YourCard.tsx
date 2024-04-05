@@ -7,31 +7,26 @@ import CloseButton from "../../components/UI/Buttons/CloseButton";
 
 import CountProduct from "../../components/UI/CountProduct";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "../../components/store/ProductSlice";
-import { deleteProductInBasket } from "../../components/store/ProductSlice";
+import { fetchUser } from "../../../src/store/ProductSlice";
+import { deleteProductInBasket } from "../../../src/store/ProductSlice";
 
-const YourCard = 
-
-  () => {
+const YourCard = () => {
   const orderTableHeaders = ["Order summary", "Price", "Quantity", "Total"];
-  
+
   const dispatch = useDispatch();
-  
+
   // useEffect(() => {
   //   // @ts-ignore
   //   dispatch(fetchUser());
   // }, [dispatch]);
   // @ts-ignore
   const orderProducts = useSelector((state) => state.user.user.orders);
-  const deleteProductBasket= async (productId: number) => {
-
+  const deleteProductBasket = async (productId: number) => {
     // @ts-ignore
-   await dispatch(deleteProductInBasket(productId))
-     // @ts-ignore
+    await dispatch(deleteProductInBasket(productId));
+    // @ts-ignore
     dispatch(fetchUser());
-  }
-
-
+  };
 
   const priceAllProducts = orderProducts?.reduce(
     // @ts-ignore
@@ -126,9 +121,7 @@ const YourCard =
         <div className="float-right w-2/4 ">
           <div className="flex justify-between  text-[1.8rem] items-center mb-[0.8rem]">
             <div>
-              <p className="mb-[0.8rem]">
-                Subtotal ({orderProducts?.length})
-              </p>
+              <p className="mb-[0.8rem]">Subtotal ({orderProducts?.length})</p>
               <p className="mb-[0.8rem]">Tax</p>
               <p className="mb-[1.6rem]">Shipping</p>
               <p>Total Orders:</p>
@@ -149,7 +142,6 @@ const YourCard =
       </div>
     </main>
   );
-}
-
+};
 
 export default YourCard;
