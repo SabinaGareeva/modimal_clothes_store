@@ -9,6 +9,7 @@ import { signIn } from "next-auth/react";
 import { FormikHelpers } from "formik";
 import axios from "axios";
 import { nanoid } from "nanoid";
+import { Modal } from "../UI/Modal";
 
 interface RegisterInputs {
   email: string;
@@ -18,6 +19,8 @@ interface RegisterInputs {
 }
 
 const RegisterForm = () => {
+  // Состояние для показа модального окна
+  const [showModal, setShowModal] = useState(false);
   // состояние для показа или скрытия пароля
   const [visibilityPassword, setVisibilityPassword] = useState(true);
   // в зависимости от состояния показывается форма дли создания аккаунта или форма входа для зарегистрированного пользователя
@@ -62,11 +65,13 @@ const RegisterForm = () => {
     return errors;
   };
   // Функция добавления нового user в базу данных
-  async function addNewUser(user: any) {
+  async function addNewUser(user: any,helpers:any) {
     try {
       const response = await axios.post("http://localhost:3000/users", user);
       if (response.status === 201) {
         console.log("Пользователь добавлен");
+        setShowModal(true);
+       helpers.resetForm()
       } else {
         console.error(
           "Произошла ошибка при создании пользователя. HTTP статус:",
@@ -95,7 +100,8 @@ const RegisterForm = () => {
         wishlist: [],
         orders: [],
       };
-      addNewUser(newUser);
+      addNewUser(newUser,formikHelpers);
+
     } else {
       const res = await signIn("credentials", {
         email: values.email,
@@ -248,6 +254,15 @@ const RegisterForm = () => {
             Create an account
           </button>
         </div>
+      )}
+      {showModal && (
+        <Modal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          titleModal="Добавление пользователя"
+        >
+          Congratulations! Registration completed successfully
+        </Modal>
       )}
     </div>
   );
