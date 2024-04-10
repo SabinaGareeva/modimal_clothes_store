@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import css from "./Cards.module.css";
+import css from "./Cards.module.scss";
 import WishlistIcon from "../Icons/WishlistIcon";
 import { Product } from "@/types/types";
 import { useDispatch, useSelector } from "react-redux";
@@ -61,8 +61,8 @@ const Cards: React.FC<CardProps> = ({ productElement }) => {
 
   return (
     <Link href={`Collection/${productElement.element.id}`}>
-      <div className="flex-col relative" id={`${productElement.element.id}`}>
-        <button className={css.wishlist__heart} onClick={sendProductToWishlist}>
+      <div className={css.card} id={`${productElement.element.id}`}>
+        <button className={css.card__wishlist_heart} onClick={sendProductToWishlist}>
           <WishlistIcon productInWishlist={productInWishlist} />
         </button>
         <Image
@@ -73,11 +73,11 @@ const Cards: React.FC<CardProps> = ({ productElement }) => {
           className={css.card__image}
         ></Image>
         <h2 className={css.card__title}>{productElement.element.name}</h2>
-        <div className="flex justify-between items-center">
-          <p className={css.card__subtitle}>
+        <div className={css.card__subtitles}>
+          <p >
             {productElement.element.description}
           </p>
-          <p className={css.card__price}>${productElement.element.price}</p>
+          <p className={css.card__subtitles_price}>${productElement.element.price}</p>
         </div>
       </div>
     </Link>

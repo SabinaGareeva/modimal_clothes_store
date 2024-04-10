@@ -4,7 +4,9 @@
   font-size: 1.6rem;
   border: solid 1px #dfdfdf;
   margin-bottom: 2rem;
-}
-.select:focus {
-  outline: none;
+  &:focus {
+    outline: none;
+    padding: 5px;
+    
+  }
 }

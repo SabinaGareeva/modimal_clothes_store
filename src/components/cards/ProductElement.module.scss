@@ -1,0 +1,7 @@
+.productElements {
+  width: 2/3;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columns */
+  row-gap: 4rem;
+  column-gap: 6rem;
+}

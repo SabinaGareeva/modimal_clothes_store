@@ -75,7 +75,7 @@ const ContentMainPage = () => {
               alt=""
               className={`${css.main__collection_img} ${css.img__pants}`}
             ></Image>
-            <Link href="/" className={css.collection__main_subtitle}>
+            <Link href="/Collection/Pants" className={css.collection__main_subtitle}>
               Pants
             </Link>
           </div>

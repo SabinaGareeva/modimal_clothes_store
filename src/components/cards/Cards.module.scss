@@ -1,0 +1,32 @@
+.card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  &__wishlist_heart {
+    position: absolute;
+    top: 2.4rem;
+    right: 2.4rem;
+    cursor: pointer;
+  }
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+  &__image {
+    width: 37rem;
+    object-fit: cover;
+    margin-bottom: 0.55rem;
+  }
+  &__subtitles {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    font-weight: 400;
+    &_price {
+      font-weight: 700;
+    }
+  }
+}
+

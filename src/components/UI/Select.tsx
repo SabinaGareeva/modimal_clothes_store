@@ -1,4 +1,4 @@
-import css from "./Select.module.css";
+import css from "./Select.module.scss";
 interface Props {
   options: string[];
   setSelectedSize: (size: string) => void;

@@ -1,4 +1,4 @@
-import css from "./CountProduct.module.css";
+import css from "./CountProduct.module.scss";
 import { useState } from "react";
 interface CountProductProps {
   productId: number;
@@ -11,7 +11,7 @@ const CountProduct: React.FC<CountProductProps> = ({
   const [count, setCount] = useState(1);
 
   return (
-    <div className={css.count__container}>
+    <div className={css.counter}>
       <button
         onClick={() => setCount(count-1)}
         disabled={count === 1}
@@ -26,7 +26,7 @@ const CountProduct: React.FC<CountProductProps> = ({
           />
         </svg>
       </button>
-      <p className={css.count__product}>{count}</p>
+      <p className={css.counter__value}>{count}</p>
       <button
         onClick={() => setCount(count+1)}
         disabled={count === 10}

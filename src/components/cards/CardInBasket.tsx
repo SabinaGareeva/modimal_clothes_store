@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import CountProduct from "../UI/CountProduct";
 import CloseButton from "../UI/Buttons/CloseButton";
-import css from "./CardsInBasket.module.css";
+import css from "./CardsInBasket.module.scss";
 import { OrderProduct } from "@/types/types";
 import { useDispatch } from "react-redux";
 import { deleteProductInBasket } from "../../../src/store/ProductSlice";
@@ -26,18 +26,18 @@ const CardInBasket: React.FC<ProductInBasketProps> = ({ productInBasket }) => {
   };
 
   return (
-    <div key={`orderProduct__${productInBasket.index}`} className="flex mb-3">
+    <div key={`orderProduct__${productInBasket.index}`} className={css.card}>
       <Image
         src={productInBasket.orderProduct.imgPath[0]}
         alt={productInBasket.orderProduct.name}
-        className={css.basket__product_image}
+        className={css.card__image}
         width={130}
         height={150}
         objectFit="cover"
       />
-      <div className="p-5 w-full">
-        <div className="flex justify-between items-center">
-          <h3 className={css.basket__product_title}>
+      <div className={css.card__container}>
+        <div className={css.card__container_text}>
+          <h3 className={css.card__container_text_title}>
             {productInBasket.orderProduct.name}
           </h3>
           <CloseButton
@@ -47,18 +47,18 @@ const CardInBasket: React.FC<ProductInBasketProps> = ({ productInBasket }) => {
           />
         </div>
 
-        <p className={css.basket__product_subtitle}>
+        <p className={css.card__container_subtitle}>
           Size: {productInBasket.orderProduct.size}
         </p>
-        <p className={css.basket__product_subtitle}>
+        <p className={css.card__container_subtitle}>
           Color: {productInBasket.orderProduct.color}
         </p>
-        <div className="flex justify-between items-center">
+        <div className={css.card__container_text}>
           <CountProduct
             productId={productInBasket.orderProduct.id}
             productCount={productInBasket.orderProduct.count}
           />
-          <p className={css.basket__product_price}>
+          <p className={css.card__container_text_title}>
             {productInBasket.orderProduct.price}$
           </p>
         </div>

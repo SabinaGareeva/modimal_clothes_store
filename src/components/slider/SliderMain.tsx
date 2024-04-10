@@ -20,10 +20,10 @@ export default function SliderMain() {
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
         // ref={sliderRef}
         pagination={{
           clickable: true,

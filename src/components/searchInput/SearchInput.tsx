@@ -1,5 +1,5 @@
 import React, { useRef, ChangeEventHandler } from "react";
-import css from "./SearchInput.module.css";
+import css from "./SearchInput.module.scss";
 interface SearchInputProps {
   setSearchName: (values: string) => void;
 }
@@ -17,9 +17,9 @@ const SearchInput: React.FC<SearchInputProps> = ({ setSearchName }) => {
   };
   return (
     <div className="container">
-      <div className={css.search__container}>
+      <div className={css.search}>
         <input
-          className={css.main__input}
+          className={css.search__input}
           type="text"
           placeholder="Enter product name"
           name="name"
@@ -39,13 +39,12 @@ const SearchInput: React.FC<SearchInputProps> = ({ setSearchName }) => {
             fill="#ADADAD"
           />
         </svg>
-        <button className={css.button__clear} onClick={clearSearchInput}>
+        <button className={css.search__button} onClick={clearSearchInput}>
           <svg
             width="18.000000"
             height="18.000000"
             viewBox="0 0 24 24"
             fill="none"
-            className={css.search__image}
           >
             <path
               id="Union"

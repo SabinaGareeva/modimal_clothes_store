@@ -1,5 +1,5 @@
 import React from "react";
-import css from "./Pagination.module.css";
+import css from "./Pagination.module.scss";
 interface PaginationProps {
   productsPerPage: number;
   totalProducts: number;
@@ -22,18 +22,18 @@ const Pagination:React.FC<PaginationProps> = ({
     pageNumbers.push(i);
   }
   return (
-    <div className={css.pagination__centre}>
+    <div className={css.pagination}>
       <div className={css.pagination__container}>
-        <button className={css.pagination__button} onClick={prevPage}>
+        <button className={css.pagination__container_button} onClick={prevPage}>
           &lt;
         </button>
-        <div className="flex">
+        <div className={css.pagination__container_flex}>
           {pageNumbers.map((number) => (
             <button
               className={
                 currentPage === number
-                  ? `${css.pagination__button} ${css.pagination__button_active}`
-                  : `${css.pagination__button}`
+                  ? `${css.pagination__container_button} ${css.pagination__container_button_active}`
+                  : `${css.pagination__container_button}`
               }
               key={number}
               onClick={() => handlePageChange(number)}
@@ -42,7 +42,7 @@ const Pagination:React.FC<PaginationProps> = ({
             </button>
           ))}
         </div>
-        <button className={css.pagination__button} onClick={nextPage}>
+        <button className={css.pagination__container_button} onClick={nextPage}>
           &gt;
         </button>
       </div>

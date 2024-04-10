@@ -1,12 +1,13 @@
-.count__container {
+.counter {
   display: flex;
   width: 7rem;
   justify-content: space-between;
   background-color: #d1d9cf;
   color: #404e3e;
   padding: 0 1rem;
+  &__value {
+    font-weight: 400;
+    font-size: 2rem;
+  }
 }
-.count__product {
-  font-weight: 400;
-  font-size: 2rem;
-}
+

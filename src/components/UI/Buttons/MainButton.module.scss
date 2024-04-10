@@ -1,12 +1,12 @@
-.main__button {
+.mainButton {
   background-color: #5a6d57;
   color: #fff;
   width: 100%;
   font-size: 1.4rem;
   padding: 0.7rem;
   margin-bottom: 2rem;
+  &:hover {
+    background-color: #404e3e;
+  }
 }
-.main__button:hover {
-  background-color: #404e3e;
-  
-}
+

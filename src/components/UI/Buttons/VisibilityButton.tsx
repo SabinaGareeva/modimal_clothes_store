@@ -1,4 +1,4 @@
-import css from "./VisibilityButton.module.css";
+import css from "./VisibilityButton.module.scss";
 export const VisibilityButton = ({
   visibilityPassword,
   setVisibilityPassword,

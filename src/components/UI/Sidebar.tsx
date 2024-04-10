@@ -1,9 +1,9 @@
 import { useRef, useEffect } from "react";
-import Link from "next/link";
 import { createPortal } from "react-dom";
-import css from "./Sidebar.module.css";
+import css from "./Sidebar.module.scss";
 import CardInBasket from "../cards/CardInBasket";
 import CloseButton from "./Buttons/CloseButton";
+import MainLink from "./MainLink";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../store/ProductSlice";
 
@@ -65,37 +65,28 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
   return (
     isOpen &&
     createPortal(
-      <div className="fixed top-0 left-0 w-full h-full flex bg-opacity-50 bg-black">
-        <div
-          ref={modalRef}
-          className="modal bg-white p-5  shadow-md w-[45rem] fixed top-0 right-0 bottom-0"
-        >
+      <div className={css.sidebar}>
+        <div ref={modalRef} className={css.sidebar__container}>
           <CloseButton width="14" height="14" onClick={handleClose} />
           {renderOrderProducts ? (
             <div>
-              <h3 className={css.basket__title}>Your Cart</h3>
+              <h3 className={css.sidebar__container_title}>Your Cart</h3>
               {renderOrderProducts}
-              <Link
-                href="/OrderPages/YourCard"
-                className={css.basket__link}
-                onClick={handleClose}
-              >
+              <MainLink href="/OrderPages/YourCard" onClick={handleClose}>
                 Check out
-              </Link>
+              </MainLink>
             </div>
           ) : (
-            <div className="flex flex-col items-center">
-              <h2 className={css.basket__title}>Your shopping bag is empty</h2>
-              <p className={css.basket__empty_subtitle}>
+            <div className={css.sidebar__container_titles}>
+              <h2 className={css.sidebar__container_title}>
+                Your shopping bag is empty
+              </h2>
+              <p className={css.sidebar__container_subtitle}>
                 Discover modimal and add products to your Bag
               </p>
-              <Link
-                href="/Collection"
-                className={css.basket__link}
-                onClick={handleClose}
-              >
+              <MainLink href="/Collection" onClick={handleClose}>
                 Collection
-              </Link>
+              </MainLink>
             </div>
           )}
         </div>
