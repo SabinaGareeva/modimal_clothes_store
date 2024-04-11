@@ -4,8 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import HeaderIcons from "./HeaderIcons";
 import DropdownMenu from "../../dropdown-menus/DropdownMenu";
-import css from "./Navigation.module.css";
-import { useSession,signOut } from "next-auth/react";
+import css from "./Navigation.module.scss";
 
 /* пункты меню в шапке */
 const navItems = [
@@ -48,18 +47,19 @@ const Navigation = () => {
 
   return (
     <header
-      className="
-     shadow bg-white h-110px  items-center flex-col 
-    "
+    className={css.header}
+    //   className="
+    //  shadow bg-white h-110px  items-center flex-col 
+    // "
     >
-      <div className={css.header__free_shopping}>
-        <p className="text-[1.2rem] font-semibold">
+      <div className={css.header__top}>
+        <p >
           Enjoy Free Shopping On All Orders
         </p>
       </div>
       <div className="container">
-        <div className="flex justify-between items-center">
-          <Link href="/" className={css.logo__link}>
+        <div className={css.header__bottom}>
+          <Link href="/" className={css.header__bottom_logo}>
             <svg
               width="184"
               height="46"
@@ -96,7 +96,7 @@ const Navigation = () => {
             </svg>
           </Link>
       
-          <nav className="inline-flex items-center gap-10" ref={buttonsHeader}>
+          <nav className={css.header__bottom_nav} ref={buttonsHeader}>
             {navItems.map((item, index) => (
               <button
                 ref={buttonRef}
@@ -105,7 +105,7 @@ const Navigation = () => {
                 // className={`header-links  ${
                 //   item.path === router.pathname ? "text-sky-500" : ""
                 // }`}
-                className={css.header__button}
+                className={css.header__bottom_button}
                 onClick={() => {
                   setIsOpen(!isOpen);
                   setSelectedItemName(item.name);
@@ -115,14 +115,12 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
-            <Link href="/Modiweek" className={css.header__links}>
+            <Link href="/Modiweek" className={css.header__bottom_link}>
               Modiweek
             </Link>
           
           </nav>
           <HeaderIcons onClickHandler={onClickHandler}></HeaderIcons>
-          {/* {session.data && (<Link href='#'>Profile</Link>)}
-          {session.data ? <Link href='#' onClick={()=>signOut({callbackUrl:'/'})}>Sign Out</Link>:<Link href="/LogIn">Sign in</Link>} */}
         </div>
       </div>
       <DropdownMenu
@@ -130,7 +128,7 @@ const Navigation = () => {
         setIsOpen={setIsOpen}
         buttonsHeader={buttonsHeader}
         itemName={selectedItemName}
-        headerLinkClass="header-button"
+        // headerLinkClass="header-button"
       ></DropdownMenu>
     </header>
   );

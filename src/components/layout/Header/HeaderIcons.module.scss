@@ -1,0 +1,31 @@
+@use "sass:math";
+
+.headerIcons {
+  display: flex;
+  min-width: 184px;
+  justify-content: space-between;
+  align-items: center;
+  &__basket {
+    position: relative;
+    &:hover {
+      background-color: #ededed;
+    }
+    &_count {
+      position: absolute;
+      top: -1rem;
+      font-weight: 600;
+      font-size: 1rem;
+      right: -0.1rem;
+      &:hover {
+        background-color: #fff;
+      }
+    }
+  }
+}
+.icon__active {
+  background-color: #cbcbcb;
+}
+.icon__default {
+  background-color: #fff;
+}
+
