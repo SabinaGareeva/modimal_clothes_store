@@ -6,6 +6,7 @@ import HeaderIcons from "./HeaderIcons";
 import DropdownMenu from "../../dropdown-menus/DropdownMenu";
 import css from "./Navigation.module.scss";
 
+
 /* пункты меню в шапке */
 const navItems = [
   // { name: "Home", path: "/" },
@@ -47,10 +48,9 @@ const Navigation = () => {
 
   return (
     <header
-    className={css.header}
-    //   className="
-    //  shadow bg-white h-110px  items-center flex-col 
-    // "
+
+      className={css.header}
+
     >
       <div className={css.header__top}>
         <p >
@@ -105,7 +105,7 @@ const Navigation = () => {
                 // className={`header-links  ${
                 //   item.path === router.pathname ? "text-sky-500" : ""
                 // }`}
-                className={css.header__bottom_button}
+
                 onClick={() => {
                   setIsOpen(!isOpen);
                   setSelectedItemName(item.name);
@@ -115,7 +115,8 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
-            <Link href="/Modiweek" className={css.header__bottom_link}>
+
+            <Link href="/Modiweek" className={css.header__bottom_nav_link}>
               Modiweek
             </Link>
           

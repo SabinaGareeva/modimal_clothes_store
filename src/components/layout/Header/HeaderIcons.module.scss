@@ -1,11 +1,13 @@
-@use "sass:math";
 
-.headerIcons {
+
+.header_icons {
+
   display: flex;
   min-width: 184px;
   justify-content: space-between;
   align-items: center;
-  &__basket {
+
+  &__button {
     position: relative;
     &:hover {
       background-color: #ededed;
@@ -21,11 +23,15 @@
       }
     }
   }
+
 }
-.icon__active {
-  background-color: #cbcbcb;
-}
-.icon__default {
-  background-color: #fff;
+
+  &__link {
+    background-color: #fff;
+    &_active{
+      background-color: #cbcbcb;
+    }
+   
+  }
 }
 

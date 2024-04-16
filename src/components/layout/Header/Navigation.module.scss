@@ -1,8 +1,13 @@
 .header {
-  height: 10.5rem;
+
+  background-color: white;
+  height: 11rem;
+  align-items: center;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  /* shadow   items-center flex-col  */
   &__top {
-    height: 3rem;
+    height: 30px;
+
     background-color: #5a6d57;
     color: #fff;
     display: flex;
@@ -13,27 +18,30 @@
   }
   &__bottom {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    &_link {
-      font-size: 1.8rem;
-      font-weight: 400;
-      color: #404040;
-      order: 2;
-    }
-    &_nav {
-      display: inline-flex;
-      align-items: center;
-      gap: 2.5rem;
-    }
+    align-items: center;
+
     &_logo {
       padding-top: 1.6rem;
       padding-bottom: 1.8rem;
     }
-    &_button {
-      font-size: 1.8rem;
-      font-weight: 400;
-      color: #404040;
+
+    &_nav{
+      display: inline-flex;
+      gap: 2.5rem;
+      & button{
+        font-size: 1.8rem;
+        font-weight: 400;
+        color: #404040;
+      }
+      &_link{
+        font-size: 1.8rem;
+        font-weight: 400;
+        color: #404040;
+        order: 2;
+      }
     }
+
   }
 }
+

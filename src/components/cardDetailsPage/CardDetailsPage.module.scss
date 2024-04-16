@@ -1,0 +1,30 @@
+.cardDetails {
+  margin-top: 5rem;
+  margin-bottom: 9rem;
+  display: flex;
+  &__image {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    width: 65%;
+  }
+  &__inform {
+    padding-left: 0.75rem;
+    padding-top: 2.25rem;
+    &_text {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    &_name {
+      font-weight: 600;
+      font-size: 2.5rem;
+    }
+    &_button {
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+      width: 12rem;
+      justify-content: space-between;
+    }
+  }
+}

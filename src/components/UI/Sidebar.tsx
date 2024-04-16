@@ -81,7 +81,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
               <h2 className={css.sidebar__container_title}>
                 Your shopping bag is empty
               </h2>
-              <p className={css.sidebar__container_subtitle}>
+              <p>
                 Discover modimal and add products to your Bag
               </p>
               <MainLink href="/Collection" onClick={handleClose}>

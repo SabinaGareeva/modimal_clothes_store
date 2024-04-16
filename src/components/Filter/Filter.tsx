@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import css from "./Filter.module.css";
+import css from "./Filter.module.scss";
 
 type FiltersName = "sort" | "fabric" | "color" | "size";
 type CheckedOptionProps = {
@@ -28,16 +28,16 @@ const Filter: React.FC<FilterProps> = ({
   };
 
   return (
-    <div className={css.filter__container}>
+    <div className={css.filter}>
       <div
-        className={`flex items-center justify-between w-full p-[1.6rem] ${
-          filterIsOpen ? "bg-inherit" : "bg-[#748C70]"
+        className={`${css.filter__container} ${
+          filterIsOpen ? `${css.filter__open}` : `${css.filter__close}`
         }`}
         onClick={toggleShowFilter}
       >
         <p
           className={`${css.filter__title}  ${
-            filterIsOpen ? "text-[#748C70]" : "text-white"
+            filterIsOpen ? `${css.filter__title_open}`: `${css.filter__title_close}`
           }`}
         >
           {`${nameFilter[0].toUpperCase()}${nameFilter
@@ -70,21 +70,21 @@ const Filter: React.FC<FilterProps> = ({
         )}
       </div>
 
-      <div className={`p-[1.6rem] ${filterIsOpen ? "block" : "hidden"}`}>
+      <div className={`${css.filter__menu} ${filterIsOpen ?`${css.filter__menu_open}` :`${css.filter__menu_close}`}`}>
         {options?.map((option) => (
           <div key={option}>
             <input
               type="checkbox"
-              id={`${css.checkbox__filter}${option}`}
-              className={css.checkbox__filter}
+              id={`${css.filter__menu_checkbox}${option}`}
+              className={css.filter__menu_checkbox}
               checked={checkedOption[nameFilter].includes(option)}
               onChange={() => {
                 handleCheckboxChange(nameFilter, option);
               }}
             />
             <label
-              htmlFor={`${css.checkbox__filter}${option}`}
-              className={css.label__filter}
+              htmlFor={`${css.filter__menu_checkbox}${option}`}
+              className={css.filter__menu_label}
             >
               {`${option[0].toUpperCase()}${option
                 .slice(1, option.length)
