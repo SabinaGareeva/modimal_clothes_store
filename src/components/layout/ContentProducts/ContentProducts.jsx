@@ -167,7 +167,7 @@ const ContentProducts = ({ searchName }) => {
   };
   return (
     <>
-      <div className="container">
+      <div className="container" id="container-cards">
         <div className="flex mb-[4.8rem]">
           <div className="w-1/3">
             <h3 className="main-title">Filters</h3>

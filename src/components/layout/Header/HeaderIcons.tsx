@@ -15,6 +15,7 @@ const HeaderIcons = () => {
   // Показ модального окна при клике на корзину
   const [showModal, setShowModal] = useState(false);
   return (
+
     <div className={css.header_icons}>
       <Link href="/SearchPage">
         <svg
@@ -23,9 +24,11 @@ const HeaderIcons = () => {
           height="24"
           viewBox="0 0 24 24"
           fill="none"
+
           className={
             router.pathname === "/SearchPage" ?  `${css.header_icons__link_active}` : `${css.header_icons__link}` 
           }
+
         >
           <path
             d="M15.7549 14.2539H14.9649L14.6849 13.9839C15.6649 12.8439 16.2549 11.3639 16.2549 9.75391C16.2549 6.16391 13.3449 3.25391 9.75488 3.25391C6.16488 3.25391 3.25488 6.16391 3.25488 9.75391C3.25488 13.3439 6.16488 16.2539 9.75488 16.2539C11.3649 16.2539 12.8449 15.6639 13.9849 14.6839L14.2549 14.9639V15.7539L19.2549 20.7439L20.7449 19.2539L15.7549 14.2539ZM9.75488 14.2539C7.26488 14.2539 5.25488 12.2439 5.25488 9.75391C5.25488 7.26391 7.26488 5.25391 9.75488 5.25391C12.2449 5.25391 14.2549 7.26391 14.2549 9.75391C14.2549 12.2439 12.2449 14.2539 9.75488 14.2539Z"
@@ -40,7 +43,9 @@ const HeaderIcons = () => {
           height="24"
           viewBox="0 0 24 24"
           fill="none"
+
           className={router.pathname === "/LogIn" ? `${css.header_icons__link_active}` : `${css.header_icons__link}`}
+
         >
           <path
             d="M18.39 15.06C16.71 14.2 14.53 13.5 12 13.5C9.47 13.5 7.29 14.2 5.61 15.06C4.61 15.57 4 16.6 4 17.72V20.5H20V17.72C20 16.6 19.39 15.57 18.39 15.06ZM18 18.5H6V17.72C6 17.34 6.2 17 6.52 16.84C7.71 16.23 9.63 15.5 12 15.5C14.37 15.5 16.29 16.23 17.48 16.84C17.8 17 18 17.34 18 17.72V18.5Z"
@@ -52,12 +57,13 @@ const HeaderIcons = () => {
           />
         </svg>
       </Link>
-      {/* )} */}
 
       <Link href="/Wishlist">
         <WishlistIcon router={router} />
       </Link>
+
       <button onClick={() => setShowModal(true)} className={css.header_icons__button}>
+
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

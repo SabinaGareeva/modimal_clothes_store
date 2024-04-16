@@ -48,7 +48,9 @@ const Navigation = () => {
 
   return (
     <header
+
       className={css.header}
+
     >
       <div className={css.header__top}>
         <p >
@@ -103,7 +105,7 @@ const Navigation = () => {
                 // className={`header-links  ${
                 //   item.path === router.pathname ? "text-sky-500" : ""
                 // }`}
-               
+
                 onClick={() => {
                   setIsOpen(!isOpen);
                   setSelectedItemName(item.name);
@@ -113,14 +115,13 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
+
             <Link href="/Modiweek" className={css.header__bottom_nav_link}>
               Modiweek
             </Link>
           
           </nav>
           <HeaderIcons onClickHandler={onClickHandler}></HeaderIcons>
-          {/* {session.data && (<Link href='#'>Profile</Link>)}
-          {session.data ? <Link href='#' onClick={()=>signOut({callbackUrl:'/'})}>Sign Out</Link>:<Link href="/LogIn">Sign in</Link>} */}
         </div>
       </div>
       <DropdownMenu
@@ -128,7 +129,7 @@ const Navigation = () => {
         setIsOpen={setIsOpen}
         buttonsHeader={buttonsHeader}
         itemName={selectedItemName}
-        headerLinkClass="header-button"
+        // headerLinkClass="header-button"
       ></DropdownMenu>
     </header>
   );
