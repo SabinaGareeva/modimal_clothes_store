@@ -1,0 +1,29 @@
+.header_icons {
+  display: flex;
+  min-width: 184px;
+  justify-content: space-between;
+  align-items: center;
+  &__button {
+    position: relative;
+    &:hover {
+      background-color: #ededed;
+    }
+    &_count {
+      position: absolute;
+      top: -1rem;
+      font-weight: 600;
+      font-size: 1rem;
+      right: -0.1rem;
+      &:hover {
+        background-color: #fff;
+      }
+    }
+  }
+  &__link {
+    background-color: #fff;
+    &_active{
+      background-color: #cbcbcb;
+    }
+   
+  }
+}

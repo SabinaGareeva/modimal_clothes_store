@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import css from "./CardDetailsPage.module.css";
+import css from "./CardDetailsPage.module.scss";
 import MainButton from "../UI/Buttons/MainButton";
 import WishlistIcon from "../Icons/WishlistIcon";
 import Select from "../UI/Select";
@@ -79,8 +79,11 @@ const CardDetailsPage: React.FC<CardDetailsPageProps> = ({ product }) => {
 
   return (
     <>
-      <div className="mt-5 flex mb-9">
-        <div className="flex w-7/12 flex-wrap gap-1">
+      <div className={css.cardDetails}>
+        <div
+          className={css.cardDetails__image}
+          // "flex w-7/12 flex-wrap gap-1"
+        >
           {imgPath.map((item: string, index: number) => (
             <Image
               key={`detail-picture-${id}${index}`}
@@ -92,21 +95,24 @@ const CardDetailsPage: React.FC<CardDetailsPageProps> = ({ product }) => {
             ></Image>
           ))}
         </div>
-        <div className="pl-3 pt-9">
-          <div className="mb-4">
-            <h2 className={css.product__name}>Name product: {name}</h2>
-            <p className={css.product__characteristic}>
-              Description: {description}
+        <div className={css.cardDetails__inform}>
+          <div className={css.cardDetails__inform_text}>
+            <h2 className={css.cardDetails__inform_name}>
+              Name product: {name}
+            </h2>
+            <p>Description: {description}</p>
+            <p>Category: {category}</p>
+            <p>
+              Fabric: {fabric[0].toUpperCase()}
+              {fabric.slice(1)}
             </p>
-            <p className={css.product__characteristic}>Category: {category}</p>
-            <p className={css.product__characteristic}>Fabric: {fabric[0].toUpperCase()}{fabric.slice(1)}</p>
-            <p className={css.product__characteristic}>Price: {price}$</p>
+            <p>Price: {price}$</p>
           </div>
           <Select options={size} setSelectedSize={setSelectedSize}></Select>
           <MainButton onClick={sendProductToServer}>Add To Card</MainButton>
-          <button className="flex items-center" onClick={sendProductToWishlist}>
+          <button className={css.cardDetails__inform_button} onClick={sendProductToWishlist}>
             <WishlistIcon productInWishlist={productInWishlist} />
-            <p className="text-[1.4rem] ml-2">Add whishlist</p>
+            <p >Add whishlist</p>
           </button>
         </div>
       </div>
