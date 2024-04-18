@@ -17,6 +17,18 @@ const DropdownMenu = ({
   // const sliderRef = useRef(null);
   const dropdownRef = useRef(null);
 
+  
+  // Закрытие меню при клике на ссылку внутри меню
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   const handleClickOutside = (event) => {
     if (
       dropdownRef.current &&
@@ -30,17 +42,6 @@ const DropdownMenu = ({
       setIsOpen(false);
     }
   };
-  // Закрытие меню при клике на ссылку внутри меню
-  const handleLinkClick = () => {
-    setIsOpen(false);
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   // Для перехода по страницам
   const router = useRouter();
