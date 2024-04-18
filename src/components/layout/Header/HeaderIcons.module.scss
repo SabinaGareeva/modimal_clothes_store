@@ -1,7 +1,4 @@
-
-
 .header_icons {
-
   display: flex;
   min-width: 184px;
   justify-content: space-between;
@@ -23,15 +20,12 @@
       }
     }
   }
-
-}
-
   &__link {
     background-color: #fff;
-    &_active{
+    &_active {
       background-color: #cbcbcb;
     }
-   
   }
 }
+
 
